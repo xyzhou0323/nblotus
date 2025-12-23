@@ -33,7 +33,6 @@ toc: true #开启目录显示
 {{% /alert %}}
 
 添加图片：
-
-# 在/content/docs建立一个文件夹，以文章名命名，md放在这个文件夹内，名称为index.md。图片放在文件夹内，自行命名。
+在/content/docs建立一个文件夹，以文章名命名，md放在这个文件夹内，名称为index.md。图片放在文件夹内，自行命名。
 
 {{< figure src="图片名称.png" caption="图片内容：描述图片" >}}
