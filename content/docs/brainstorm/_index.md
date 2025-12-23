@@ -1,5 +1,5 @@
 ---
-weight: 5
+weight: 6
 title: "头脑风暴"
 description: "脑脑空间的评论文章"
 icon: "Stylus_Fountain_Pen"

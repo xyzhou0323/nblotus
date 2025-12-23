@@ -12,7 +12,7 @@ toc: true
 
 作者：Patrick Dwyer  
 脑脑空间翻译志愿者：  
-- 翻译：Admin、Guillotine、[XyZ](https://neuroxyz.cn)  
+- 翻译：[Admin](https://xhslink.com/m/6e2tpWcngRg) 、Guillotine、[XyZ](https://neuroxyz.cn)  
 - 审校：Rossa、Alexander  
 
 <div style="position: relative; width: 100%; height: 0; padding-top: 133.4454%;

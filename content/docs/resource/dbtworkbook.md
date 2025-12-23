@@ -9,7 +9,7 @@ draft: false
 toc: true
 ---
 作者与设计师：Sonny Jane Wise @livedexperienceeducator  
-脑脑空间NeuroBridge汉化志愿者：Admin、[XyZ](https://neuroxyz.cn) 、小呆、披垒、Guillotine、明月潮生  
+脑脑空间NeuroBridge汉化志愿者：[Admin](https://xhslink.com/m/6e2tpWcngRg) 、[XyZ](https://neuroxyz.cn) 、小呆、披垒、Guillotine、明月潮生  
 专业审阅：韦亦然  
 <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;

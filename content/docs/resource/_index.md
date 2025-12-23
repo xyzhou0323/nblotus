@@ -1,5 +1,5 @@
 ---
-weight: 6
+weight: 7
 title: "资源"
 description: "练习册和工具"
 icon: "Manufacturing"
