@@ -2,7 +2,7 @@
 weight: 81
 title: "XyZ丨“神经多样性-Lite”叙事，抛弃了什么？"
 description: "应该采取“更具传播效力”的神经多样性叙事？"
-icon: "Priority"
+icon: "Accessible"
 date: "2025-12-03T17:06:44+08:00"
 lastmod: "2025-12-21T17:06:44+08:00"
 draft: false

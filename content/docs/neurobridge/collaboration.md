@@ -2,7 +2,7 @@
 weight: 3
 title: "脑脑声明丨脑脑空间对外协作说明书"
 description: "脑脑空间NeuroBridge将保持相对独立的发展方向"
-icon: "Travel"
+icon: "Handshake"
 date: "2025-11-26T17:06:44+08:00"
 lastmod: "2025-12-21T17:06:44+08:00"
 draft: false

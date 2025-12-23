@@ -1,8 +1,8 @@
 ---
 weight: 2
 title: "测试丨Aspie Quiz V5 中文版"
-description: "免费公开资源，作者：XyZ"
-icon: "web"
+description: "神经殊异特征测试，作者：Leif Ekblad"
+icon: "Radar"
 date: "2025-08-01T17:06:44+08:00"
 lastmod: "2025-12-21T17:06:44+08:00"
 draft: false

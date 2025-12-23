@@ -2,7 +2,7 @@
 weight: 3
 title: "“神经多样性”的诞生：一段被遗忘的社群历史"
 description: "孤独谱系社群集体智慧和自我赋权的结晶"
-icon: "Tactic"
+icon: "Diversity_3"
 date: "2025-10-16T17:04:45+08:00"
 lastmod: "2025-12-21T17:04:45+08:00"
 draft: false

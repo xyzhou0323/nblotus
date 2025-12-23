@@ -2,7 +2,7 @@
 weight: 2
 title: "脑脑之路丨我们的里程碑"
 description: "脑脑空间NeuroBridge编年史"
-icon: "Travel"
+icon: "History"
 date: "2025-04-22T17:06:44+08:00"
 lastmod: "2025-12-21T17:06:44+08:00"
 draft: false
