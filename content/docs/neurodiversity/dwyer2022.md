@@ -28,3 +28,5 @@ toc: true
 版权声明：原文遵循<a href="https://creativecommons.org/licenses/by/4.0/" style="color: inherit; text-decoration: none;">CC BY 4.0 协议</a>。  
 译文首发：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/r8tM5a1IahnfJ4AAFwps1w)  
 首发时间：2025-12-25  
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

@@ -235,3 +235,5 @@ toc: true
 
 ---
 欢迎移步公众号的评论区，留下你对脑脑空间的想法（也可以是批评和建议~）： [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/2WaiPadtrLHokeI_pjdwYg)  
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

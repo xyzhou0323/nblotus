@@ -234,3 +234,5 @@ toc: true
 是另一条路。一条同样真实、同样值得被看见的路。
 
 ---
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

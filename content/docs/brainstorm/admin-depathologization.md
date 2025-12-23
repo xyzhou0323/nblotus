@@ -98,3 +98,5 @@ ND孩子孤僻、不合群、在公共场合情绪失控，邻里、亲戚、甚
 
 ---
 本文亦见: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/jXhXTUvXtjwLSA9xmKS_Pg)  
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

@@ -230,3 +230,5 @@ City Walk、长跑和徒步是我的兴趣爱好。我身边的多数人都会�
 喜欢跳来跳去。特别喜欢立定跳远，因为我有跳远天赋，每次都能跳出去很远，这给了我成就感。
 
 ---
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

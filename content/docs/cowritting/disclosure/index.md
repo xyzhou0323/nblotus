@@ -238,3 +238,5 @@ anyways，我是本着一个致歉的态度和对方披露的，本意是“抱�
 他们在了解了我身上nd相关的特性以后，对我的确诊和自我了解感到很高兴，因为这让我们的关系变得更好。
 
 ---
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

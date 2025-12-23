@@ -79,3 +79,5 @@ CPTSD的疗愈可能还需要很久。但努力建构起ND的独特生活叙事�
 
 ---
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/L6Kq0BKmWmX2cvw2Dermng)
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

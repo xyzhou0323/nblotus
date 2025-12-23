@@ -113,3 +113,7 @@ toc: true
 {{% alert icon="💭" context="warning" %}}
 真正的**自我**，是我们不得不做自己，我们无法背离真正的自己。
 {{% /alert %}}
+
+---
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

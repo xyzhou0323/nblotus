@@ -69,3 +69,7 @@ toc: true
 ---
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)
+
+[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

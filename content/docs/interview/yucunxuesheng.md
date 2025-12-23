@@ -79,3 +79,5 @@ toc: true
 
 ---
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/EBwNFSLM4Gr3SqvS0oxx1A)
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

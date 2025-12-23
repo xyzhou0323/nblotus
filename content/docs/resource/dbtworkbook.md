@@ -19,3 +19,5 @@ toc: true
   </iframe>
 </div>
 <a href="https:&#x2F;&#x2F;www.canva.cn&#x2F;design&#x2F;DAG4lDcoflY&#x2F;jho-uATlGM1U_8ziDqgjVw&#x2F;view?utm_content=DAG4lDcoflY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">神经殊异友好的DBT练习册－脑脑空间.pdf</a>，作者 Sonny Jane Wise
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

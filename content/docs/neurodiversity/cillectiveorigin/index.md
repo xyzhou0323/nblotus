@@ -34,6 +34,31 @@ toc: true
 
 要了解这段历史，我们必须回到这个词汇在正式出版物中刊发之前，走近**90年代早期的互联网社群**，探寻神经多样性的真正根源。
 
+
+```mermaid
+timeline
+    title “神经多样性”的诞生
+    section 早期互联网社群
+        1992 : ANI
+             : Jim Sinclair等人创立
+             : 首个孤独谱系自我倡权组织
+        1994 : ANI-L
+             : ANI创立的邮件列表
+             : 第一个孤独谱系网络空间
+        1996 : InLv邮件列表
+             : Martijn Dekker创立
+             : 孤独谱系自运营和托管
+             : Neurological diversity
+    section 公开出版传播
+        1997 : Harvey Blume
+             : 《纽约时报》
+             : Neurological diversity
+        1998 : Harvey Blume
+             : Judy Singer
+             : Neurodiversity
+
+```
+
 ---
 ## 起点：90年代早期的网络社群
 20世纪90年代中期的互联网，萌发了神经多样性的种子。
@@ -111,3 +136,5 @@ ANI成员如吉姆·辛克莱（Jim Sinclair），残障倡导者埃德·罗伯�
 2. [InLv网站](https://www.inlv.org/)
 ---
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/s49FUougy8HKOWEKpfZe9w)
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

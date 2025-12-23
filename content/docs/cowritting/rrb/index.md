@@ -274,3 +274,5 @@ toc: true
 
 ---
 公众号的评论区还有很多神经殊异（ND）小伙伴分享自己的爱好，欢迎移步： [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/z_VBZrTkD4T8VR_g7h9FOQ)  
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

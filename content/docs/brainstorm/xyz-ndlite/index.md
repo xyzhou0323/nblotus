@@ -138,9 +138,14 @@ Crip Theory（McRuer，2006）的发展，就展示了被贬损的词汇（传�
 
 差异本身不是壁垒，对差异的恐惧和排斥才是。当双方把差异视为中性事实而非敌意，合作才可能真正发生。
 
+---
 ### 延伸阅读：
 1. [Dwyer, P. (2022). The neurodiversity approach (es): What are they and what do they mean for researchers?. Human development, 66(2), 73-92.](https://doi.org/10.1159/000523723)  
     [中文译文：脑脑空间Neurobridge](https://neurobridge.cn/docs/neurodiversity/dwyer2022)
 2. [Dwyer, P., Gurba, A. N., Kapp, S. K., Kilgallon, E., Hersh, L. H., Chang, D. S., ... & Gillespie-Lynch, K. (2025). Community views of neurodiversity, models of disability and autism intervention: Mixed methods reveal shared goals and key tensions. Autism, 29(9), 2297-2314.](https://doi.org/10.1177/13623613241273029)
 3. [Srinivasan, H. (2025). Neurodiversity 2.0-Harnessing cross-disciplinary disability insights. Research in Autism, 127, 202652.](https://doi.org/10.1016/j.reia.2025.202652)
 4. [Shain M. Neumeier. (2018)‘To Siri With Love’ and the Problem With Neurodiversity Lite](https://rewirenewsgroup.com/2018/02/09/siri-love-problem-neurodiversity-lite/)
+
+---
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

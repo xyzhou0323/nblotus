@@ -93,3 +93,5 @@ ADHD药物让她状态分时段波动非常明显。比如：
 
 ---
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/B37yxN8C4RAhSX7mPZINtw)
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}

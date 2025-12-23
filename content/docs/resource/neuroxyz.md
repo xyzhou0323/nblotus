@@ -81,3 +81,5 @@ toc: true
 [阅读辅助器](https://lexixyz.netlify.app/)：高亮文本、调整显示，可用AI智能分词、句子主干标注、词性标注等功能，帮助阅读障碍等用户多通路输入。AI功能需要自备API。
 
 [人际场景解码练习](https://contextxyz.netlify.app/)：大语言模型生成的人际场景练习题，可用于提升孤独谱系与非孤独谱系间的社交理解，有儿童版和成人版。需要自备API。
+
+{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
