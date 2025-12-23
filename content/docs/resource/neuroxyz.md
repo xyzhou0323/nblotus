@@ -1,5 +1,5 @@
 ---
-weight: 2
+weight: 3
 title: "网站丨NeuroXYZ.cn：神经殊异测试平台"
 description: "免费公开资源，作者：XyZ"
 icon: "web"
@@ -17,7 +17,7 @@ toc: true
 2. 心理和健康测试
 3. 娱乐测试
 4. 工具
-
+---
 ## 1. 神经殊异性测试
 
 ### ASD相关
