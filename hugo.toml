@@ -19,3 +19,7 @@ title = '脑脑客厅'
 [markup.goldmark.renderer]
     unsafe = true
 
+[params.docs] 
+  darkMode = true
+  sidebarIcons = true
+  titleIcon = true

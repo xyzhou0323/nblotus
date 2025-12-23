@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<html lang="zh-cn"><head>
+    <meta charset="utf-8" />
+    <title>C的生命故事丨不被定义的时光 | 脑脑客厅</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期">
+    <meta name="keywords" content="Documentation, Hugo, Hugo Theme, Bootstrap" />
+    <meta name="author" content="Colin Wilson - Lotus Labs" />
+    <meta name="email" content="support@aigis.uk" />
+    <meta name="website" content="https://lotusdocs.dev" />
+    <meta name="Version" content="v0.1.0" />
+    
+    <link rel="icon" href="https://neurobridge.cn/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="https://neurobridge.cn/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="https://neurobridge.cn/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://neurobridge.cn/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://neurobridge.cn/favicon-16x16.png">
+<link rel="manifest" crossorigin="use-credentials" href="https://neurobridge.cn/site.webmanifest">
+<meta property="og:title" content="C的生命故事丨不被定义的时光" />
+<meta property="og:description" content="系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://neurobridge.cn/docs/interview/c/" /><meta property="og:image" content="https://neurobridge.cn/opengraph/card-base-2_hu_ab0e89484acf89d4.png"/><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2025-05-11T17:06:44+08:00" />
+<meta property="article:modified_time" content="2025-12-22T17:06:44+08:00" /><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://neurobridge.cn/opengraph/card-base-2_hu_ab0e89484acf89d4.png"/>
+<meta name="twitter:title" content="C的生命故事丨不被定义的时光"/>
+<meta name="twitter:description" content="系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期"/>
+
+    
+        <link rel="alternate" type="application/atom+xml" title="Atom feed for 脑脑客厅" href="/index.xml" />
+    
+    <script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script>
+    
+    
+            
+                
+                <script type="text/javascript" src="https://neurobridge.cn/docs/js/flexsearch.bundle.min.f5159d5a2151ffbb653996ec17eaff7da4e04c286bd879fc41839d36a5586f3f20eaead0b6089de48f9adc669cdee771.js" integrity="sha384-9RWdWiFR/7tlOZbsF&#43;r/faTgTChr2Hn8QYOdNqVYbz8g6urQtgid5I&#43;a3Gac3udx" crossorigin="anonymous"></script>
+                
+        
+    
+    
+
+    <link rel="stylesheet" href="/docs/scss/style.min.9f198180aa929b3c2276b402b796e74ed231639ad7ea837d05515b5be35ef385e0980b2bc2499d09dad5d011b90710cf.css" integrity="sha384-nxmBgKqSmzwidrQCt5bnTtIxY5rX6oN9BVFbW&#43;Ne84XgmAsrwkmdCdrV0BG5BxDP"crossorigin="anonymous">
+    
+    
+    
+    </head>
+<body>
+        <div class="content">
+            <div class="page-wrapper toggled">
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-brand">
+        <a href='/' aria-label="HomePage" alt="HomePage">
+            
+                <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><path d="m143,39.5c-18,0-18,18-18,18,0,0,0-18-18-18H22c-2.76,0-5,2.24-5,5v143c0,2.76,2.24,5,5,5h76c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h76c2.76,0,5-2.24,5-5V44.5c0-2.76-2.24-5-5-5h-85Zm63,123.5c0,1.38-1.12,2.5-2.5,2.5h-60.5c-18,0-18,18-18,18,0,0,0-18-18-18h-60.5c-1.38,0-2.5-1.12-2.5-2.5v-94c0-1.38,1.12-2.5,2.5-2.5h51.5c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h51.5c1.38,0,2.5,1.12,2.5,2.5v94Z" style="fill:#06f;"/></svg>
+            
+        </a>
+    </div>
+    <div class="sidebar-content" style="height: calc(100% - 131px);">
+        <ul class="sidebar-menu">
+            
+                
+                
+                    
+                    
+                        <li class="sidebar-dropdown  ">
+                            <button class="btn">
+                                <i class="material-icons me-2">article</i>
+                                脑脑空间
+                            </button>
+                            <div class="sidebar-submenu ">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/neurobridge/setout/">脑脑启程丨一张车票，一段旅程，一个世界</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+                    
+                    
+                        <li class="sidebar-dropdown  ">
+                            <button class="btn">
+                                <i class="material-icons me-2">Neurology</i>
+                                神经多样性
+                            </button>
+                            <div class="sidebar-submenu ">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/neurodiversity/walker2014/">翻译丨Walker（2014）：神经多样性：基本术语与定义</a></li>
+                                        
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/neurodiversity/dwyer2022/">翻译丨Dwyer（2022）：神经多样性方法群</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+                    
+                    
+                        <li class="sidebar-dropdown  current active">
+                            <button class="btn">
+                                <i class="material-icons me-2">frame_person_mic</i>
+                                脑脑访谈
+                            </button>
+                            <div class="sidebar-submenu d-block">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/interview/artemis/">Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己”</a></li>
+                                        
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/interview/yucunxuesheng/">渔村学生的生命故事丨主线暂停，支线照常进行中</a></li>
+                                        
+                                    
+                                        
+                                        
+                                            <li class="current "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/interview/c/">C的生命故事丨不被定义的时光</a></li>
+                                        
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/interview/z17/">z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+                    
+                    
+                        <li class="sidebar-dropdown  ">
+                            <button class="btn">
+                                <i class="material-icons me-2">Record_Voice_Over</i>
+                                脑脑故事
+                            </button>
+                            <div class="sidebar-submenu ">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/story/fa-dream/">大发丨梦境：不可思议的修复</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+                    
+                    
+                        <li class="sidebar-dropdown  ">
+                            <button class="btn">
+                                <i class="material-icons me-2">Stylus_Fountain_Pen</i>
+                                头脑风暴
+                            </button>
+                            <div class="sidebar-submenu ">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/brainstorm/xyz-critique/">XyZ丨必须批判神经多样性运动</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+                    
+                    
+                        <li class="sidebar-dropdown  ">
+                            <button class="btn">
+                                <i class="material-icons me-2">Manufacturing</i>
+                                资源
+                            </button>
+                            <div class="sidebar-submenu ">
+                                <ul>
+                                    
+                                        
+                                        
+                                            <li class=" "><a class="sidebar-nested-link" href="https://neurobridge.cn/docs/resource/dbtworkbook/">翻译丨神经殊异友好的DBT练习册</a></li>
+                                        
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    
+                
+            
+        </ul>
+        
+    </div>
+    
+        <ul class="sidebar-footer list-unstyled mb-0">
+            
+        </ul>
+    
+</nav>
+
+                    <main class="page-content bg-transparent">
+                        
+<div id="top-header" class="top-header d-print-none">
+    <div class="header-bar d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <a href='/' class="logo-icon me-3" aria-label="HomePage" alt="HomePage">
+                <div class="small">
+                    
+                            <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><path d="m143,39.5c-18,0-18,18-18,18,0,0,0-18-18-18H22c-2.76,0-5,2.24-5,5v143c0,2.76,2.24,5,5,5h76c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h76c2.76,0,5-2.24,5-5V44.5c0-2.76-2.24-5-5-5h-85Zm63,123.5c0,1.38-1.12,2.5-2.5,2.5h-60.5c-18,0-18,18-18,18,0,0,0-18-18-18h-60.5c-1.38,0-2.5-1.12-2.5-2.5v-94c0-1.38,1.12-2.5,2.5-2.5h51.5c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h51.5c1.38,0,2.5,1.12,2.5,2.5v94Z" style="fill:#06f;"/></svg>
+                    
+                </div>
+                <div class="big">
+                    
+                            <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250"><path d="m143,39.5c-18,0-18,18-18,18,0,0,0-18-18-18H22c-2.76,0-5,2.24-5,5v143c0,2.76,2.24,5,5,5h76c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h76c2.76,0,5-2.24,5-5V44.5c0-2.76-2.24-5-5-5h-85Zm63,123.5c0,1.38-1.12,2.5-2.5,2.5h-60.5c-18,0-18,18-18,18,0,0,0-18-18-18h-60.5c-1.38,0-2.5-1.12-2.5-2.5v-94c0-1.38,1.12-2.5,2.5-2.5h51.5c7.2,0,8.64,11.52,8.93,16.13.07,1.05.95,1.87,2,1.87h32.14c1.06,0,1.94-.82,2-1.87.29-4.61,1.73-16.13,8.93-16.13h51.5c1.38,0,2.5,1.12,2.5,2.5v94Z" style="fill:#06f;"/></svg>
+                    
+                </div>
+            </a>
+            <button id="close-sidebar" class="btn btn-icon btn-soft">
+                <span class="material-icons size-20 menu-icon align-middle">menu</span>
+            </button>
+            
+            
+                    
+                    <button id="flexsearch-button" class="ms-3 btn btn-soft" data-bs-toggle="collapse" data-bs-target="#FlexSearchCollapse" aria-expanded="false" aria-controls="FlexSearchCollapse">
+                        <span class="material-icons size-20 menu-icon align-middle">search</span>
+                        <span class="flexsearch-button-placeholder ms-1 me-2 d-none d-sm-block">Search</span>
+                        <div class="d-none d-sm-block">
+                            <span class="flexsearch-button-keys">
+                                <kbd class="flexsearch-button-cmd-key">
+                                    <svg width="44" height="15"><path d="M2.118,11.5A1.519,1.519,0,0,1,1,11.042,1.583,1.583,0,0,1,1,8.815a1.519,1.519,0,0,1,1.113-.458h.715V6.643H2.118A1.519,1.519,0,0,1,1,6.185,1.519,1.519,0,0,1,.547,5.071,1.519,1.519,0,0,1,1,3.958,1.519,1.519,0,0,1,2.118,3.5a1.519,1.519,0,0,1,1.114.458A1.519,1.519,0,0,1,3.69,5.071v.715H5.4V5.071A1.564,1.564,0,0,1,6.976,3.5,1.564,1.564,0,0,1,8.547,5.071,1.564,1.564,0,0,1,6.976,6.643H6.261V8.357h.715a1.575,1.575,0,0,1,1.113,2.685,1.583,1.583,0,0,1-2.227,0A1.519,1.519,0,0,1,5.4,9.929V9.214H3.69v.715a1.519,1.519,0,0,1-.458,1.113A1.519,1.519,0,0,1,2.118,11.5Zm0-.857a.714.714,0,0,0,.715-.714V9.214H2.118a.715.715,0,1,0,0,1.429Zm4.858,0a.715.715,0,1,0,0-1.429H6.261v.715a.714.714,0,0,0,.715.714ZM3.69,8.357H5.4V6.643H3.69ZM2.118,5.786h.715V5.071a.714.714,0,0,0-.715-.714.715.715,0,0,0-.5,1.22A.686.686,0,0,0,2.118,5.786Zm4.143,0h.715a.715.715,0,0,0,.5-1.22.715.715,0,0,0-1.22.5Z" fill="currentColor"></path><path d="M12.4,11.475H11.344l3.879-7.95h1.056Z" fill="currentColor"></path><path d="M25.073,5.384l-.864.576a2.121,2.121,0,0,0-1.786-.923,2.207,2.207,0,0,0-2.266,2.326,2.206,2.206,0,0,0,2.266,2.325,2.1,2.1,0,0,0,1.782-.918l.84.617a3.108,3.108,0,0,1-2.622,1.293,3.217,3.217,0,0,1-3.349-3.317,3.217,3.217,0,0,1,3.349-3.317A3.046,3.046,0,0,1,25.073,5.384Z" fill="currentColor"></path><path d="M30.993,5.142h-2.07v5.419H27.891V5.142h-2.07V4.164h5.172Z" fill="currentColor"></path><path d="M34.67,4.164c1.471,0,2.266.658,2.266,1.851,0,1.087-.832,1.809-2.134,1.855l2.107,2.691h-1.28L33.591,7.87H33.07v2.691H32.038v-6.4Zm-1.6.969v1.8h1.572c.832,0,1.22-.3,1.22-.918s-.411-.882-1.22-.882Z" fill="currentColor"></path><path d="M42.883,10.561H38.31v-6.4h1.033V9.583h3.54Z" fill="currentColor"></path></svg>
+                                </kbd>
+                                <kbd class="flexsearch-button-key">
+                                    <svg width="15" height="15"><path d="M5.926,12.279H4.41L9.073,2.721H10.59Z" fill="currentColor"/></svg>
+                                </kbd>
+                            </span>
+                        </div>
+                    </button>
+                
+            </div>
+
+        <div class="d-flex align-items-center">
+            <ul class="list-unstyled mb-0">
+                
+            </ul>
+            <button id="mode" class="btn btn-icon btn-default ms-2" type="button" aria-label="Toggle user interface mode">
+                <span class="toggle-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 48 48" fill="currentColor">
+                        <title>Enable dark mode</title>
+                        <path d="M24 42q-7.5 0-12.75-5.25T6 24q0-7.5 5.25-12.75T24 6q.4 0 .85.025.45.025 1.15.075-1.8 1.6-2.8 3.95-1 2.35-1 4.95 0 4.5 3.15 7.65Q28.5 25.8 33 25.8q2.6 0 4.95-.925T41.9 22.3q.05.6.075.975Q42 23.65 42 24q0 7.5-5.25 12.75T24 42Zm0-3q5.45 0 9.5-3.375t5.05-7.925q-1.25.55-2.675.825Q34.45 28.8 33 28.8q-5.75 0-9.775-4.025T19.2 15q0-1.2.25-2.575.25-1.375.9-3.125-4.9 1.35-8.125 5.475Q9 18.9 9 24q0 6.25 4.375 10.625T24 39Zm-.2-14.85Z"/>
+                    </svg>
+                </span>
+                <span class="toggle-light">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="30" width="30" viewBox="0 0 48 48" fill="currentColor">
+                        <title>Enable light mode</title>
+                        <path d="M24 31q2.9 0 4.95-2.05Q31 26.9 31 24q0-2.9-2.05-4.95Q26.9 17 24 17q-2.9 0-4.95 2.05Q17 21.1 17 24q0 2.9 2.05 4.95Q21.1 31 24 31Zm0 3q-4.15 0-7.075-2.925T14 24q0-4.15 2.925-7.075T24 14q4.15 0 7.075 2.925T34 24q0 4.15-2.925 7.075T24 34ZM3.5 25.5q-.65 0-1.075-.425Q2 24.65 2 24q0-.65.425-1.075Q2.85 22.5 3.5 22.5h5q.65 0 1.075.425Q10 23.35 10 24q0 .65-.425 1.075-.425.425-1.075.425Zm36 0q-.65 0-1.075-.425Q38 24.65 38 24q0-.65.425-1.075.425-.425 1.075-.425h5q.65 0 1.075.425Q46 23.35 46 24q0 .65-.425 1.075-.425.425-1.075.425ZM24 10q-.65 0-1.075-.425Q22.5 9.15 22.5 8.5v-5q0-.65.425-1.075Q23.35 2 24 2q.65 0 1.075.425.425.425.425 1.075v5q0 .65-.425 1.075Q24.65 10 24 10Zm0 36q-.65 0-1.075-.425-.425-.425-.425-1.075v-5q0-.65.425-1.075Q23.35 38 24 38q.65 0 1.075.425.425.425.425 1.075v5q0 .65-.425 1.075Q24.65 46 24 46ZM12 14.1l-2.85-2.8q-.45-.45-.425-1.075.025-.625.425-1.075.45-.45 1.075-.45t1.075.45L14.1 12q.4.45.4 1.05 0 .6-.4 1-.4.45-1.025.45-.625 0-1.075-.4Zm24.7 24.75L33.9 36q-.4-.45-.4-1.075t.45-1.025q.4-.45 1-.45t1.05.45l2.85 2.8q.45.45.425 1.075-.025.625-.425 1.075-.45.45-1.075.45t-1.075-.45ZM33.9 14.1q-.45-.45-.45-1.05 0-.6.45-1.05l2.8-2.85q.45-.45 1.075-.425.625.025 1.075.425.45.45.45 1.075t-.45 1.075L36 14.1q-.4.4-1.025.4-.625 0-1.075-.4ZM9.15 38.85q-.45-.45-.45-1.075t.45-1.075L12 33.9q.45-.45 1.05-.45.6 0 1.05.45.45.45.45 1.05 0 .6-.45 1.05l-2.8 2.85q-.45.45-1.075.425-.625-.025-1.075-.425ZM24 24Z"/>
+                    </svg>
+                </span>
+            </button>
+            
+        </div>
+    </div>
+    
+    
+            <div class="collapse" id="FlexSearchCollapse">
+                <div class="flexsearch-container">
+                    <div class="flexsearch-keymap">
+                        <li>
+                            <kbd class="flexsearch-button-cmd-key"><svg width="15" height="15" aria-label="Arrow down" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 3.5v8M10.5 8.5l-3 3-3-3"></path></g></svg></kbd>
+                            <kbd class="flexsearch-button-cmd-key"><svg width="15" height="15" aria-label="Arrow up" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M7.5 11.5v-8M10.5 6.5l-3-3-3 3"></path></g></svg></kbd>
+                            <span class="flexsearch-key-label">to navigate</span>
+                        </li>
+                        <li>
+                            <kbd class="flexsearch-button-cmd-key"><svg width="15" height="15" aria-label="Enter key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3"></path></g></svg></kbd>
+                            <span class="flexsearch-key-label">to select</span>
+                        </li>
+                        <li>
+                            <kbd class="flexsearch-button-cmd-key"><svg width="15" height="15" aria-label="Escape key" role="img"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"><path d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956"></path></g></svg></kbd>
+                            <span class="flexsearch-key-label">to close</span>
+                        </li>
+                    </div>
+                    <form class="flexsearch position-relative flex-grow-1 ms-2 me-2">
+                        <div class="d-flex flex-row">
+                            <input id="flexsearch" class="form-control" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
+                            <button id="hideFlexsearch" type="button" class="ms-2 btn btn-soft">
+                                cancel
+                            </button>
+                        </div>
+                        <div id="suggestions" class="shadow rounded-1 d-none"></div>
+                    </form>
+                </div>
+            </div>
+        
+    
+    
+</div>
+
+
+                            <div class="container-fluid">
+                                <div class="layout-spacing">
+                                    
+                                        <div class="d-md-flex justify-content-between align-items-center"><nav aria-label="breadcrumb" class="d-inline-block pb-2 mt-1 mt-sm-0">
+    <ul id="breadcrumbs" class="breadcrumb bg-transparent mb-0" itemscope itemtype="https://schema.org/BreadcrumbList">
+        
+            
+                <li class="breadcrumb-item text-capitalize active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/docs/">
+                        <i class="material-icons size-20 align-text-bottom" itemprop="name">Home</i>
+                    </a>
+                    <meta itemprop="position" content='1' />
+                </li>
+            
+            
+                <li class="breadcrumb-item text-capitalize" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/docs/interview/">
+                        <span itemprop="name">脑脑访谈</span>
+                    </a>
+                    <meta itemprop="position" content='2' />
+                </li>
+            
+        
+            <li class="breadcrumb-item text-capitalize active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">C的生命故事丨不被定义的时光</span>
+                <meta itemprop="position" content='3' />
+            </li>
+        
+    </ul>
+</nav></div>
+                                    
+                                    <div class="row flex-xl-nowrap">
+                                        
+                                        <div class="docs-toc col-xl-3    d-xl-block"><toc>
+    <div class="fw-bold text-uppercase mb-2">On this page</div>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#自我觉察的开始">自我觉察的开始</a></li>
+    <li><a href="#如何描自己的gap-year">如何描自己的GAP year？</a></li>
+    <li><a href="#nd身份带来的转变">ND身份带来的转变</a></li>
+    <li><a href="#关于独自生活的分享">关于独自生活的分享</a></li>
+    <li><a href="#在adhd和asd之间来回流动的我">“在ADHD和ASD之间来回流动的我”</a></li>
+  </ul>
+</nav>
+    </toc></div>
+                                        
+                                        
+                                        <div class="docs-toc-mobile    d-print-none d-xl-none">
+                                            <button id="toc-dropdown-btn" class="btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-offset="0,0" aria-expanded="false">
+                                                Table of Contents
+                                            </button>
+<nav id="toc-mobile">
+  <ul class="dropdown-menu">
+    <li><a href="#自我觉察的开始">自我觉察的开始</a></li>
+    <li><a href="#如何描自己的gap-year">如何描自己的GAP year？</a></li>
+    <li><a href="#nd身份带来的转变">ND身份带来的转变</a></li>
+    <li><a href="#关于独自生活的分享">关于独自生活的分享</a></li>
+    <li><a href="#在adhd和asd之间来回流动的我">“在ADHD和ASD之间来回流动的我”</a></li>
+  </ul>
+</nav></div>
+                                        <div class="docs-content col-12 col-xl-9 mt-0">
+                                            <div class="mb-0 d-flex">
+                                                
+                                                <i class="material-icons title-icon me-2">Article_Person</i>
+                                                
+                                                <h1 class="content-title mb-0">
+                                                    C的生命故事丨不被定义的时光
+                                                    
+                                                </h1>
+                                            </div>
+                                            
+                                            <div id="content" class="main-content" >
+                                                
+    
+    <div data-prismjs-copy="" data-prismjs-copy-success="" data-prismjs-copy-error="">
+        <p>系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期<br>
+本文首发: <a href="http://xhslink.com/o/90W9SSQBpQh" rel="external" target="_blank">脑脑空间NeuroBridge小红书<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a><br>
+首发时间：2025-5-12<br>
+主人公：C<br>
+访谈与整理：小呆</p>
+<p>文章结构：</p>
+<ol>
+<li>自我觉察的开始</li>
+<li>关于GAP year</li>
+<li>ND身份带来的转变</li>
+<li>独自生活的分享</li>
+<li>在ADHD和ASD之间来回流动</li>
+</ol>
+<hr>
+<div class="alert alert-warning d-flex" role="alert">
+  <div class="flex-shrink-1 alert-icon">
+<p>🔖</p>
+  </div>
+  <div class="w-100">
+<p>在她的日常里，我看到一种独一无二的生活方式：温柔、可爱、自由、勇敢。<br>
+面对自己的情绪，她选择Gap Year这种方式进行调整。在与自己相处的过程中，她不断探索，最终找到自己的节奏，也学会照顾情绪和重建生活结构，也渐走出误解与孤独，朝着更适合自己的方向前进。</p>
+  </div>
+  </div>
+<h2 id="自我觉察的开始">自我觉察的开始 <a href="#%e8%87%aa%e6%88%91%e8%a7%89%e5%af%9f%e7%9a%84%e5%bc%80%e5%a7%8b" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>去年九月，她原有的抑郁焦虑变得更严重。<br>
+在经历这些情绪后，她决定一个人去各地旅居，这个决定也成为了她的转折点。</p>
+<p>在重庆时，她确诊了ADHD，也开始重新思考关于自己的事情。<br>
+对自己了解得越多，越发现自己和单adhd形象有出入，在逐渐了解ASD相关内容后也在今年确诊了ASD。<br>
+一开她想要自学参加高考，但独自生活的那段时间让她意识到：<br>
+<strong>“高考不是唯一的出路。”</strong></p>
+<p>于是，她开始认真考虑出国读预科，去寻找一个更适合自己节奏和特质的学习方式。<br>
+刚开始家长也是反对的，他们担心她一个人在国外，如果情绪再次波动怎么办？但在外面旅居的过程中，她和家长聊了很多关于ND的事，慢慢得到了对方的理解。</p>
+<hr>
+<h2 id="如何描自己的gap-year">如何描自己的GAP year？ <a href="#%e5%a6%82%e4%bd%95%e6%8f%8f%e8%87%aa%e5%b7%b1%e7%9a%84gap-year" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>很多人说，Gap Year是一种“空窗期”，但对她来说不是。<br>
+这段时间，她脱离了“必须做什么”的环境，开始自己决定每天要做什么。<br>
+不想把gap定义成一种暂停或者准备阶段，而是在重新认识自己，摸索属于自己的生活节奏。</p>
+<div class="alert alert-light d-flex" role="alert">
+  <div class="flex-shrink-1 alert-icon">
+  <span class="material-icons size-20 me-2">
+<p></span></div></p>
+  <div class="w-100">
+<p>这可能是她第一次感到“自由”，也是第一次想认真地为自己生活。</p>
+  </div>
+  </div>
+<hr>
+<h2 id="nd身份带来的转变">ND身份带来的转变 <a href="#nd%e8%ba%ab%e4%bb%bd%e5%b8%a6%e6%9d%a5%e7%9a%84%e8%bd%ac%e5%8f%98" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>过去的学校生活，有太多无法解释的痛苦。</p>
+<p>确诊ADHD和ASD后，她终于理解了，为什么自己在课堂上总是那么挣扎：</p>
+<ul>
+<li>她的学习方式是“用例子找规律”，不是“被强塞规则”。</li>
+<li>明明只是喜欢问问题，但却常被说“装懂”“好高骛远”。</li>
+<li>………
+从小学到高中，这类误解一点点积累成创伤。<br>
+她也曾经以为是自己不够努力，后来才知道，那是“<strong>系统性不适配</strong>”。</li>
+</ul>
+<p>她觉得自己在国内学习的经历是缺少自主选择的：节奏太快、压力太大、缺乏相应的理解。即便是现在寻找语言教学一对一的老师时，也要反复筛选老师，才能遇到合适的。越接纳自己的ND身份，她就越不想再回到那种靠masking换来勉强适应的状态，而是想去一个能尊重自己节奏、允许“活得不同”的地方。</p>
+<p>不过，ND身份也会引起她思考中的一些冲突：因为终于知道自己为什么“不同”，所以也开始找到适合自己的生活方法。但是，她也发现，NT能轻松做到的事，自己却要花好几倍精力；哪怕是日常沟通、查资料、做作业，也常常力不从心……</p>
+<p>同时，对于双A共存的情况，她以前以为如果ADHD药效下降，ASD就没那么明显。但现在她意识到那可能也只是masking。她觉得自己不是某一部分“更严重”，而是这些特质一直都在、一起<strong>流动</strong>。</p>
+<hr>
+<h2 id="关于独自生活的分享">关于独自生活的分享 <a href="#%e5%85%b3%e4%ba%8e%e7%8b%ac%e8%87%aa%e7%94%9f%e6%b4%bb%e7%9a%84%e5%88%86%e4%ba%ab" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>她的生活节奏主要是“感知驱动”，比如ADHD特质影响，很多决定都是临时做的，比如出门前才决定去哪儿。但又因为ASD特质共存，她需要“结构提示”来维持日常：牙膏牙刷得放在特定位置，旅途中如果这些顺序一乱，就会变得非常难开始一整天。她习惯每天吃差不多的食物，因为熟悉的食物结构会让她感觉安全、稳定。</p>
+<p>ADHD药物让她状态分时段波动非常明显。比如：</p>
+<ul>
+<li>屏幕亮度的接受度会随着药效而改变，一天得调好几次；</li>
+<li>本来只是想逛个商场，结果药效来了，环境太刺激，只能回家。
+她在生活中总在遇到这种需要“实时应对”的情况，有时真的很累。</li>
+</ul>
+<p>在独自生活的过程中，她也发现，自己十分依赖环境。她需要熟悉的物品位置、视觉动线和摆放逻辑，一旦改变会不安甚至无法生活。每次搬家，都像从头再来一遍，需要重新构建完整的“生活结构”。她还需要知道周围的图书馆、公园、便利店、博物馆……感觉那是一种“心理安全地标”。<br>
+对未来，她也存在担忧。留学的生活也许意味着不停的变化，比如转学、搬家，每一次都要重新构建安全感系统，一定会很耗精力。</p>
+<hr>
+<h2 id="在adhd和asd之间来回流动的我">“在ADHD和ASD之间来回流动的我” <a href="#%e5%9c%a8adhd%e5%92%8casd%e4%b9%8b%e9%97%b4%e6%9d%a5%e5%9b%9e%e6%b5%81%e5%8a%a8%e7%9a%84%e6%88%91" class="anchor" aria-hidden="true"><i class="material-icons align-middle">link</i></a></h2><p>她觉得自己不是“一个状态”，而是在多个状态间切换的人。</p>
+<p><em>当她处在ADHD状态时</em>：<br>
+喜欢高刺激环境：摇滚乐、白噪音、边走动边思考、需要不断变换姿势才能集中。喜欢在转椅上“边走边转”…</p>
+<p><em>当她处在ASD状态时</em>：<br>
+需要低刺激：雨声、中噪音、重复的动作（比如用手写笔画重复图案）带来安定感。转椅也变成“原地旋转”的放松工具……<br>
+她还靠一些东西自我调节，找到生活中的控制感：白噪音、雨声、毛绒玩具、围巾、软软的触感、整理素材分类（像是社交媒体收藏夹、手工道具盒）、反复看喜欢的视频、画重复的图形……<br>
+她设想过属于自己的安全区，里面有帐篷、小音箱、香薰灯、柔软的·毛毯或围巾……可以用来滚来滚去、听音乐、发呆、休息。</p>
+<p>独自生活的过程让她对自己喜欢的环境有了更多的感知，也明白什么东西能让自己稳定方式下来。对于外界社交，她现在不太主动。不是讨厌人，而是还没找到一种让自己舒服又自然的方式。<br>
+虽然也记得过去和NT朋友一起的快乐，但那种“互相走进心里”的深度，似乎总是缺一块。让她觉得最开心的社交方式，是可以一起做很多有趣的事，也可以讨论很多对彼此的观点及内心想法。</p>
+<hr>
+<p>本文亦见：<a href="https://mp.weixin.qq.com/s/B37yxN8C4RAhSX7mPZINtw" rel="external" target="_blank">脑脑空间NeuroBridge微信公众号<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M14 5c-.552 0-1-.448-1-1s.448-1 1-1h6c.552 0 1 .448 1 1v6c0 .552-.448 1-1 1s-1-.448-1-1v-3.586l-7.293 7.293c-.391.39-1.024.39-1.414 0-.391-.391-.391-1.024 0-1.414l7.293-7.293h-3.586zm-9 2c-.552 0-1 .448-1 1v11c0 .552.448 1 1 1h11c.552 0 1-.448 1-1v-4.563c0-.552.448-1 1-1s1 .448 1 1v4.563c0 1.657-1.343 3-3 3h-11c-1.657 0-3-1.343-3-3v-11c0-1.657 1.343-3 3-3h4.563c.552 0 1 .448 1 1s-.448 1-1 1h-4.563z"/></svg></a></p>
+
+    </div>
+
+    
+
+    
+                                            </div>
+                                            <div><hr class="doc-hr">
+<div id="doc-nav" class="d-print-none">
+
+	<div class="row flex-xl-nowrap ">
+	<div class="col-sm-6 pt-2 doc-next">
+		<a href="/docs/interview/yucunxuesheng/">
+			<div class="card h-100 my-1">
+				<div class="card-body py-2">
+                    <p class="card-title fs-5 fw-semibold lh-base mb-0"><i class="material-icons align-middle">navigate_before</i> 渔村学生的生命故事丨主线暂停，支线照常进行中</p>
+					
+				</div>
+			</div>
+		</a>
+        </div>
+	<div class="col-sm-6 pt-2 doc-prev">
+		<a class="ms-auto" href="/docs/interview/z17/">
+			<div class="card h-100 my-1 text-end">
+				<div class="card-body py-2">
+                    <p class="card-title fs-5 fw-semibold lh-base mb-0">z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究 <i class="material-icons align-middle">navigate_next</i></p>
+					
+				</div>
+			</div>
+		</a>
+        </div>
+	</div>
+</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+<footer class="shadow py-3 d-print-none">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="text-sm-start text-center mx-md-2">
+                    <p class="mb-0">
+                        
+                        <a href="https://beian.miit.gov.cn/">沪ICP备2025135615号-2</a> 丨 © 2025 <a href="https://neuroxyz.cn">XyZ</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</main>
+            </div>
+        </div>
+
+        
+        
+        <button onclick="topFunction()" id="back-to-top" aria-label="Back to Top Button" class="back-to-top fs-5"><svg width="24" height="24"><path d="M12,10.224l-6.3,6.3L4.32,15.152,12,7.472l7.68,7.68L18.3,16.528Z" style="fill:#fff"/></svg></button>
+        
+        
+
+        
+        
+            <script>(()=>{var e=document.getElementById("mode");e!==null&&(window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",e=>{e.matches?(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")):(localStorage.setItem("theme","light"),document.documentElement.removeAttribute("data-dark-mode"))}),e.addEventListener("click",()=>{document.documentElement.toggleAttribute("data-dark-mode"),localStorage.setItem("theme",document.documentElement.hasAttribute("data-dark-mode")?"dark":"light")}),localStorage.getItem("theme")==="dark"?document.documentElement.setAttribute("data-dark-mode",""):document.documentElement.removeAttribute("data-dark-mode"))})()</script>
+        
+
+
+
+
+    
+    
+    
+
+
+
+
+
+
+    
+
+    <script src="/docs/js/bootstrap.c7927bdd82eceb076739257add3f4b0e11379da037c07d5c7110daeb6de0e3edcb2de867604550f88815157e4ec4ddb7.js" integrity="sha384-x5J73YLs6wdnOSV63T9LDhE3naA3wH1ccRDa623g4&#43;3LLehnYEVQ&#43;IgVFX5OxN23"defer></script>
+
+
+    <script type="text/javascript" src="https://neurobridge.cn/docs/js/bundle.min.a046e72674401a45bf99217648934a99ff03a7c46d105e47916156e66969388a0643f55a1e850acb495c9bd8be985171.js" integrity="sha384-oEbnJnRAGkW/mSF2SJNKmf8Dp8RtEF5HkWFW5mlpOIoGQ/VaHoUKy0lcm9i&#43;mFFx" crossorigin="anonymous" defer></script>
+
+        
+
+        
+        <script type="module">
+    var suggestions = document.getElementById('suggestions');
+    var search = document.getElementById('flexsearch');
+
+    const flexsearchContainer = document.getElementById('FlexSearchCollapse');
+
+    const hideFlexsearchBtn = document.getElementById('hideFlexsearch');
+
+    const configObject = { toggle: false }
+    const flexsearchContainerCollapse = new Collapse(flexsearchContainer, configObject) 
+
+    if (search !== null) {
+        document.addEventListener('keydown', inputFocus);
+        flexsearchContainer.addEventListener('shown.bs.collapse', function () {
+            search.focus();
+        });
+        
+        var topHeader = document.getElementById("top-header");
+        document.addEventListener('click', function(elem) {
+            if (!flexsearchContainer.contains(elem.target) && !topHeader.contains(elem.target))
+                flexsearchContainerCollapse.hide();
+        });
+    }
+
+    hideFlexsearchBtn.addEventListener('click', () =>{
+        flexsearchContainerCollapse.hide()
+    })
+
+    function inputFocus(e) {
+        if (e.ctrlKey && e.key === '/') {
+            e.preventDefault();
+            flexsearchContainerCollapse.toggle();
+        }
+        if (e.key === 'Escape' ) {
+            search.blur();
+            
+            flexsearchContainerCollapse.hide();
+        }
+    };
+
+    document.addEventListener('click', function(event) {
+
+    var isClickInsideElement = suggestions.contains(event.target);
+
+    if (!isClickInsideElement) {
+        suggestions.classList.add('d-none');
+    }
+
+    });
+
+    
+
+
+    document.addEventListener('keydown',suggestionFocus);
+
+    function suggestionFocus(e) {
+    const suggestionsHidden = suggestions.classList.contains('d-none');
+    if (suggestionsHidden) return;
+
+    const focusableSuggestions= [...suggestions.querySelectorAll('a')];
+    if (focusableSuggestions.length === 0) return;
+
+    const index = focusableSuggestions.indexOf(document.activeElement);
+
+    if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const nextIndex = index > 0 ? index - 1 : 0;
+        focusableSuggestions[nextIndex].focus();
+    }
+    else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const nextIndex= index + 1 < focusableSuggestions.length ? index + 1 : index;
+        focusableSuggestions[nextIndex].focus();
+    }
+
+    }
+
+    
+
+
+    (function(){
+
+    var index = new FlexSearch.Document({
+        
+        tokenize: "forward",
+        minlength:  0 ,
+        cache:  100 ,
+        optimize:  true ,
+        document: {
+        id: 'id',
+        store: [
+            "href", "title", "description"
+        ],
+        index: ["title", "description", "content"]
+        }
+    });
+
+
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    
+
+    
+
+    index.add(
+            {
+                id:  0 ,
+                href: "\/docs\/story\/fa-dream\/",
+                title: "大发丨梦境：不可思议的修复",
+                description: "关于梦境的修复，作者大发",
+                content: "本文首发: 脑脑空间NeuroBridge微信公众号\n首发时间：2025-8-18\n作者：大发\n整理：小呆\n梦境修复 梦的涌现 梦的心意 不像彩蛋的碎碎念 梦境修复 link\r🫧\n关于梦境的修复，起始于两年多前漫长剧烈的创伤闪回。一次哮喘重度发作的体验打开了创伤的闸门，让我再也无法用任何方式粉饰太平。\n**生活是重复的。**每晚抽搐着哭几个小时，被连续闪回压身，躺到凌晨再合眼。本被屏蔽的记忆像长长的布条，我和它都被放进滚筒洗衣机，一起转啊转，然后死死绞在一起，怎么样都抖不脱身。\r可我仍然强求着支撑自己完成学业，直到一切崩解，不得已才开始在校心理咨询。\n接着，是一次次松解，不谈是否解决问题，只是重提，过去到底发生了什么。\n梦的涌现 link\r🫧\n忽然有一天，梦境涌现。\n第一个梦 link我回到了小学毕业的年纪。那是本可以去外地念书的重要节点。梦里的我，和家庭爆发剧烈的冲突，争取到了去外地读书的权利，获得了每个月的固定房租和生活费，甚至签了纸协议。\n第二个梦 link我长大了一些，大概是青少年的年纪，也可能是该上大学的年纪。没有新意的家庭冲突后，我抢夺到了一辆挺破的二手车。梦里我不顾驾驶技术，开着那辆车穿过公路，不知道行驶在哪处山川里，那里有大片的绿色，像草原，美的像网上巴音布鲁克的照片。\n第三个梦 link我行走在无人的湖泊边，远处是山和森林，近处是湖，脚下是避开绿草的小路，背后是坦坦荡荡的大路。湖像海一样辽阔盛大，波纹闪闪，水色粼粼，炫目的像经过特效处理，把阳光切成碎金，这种美丽过于夸张，像一种迷离狂乱的幻想。于是，梦中的我驻足湖边，久久漫步，不肯远离。\n第四个梦 link在心理咨询持续很久后发生。梦中的场景不像过去，更像未来。\n我做着自己喜欢的研究，在读博，房子就在学校附近，结束工作就可以带着朋友去吃饭。通行建筑之间时，玻璃上映照出蓝天白云，窗明几净，一切亮亮堂堂。我生活在花园般的大地上，一切澄澈明净。\n梦里，我真的感到幸福。\n我从未见过那么幸福的我，也没有对幸福做过这样的想象。从这个梦开始，我真正了解了潜意识对幸福未来的想象。\n后来，这样的梦变得数不清，落到一个个细节里，落到一次次回到高考节点。梦里看得出，我非常想复读，非常想重选专业。\n近两年后，闪回几乎已经平复。即使再回到家庭回忆最痛苦的房子里，也无法再有什么激惹。哮喘隐退幕后，变得轻微。\n毕业前夕，和舍友的矛盾已经到了无法不撕破脸的地步，关于外放的纠纷没完没了，舍友的手机成为不稳定的噪音源。反反复复发生的感官过载，因为使用耳机过久无法辨别声音具体方位的耳朵，让一切纷扰变得像鱼刺。那种怒意扎在心里，怎样都挥之不去。\n我想我愤怒的只是无法让自己过的舒服一些，竟不得不终日耗竭。\n忽然，又是一个梦 link梦里的舍友变成可沟通的伙伴，紧接着便与我握手言和。\n这是个没有解决任何实际问题的梦，我对这场梦的内容深感不满，我清楚的知道梦中的内容不会发生，舍友更是绝无可能说抱歉。但它却神奇的，大大消融了那时持续侵扰我的情绪。\n这个梦带来不可思议的平和。我开始整日出门，有时走很远去公园散步，有时躺在操场的草坪，或坐在看台上读书。紧接着，我终于再次有了力气，前往北京寻求确诊。\n就此，我意识到梦的意义不止在于追寻自由，传递信息，梦还在真正的、从里到外的修复我。我的身体，依然是无与伦比的溺爱我。像当年修复伤疤一样，像让体检结果渐渐变得健康一样，悄悄接住我。\n最后，是前几日的梦 link梦里的我回到了大学刚开始的时候，我做出了很多新的选择。\n义无反顾的转专业、外宿、更早的出去兼职、理财和挣钱，做一切想做的尝试。梦里，我改变了整个大学生活，连带着改变了之后的生活。\n非常具体的规划，非常真实的梦境，梦里我全身心的沉浸于另一种可能性，那是非常极致的模拟体验。\n这些梦里，我并不知时空的流逝，几乎以为自己只是长到了那一岁，是真正的重活一次。\n梦的心意 link\r🫧\n我又开始笑着讲做梦。\n朋友听完说好神奇，生活里解决不了的问题，居然以这种形式在梦里解决了。我渐渐的，真正明了这些梦背后的心意。\r是悔恨交加、懊恼不堪吗？\n不是，或者说曾经是，但早已不是如此。因为每每醒来，片刻恍然后，我是真正感到幸福的。\n这些梦，重写了我对过去的感受。\n它们竭力融化着那些厚重的、叫苦的记忆。梦已告诉我没有遗憾的生活是何等光景，告诉我什么是我真正追寻的。\n它如此坦然的站出来，作为朋友，作为身体和潜意识的代言人，向我演绎。\n它说，我多么爱你。也请你认真看，你多么爱你自己。\n朋友，你一直和你的身体在一起。\n遇到问题和身体商量吧，它会回应你的一切诉求，就像竭力为你分担所有痛苦一样，它不是你的敌人。\n难过时，触碰拥抱自己吧，问问身体有什么想要告诉你，问问它，你有什么尚未表达。\n被压抑的一切，都可能在梦中浮现。\n不像彩蛋的碎碎念 link\r🫧\n我总是做梦回到过去的关键节点改变选择。以前常困惑于这种只在梦里展露的悔意，后来发觉，那怎么不算一种改变人生的爱意。\n关于让自己拥有更好的生活，我现在在行动，梦里在假设，这一切都是我对自己的祝福。\r我时常做梦，在梦里回到童年挣脱家庭，在梦里回到学业节点改变重大选择，在梦里回到高考后选择复读。\n在梦里，我改写自己的人生，看过去的自己终于露出笑容。\n梦醒后一边恍然，一边猜想过去的我，也许能感受到这份跨时空的传达。\n亲爱的，一切都很好，我爱你，我祝福你。那不是最好的选择，没关系。你为我做的已经足够多，足够有力。\n改变对过去的感受，已经是对现在的体谅。\n我从创伤里面复苏的那天，是我发现，我以为我那么恨自己，其实是太爱自己，爱到接受不了无法保护自己，接受不了自己过得不好。\n谈爱太空泛，那就谈行动，谈改变，谈如何对自己再好一些。在梦里的释放，一直有一种余温，描绘着我潜意识的渴望。我会借此，了解我关于幸福的愿望。\n💭\n真正的自我，是我们不得不做自己，我们无法背离真正的自己。\n"
+            }
+        );
+    index.add(
+            {
+                id:  1 ,
+                href: "\/docs\/interview\/artemis\/",
+                title: "Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己”",
+                description: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第1期",
+                content: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第1期\n本文首发: 脑脑空间NeuroBridge小红书\n首发时间：2025-5-10\n主人公：Artemis\n访谈与整理：小呆\n文章结构：\n成长经历 关于“停滞”时期的想法 在“停滞“中，他的自我调整 在当下，他的自我探索 🔖\nArtemis是一个正在探索自己ND身份的男生，他曾经在家中“停滞”了6-7年,对于这个栏目，他有许多想要分享……\n在Artemis的故事中，我看到了一种从困境中重生的力量。\n面对人生的“停滞”,他有过许多痛苦。但他仍然在寻找自己的出口，想要重新开启自己的生活。在这个过程中，我觉得他建立了一种属于自己的坚韧。虽然步伐缓慢，但每一步都是在积淀一种深刻的自我理解与力量。\n这种力量，是在时间和自我接纳中悄然生长的。\nArtemis的成长经历 linkArtemis成长于一个单亲家庭，和母亲两个人一起生活。他从小就不喜欢社交，觉得自己社交技能差，在人群中总是有有很多不知所措的瞬间。\n因为在社交场景中格格不入，他一直努力避免成为被群体排斥的对象。为了做到这一点，他在社交场合中尽量保持低调，不引人注意，完成场景中的任务和安排，做到“普通”且不冒犯别人。在学生时期，他的主要爱好是看书，看漫画，玩游戏等一个人可以完成的活动，较少外出。\n上大学之后，因为与室友不合，与同学的社交压力大，同时还要面对无聊的课程，Artemis的精神状态日渐崩溃。面对来自环境的过高压力，他开始寻求从烦恼中解脱的办法，正好此时看了《佛陀传》，受到启发开始练习冥想。在冥想中，通过“推开”烦恼这种无时不在侵入性思维，直面自身的感受，并施以慈悲之心，Artemis获得了压力之下喘息的机会。大学毕业后，Artemis大约工作了六年。工作本身带来的压力并不比学业小，所幸不像在学校，下班后还可以回家，有一个独立的空间可以休息。母亲在世的时候，家中的态度是成年人必须要工作，独立养活自己，不能啃老。\n但在经历母亲去世，公司又在Artemis照顾母亲终末期期间以出勤不足为由与他解约后，Artemis感到工作的动力已经消磨殆尽，公司领导对人性的冷酷态度又让工作本身的曾经具有的意义被完全瓦解。\n带着失去母亲的哀伤，对契约社会冰冷人际关系的失望，Artemis陷入了社会意义的“停滞”，在家中度过了没有工作也极少社交的七年。\n他对这段时期的想法 link一开始，他觉得自己脱离社会，脱节于主流人生轨迹与社会时钟，内心充满了自我批判。这些批判是从小到大成长的过程中从他人话语中习得的，父母望子成龙的期待，让父母失望的内疚，老师以成绩为依据的资源倾斜，社会对“成功人士”与loser的两幅面孔。虽然理智上知道“人生终究是为自己而活”，但实际上还是很难摆脱他人眼光的影响。因此，在那段“停滞“的时光中，他感受到一种内在冲突：一方面想要相信自己的感受，并好好照顾ta；另一方面又有一个态度明确的批判者，否认这些感受，质疑休息的合理性。就算休息在家，也常常充满愧疚，羞耻感；感到愧对父母，人间失格。\n他认为这种心理状态是与一个人的自尊水平和成长环境密切相关的。由于长期抱有负面世界观，会更倾向于接受、筛选负面的信息来佐证自己的世界观，从而形成一种自我喂养的负循环。 在“停滞”两年后，他谈了一段恋爱，但因对方抑郁情况较重，他自己的情绪也受到很大影响，退出了这段关系，开始接受CBT的心理咨询。\n在早期的咨询中，虽然出现了一个场所可以说出一直以来没人倾听的感受，但还是没有太多正面的叙事被插入到生活中。直到咨询三年后，看了罗杰斯的《个人形成论》，生活中又遇到了安全型的女友，在咨询师的鼓励下，积蓄的力量使他有力气去寻找到了更适合的EFT的咨询师。在新的咨询师的帮助下，他逐渐意识到“停滞”的经历并非虚度，而是生命在积累力量、发展自我意识和更适合自己的生活方式的过程。他认为每个人与生命中的困难抗争，所需的时间和方式都是不同的，不能一概而论。这种针对独一无二的自己个性化定制的独一无二的成长路径，是无法用他人的数据或经验得来的。他人的道路只能带给我们启发，却无法原样复制，每个人都不得不承担起为独特的自己创造独特的生活方式的义务，因为别人是没有能力帮到这件事的。\n他对于“停滞”这种生活方式的看法是：当一个人感到内心不安或缺乏安全感时，会选择退缩，待在一个相对中性，刺激较少的环境中，而不是进入社会互动中面对风险，探索可能性。就像小婴儿，在感到安全与妈妈的鼓励时，展开对身边世界的探索，在感到受伤或不安时会爬回妈妈身边，得到了妈妈足够的抚慰后，又会忘记了刚刚感受到的不安，重新开始探索。\n在“停滞“中，他如何调整自己？ link生活中的主要痛苦来源于无社交带来的孤独感，不符主流价值的被否定感，心理压力带来的不定期发烧，免疫差。他会通过看剧、打游戏等方式暂时逃避，避免面对内心的痛苦和孤独感，但他认为这种策略其实并不健康，有点类似成瘾的模式，而且让自己处在低程度的解离状态，影响对正常生活感知。\n他也尝试了很多方式来缓解这些痛苦，如增加每周咨询次数，参加人际团体，参加心理学相关读书会，谈恋爱，加入一些创伤和神经多样性的网络社群，交友软件等。但他意识到这些方法并不能完全解决问题，尤其是情感痛苦，这些痛苦主要来自于童年获得的大量负面体验，已经形成CPTSD。\n当ND长期暴露在以NT主导的严苛生活规则下，为适应环境，减少危险摩擦，ND不得不矫枉过正的用儿童的想象来努力描绘出一副“应然”的社交图景，生活法则，事倍功半的约束自己的行为举止。以自我批判和自我虐待为工具对真实的自我感受进行“矫正”，活在与自我失联又乏善可陈的生活中。\n尽管通过一些外部活动可以减少孤独感，但还是无法填补那些情感空缺。他尽量避免过度反思这些经历，并通过建立新的故事和生活方式与之对抗，避免总是循环在负面叙事与负面思维模式中。\n他还跟我讲述了自己在一个拉康读书会中的经历。在那个群体里，每个人都有不同的心理问题，大家会表达一些在外界看似怪诞或异常的感受，但在拉康的理论框架下，每个人的“症状”都是正常的，或者说，没有不存在症状的“人”，大家只是得着不同的“病”，持有带着自己独特见解的“症状”。勇敢承认自己的“症状”，意味着勇敢地面对自己，接近“症状”想要言说的话语，从而走出困境。 因此，他在这个群聊中能够更自在地分享自己的想法。\n对于神经多样性群聊中的互动，他认为，虽然有些人在群体中说一些可能“疯癫“的话，但对于说话的人来说，这些是非常真实的感受，只是外人可能不理解说者主观的体验过程。他认为，虽然我们在外界可能被认为是“不健康”或“奇怪”的，但理解了这些状况的根源和逻辑后，会发现这其实是生活中积累的体验和情感的体现，当人们理解这些“症状”背后的原因和痛苦时，就会看到它们的“理性”。在神经多样性的语境下，所谓的“正常”可能才是疯癫的。\n作为长期带着NT的mask生活的代价，还是会用NT的视角审视ND，故而群里看似都是“疯子”，但大家“疯疯癫癫”的互动反而让这个群体更有归属感，“疯子”与“疯子”在一起时互相秒懂，这是一种能够互相理解对方生命处境的深度对话。\n在当下，他的自我探索进度如何？ link最近，他感受到，身份认同的转变（NT-ND）带来了对自己感受的接纳和尊重。这个认同的转变让他减少了孤独感，也给很多生活中的诧异瞬间找到了理由，多了一些掌控感。因为他知道自己并不是唯一一个有这种感受的人，其他人也可能有类似的状况或不适。他会更尊重自己的感受，尤其是在面对与“正常人”不同的生活观时，他不再觉得自己是错的。他意识到，过度批判自己和从 NT（神经典型）视角审视自己，会让自己变得不自信和不健康。通过这一转变，他开始理解自己的“奇怪”或“不正常”，其实只是自己生活中的一部分，而这份认同感帮助他更好地接纳自己。\nCPTSD的疗愈可能还需要很久。但努力建构起ND的独特生活叙事，同时继续做静观自我关怀的训练，做心理咨询，学习心理学并且尝试执业应该都能在不同程度上有所贡献。\n他现在对“社会性成功”路径并不向往，但也并非完全否定，而是处在一种“既不想卷进去，也不想被完全抛弃”的矛盾中。目前可能仍在寻找一种可以“回归社会”的方式，但这不应是传统意义上的职场或社交，而是更合乎自身节奏的生活方式。\n他希望，被支持的方式应更温和、不以“社会功能恢复”为唯一目标。比如同质性支持小组，或者一些有对应友善社交剂量的工作场所与活动选择。同时，由于高敏感，感官友好的场所也很重要，比如工作中休息的场所、温和的光线、更少的噪音。\n无论是社会层面还是物理空间层面，对他而言，一个真正包容的环境，不只是让他“能参与”，而是让他“愿意留下”。\n本文亦见：脑脑空间NeuroBridge微信公众号\n"
+            }
+        );
+    index.add(
+            {
+                id:  2 ,
+                href: "\/docs\/neurodiversity\/walker2014\/",
+                title: "翻译丨Walker（2014）：神经多样性：基本术语与定义",
+                description: "Nick Walker（2014）：Neurodiversity: Some Basic Terms \u0026 Definitions",
+                content: "原文链接: Nick Walker（2014）：Neurodiversity: Some Basic Terms \u0026 Definitions\n原标题：“Neurodiversity: Some Basic Terms \u0026 Definitions”\n作者：Nick Walker，加州整合大学（CIIS）心理学教授、孤独谱系障碍酷儿学者\n（本译文已由原作者授权。）\n本文首发: 脑脑空间NeuroBridge小红书\n首发时间：2025-4-23\n翻译：Alexander，Rossa，XyZ\n文章结构：\n作者寄语 写作背景与目的 正文 神经多样性 (Neurodiversity) 神经多样性范式 (Neurodiversity Paradigm) 神经多样性运动 (Neurodiversity Movement) 神经殊异 (Neurodivergent) 与 神经特性 (Neurodivergence) 神经典型 (Neurotypical, NT) 神经少数 (Neurominority) 神经分化/多元（Neurodiverse） 彩蛋：关于译名的困惑与考量 作者寄语 link作者Nick Walker给中国读者们的话：\nHello, and thank you for your interest in learning. l hope my work is useful to you in expanding your minds and the minds of others, and in helping to create positive cultural change.\n大家好！感谢你们有了解此文的兴趣。希望我的文章能有助于扩展思路，启发他人，并推动积极的文化变革。\n写作背景 link我最初于2014年9月为Neurocosmopolitanism网站撰写了这篇文章，如今它发布在Neuroqueer网站上。除了开头段落中已说明的内容，这篇文章背后没有太多故事可讲：因为我发现很多人错误地使用神经多样性相关的术语，我出于公共服务的目的创作了此文。在我写过的所有文章中，这篇的引用率（学术和非学术）与在线链接的频率最高。\n新的范式往往需要一组新的词汇：神经多样性范式也不例外。据我的观察，很多人——无论是学者、记者、博客作者、网络评论者，乃至某些自称神经多样性活动家的人——对神经多样性术语的使用不当。他们对这些术语的误解和错误使用往往会搅乱信息沟通，进一步加剧混乱（例如可能导致其他人模仿这些错误）。错误使用术语至少会让作者或演讲者在那些理解术语含义的人眼中显得无知或不可靠。 对于我们这些致力于传播和发展神经多样性范式的人而言（尤其是那些在神经多样性领域撰写文章的人），保持语言的清晰和一致对于在我们内部以及与更广泛受众之间进行有效沟通至关重要。清晰的语言可以助力清晰的理解。\n此外，随着我越来越多地审阅他人关于神经多样性的写作——批改学生论文、审阅书稿或期刊投稿、为各种项目提供咨询，甚至只是决定我愿意向他人推荐哪些文章——我已经厌倦了一次又一次地遇到同样的基本错误。\n因此，为服务大众，我列出了几个神经多样性范式相关的关键术语、它们的含义和正确用法，以及它们最常见的误用方式。\n神经多样性 (Neurodiversity) link 神经多样性本身是一个生物学事实，也就是描述人类的思维方式各不相同、多种多样。\n含义 link神经多样性指人类思维的多样性，即人类内部神经认知功能的无限变化。\n对“神经多样”的误解 link“神经多样性”————\n不同于神经多样性范式：神经多样性是一个生物学事实，而不是某种观点、方法、信仰、政治立场或范式。那是神经多样性范式（详见下文），而不是神经多样性本身。 不同于神经多样性运动：神经多样性不是一个政治或社会活动运动。那是神经多样性运动（详见下文），而不是神经多样性本身。 不同于神经特性：神经多样性不是个体所拥有或能够拥有的特质。当某个个体或群体在神经认知功能上偏离主流社会的“正常”标准时，他们并非“拥有神经多样性”，而是属于神经殊异（neurodivergent）群体。 （译注：说某人“拥有神经多样性”和说“你养的那只金鱼拥有生物多样性”犯的是同类错误） 示例 link 正确示例： “为了适应我们学生群体的神经多样性，学校为我们提供了许多种不同的学习策略。” 错误示例： “神经多样性声称……”\n这位作者实际上想谈论神经多样性范式或神经多样性运动。神经多样性作为物种的生物特征，不能“声称”任何事情，就像人类皮肤色素的差异不能“声称”任何事情一样。 “神经多样性是一派胡言。”\n真的吗？难道人类大脑和思维之间不存在差异？大量科学证据清楚地表明，人类大脑存在显著差异。如果我们都思想相同，世界将截然不同。写这句话的人可能想反对神经多样性范式或神经多样性运动的立场，却因未能区分这些概念而显得可笑。 “我的Neurodiversity（神经多样性）让我很难适应学校生活。”\n正确的名词应为Neurodivergence（神经特性），而非Neurodiversity（神经多样性）。按照定义，一个人不能“多种多样”或“拥有多样性”。 “孤独谱系和阅读障碍都是一种Neurodiversity（神经多样性）。”\n错，错，错。“一种Neurodiversity （神经多样性）” 并不存在。孤独谱系和阅读障碍是都一种Neurodivergence（神经特性）。 （译注：沿用同样的错误案例：“你养的那只金鱼是一种生物多样性”。 “神经多样性”在中文语境的实际应用中既用来对应Neurodiversity，又用来对应Neurodivergence，这在日常的使用中没有问题，但是可能在理论的深化过程中造成误解。 在这一版译文中，我们暂时将两者原词保留，期待读者与我们一起思考更好的术语，提出宝贵意见。）\r神经多样性范式(Neurodiversity Paradigm) link 神经多样性范式（或方法）是看待和研究神经多样性的一种视角。\n含义 link神经多样性范式是看待神经多样性的一种特定视角或方法，其基本原则包括：\n神经多样性是一种自然且有价值的人类多样性。 “只有一种‘正常’或‘健康’的大脑或思维方式”或“存在一种‘正确’的神经认知功能风格”的观念是一种社会建构的臆想。这种观念就像认为只有一种“正常”或“正确”的族群、性别或文化同样不合理（也同样不利于社会健康或人类福祉）。 由神经多样性带来的社会现象，与其他人类多样性（如人种、性别或文化）带来的社会现象存在相似性。相关现象既包括社会权力的不平等关系，也包括多样性得到接纳时可以激发出的创造潜能。 对“神经多样性范式”的误解 link神经多样性范式为神经多样性运动提供了哲学基础，但二者并不是同一个概念。\n例如，有些人基于神经多样性范式研究和实施融合教育策略，却不认同自己是社会正义活动家或神经多样性运动的一部分。\n示例 link正确示例：\n“真正理解并接受神经多样性范式的人，不会使用‘病症（Disorder ）’等病理化术语来描述孤独谱系等认知神经形式。” 神经多样性运动(Neurodiversity Movement) link 神经多样性运动是一项社会正义运动。\n含义 link神经多样性运动是一项社会正义运动，旨在为神经殊异（neurodivergent）群体争取公民权利、平等、尊重和全面的社会包容。\n对“神经多样性运动”的误解 link 神经多样性运动不是一个单一的团体或组织，也没有领导者。\n与多数民权运动一样，它由众多个体以及形式各异的团体组成。这些个体和团体在观点、目标、关心的议题、政治立场、活动方式和对神经多样性范式的解读上各不相同。\n神经多样性运动起源于孤独谱系权益运动，两者仍有大量重叠，但是两者并非同一项运动，两者之间存在一些差别。\n两项运动最明显的差别在于，神经多样性运动不仅包容孤独谱系群体，还包容所有神经少数群体。此外，有些倡导孤独谱系群体权益的人仍将孤独谱系视为医疗病理或“病症”，这与神经多样性范式相悖，因此不能算作神经多样性运动的一部分。\n神经殊异 (Neurodivergent，ND) 与 神经特性 (Neurodivergence) link 神经殊异（ND）指某个个体在神经认知功能上显著偏离主流社会对于“正常”的标准。\n神经殊异性指作为神经殊异个体的状态。\n含义 link神经殊异（Neurodivergent，一般简称为ND）指某个个体在神经认知功能上显著偏离主流社会对于“正常”的标准。神经殊异是一个含义广泛的的术语。\n神经特性（Neurodivergence）作为神经殊异个体的状态，既可以很大程度甚至全部是遗传和先天的，也可以是由于改变大脑功能的经历所致，还可以是两者的结合。 例如，孤独谱系和阅读障碍属于先天的神经特性，而创伤、长期练习冥想或大量使用迷幻药物导致的大脑功能改变则是后天经验塑造的神经特性。\n个体的认知神经功能可以在多个方面偏离主流社会的规范。例如，一位孤独谱系、阅读障碍和癫痫的个体，可以用“多重神经殊异（multiply neurodivergent）”来描述。\n一些先天或主要来源于先天的神经特性，例如孤独谱系，是个体在自我认知、人格和与世界互动方式中的内在普遍因素。神经多样性范式拒绝将这种认知神经的差异病理化，而神经多样性运动则反对消除这些差异的企图。\n其他认知差异差异，如癫痫或创伤性脑损伤，可以在不抹去个体基本自我认同的情况下通过医疗手段消除，且个体往往乐于摆脱这种类型的神经特性。神经多样性范式不反对将这些神经特性的病理化，神经多样性运动也不反对在当事人同意的情况下进行治疗（但仍然坚决反对针对拥有这些神经特性个体的歧视）。\n因此，神经特性并没有本质上的好坏之分，一切取决于我们所讨论的神经特性的具体性质。\n“神经殊异（Neurodivergent）和“神经特性（Neurodivergence）” 两个术语由多重神经殊异神经多样性活动家Kassiane Asasumasu于2000年创造。\n对“神经殊异”的误解 link神经殊异（neurodivergent）不是“孤独谱系”的同义词。\n神经殊异（neurodivergent）有无数种可能，孤独谱系只是其中之一。有许多神经殊异（neurodivergent）的方式与孤独谱系毫无关联。如果你想说某人是“孤独谱系”个体，请直接使用“孤独谱系”。“孤独谱系”并不是一个不好的词。\n示例 link正确示例：\n“我们学校希望包容孤独谱系、阅读障碍及其他神经殊异（neurodivergent）个体，不过我们仍在寻找方法来满足某些殊异类型的需求。” “本小组欢迎认同自己为酷儿和神经殊异个体（ND, Neurodivergent）的朋友。” 神经典型 (Neurotypical, NT) link 神经典型（NT）指在认知神经功能上符合主流社会“正常”标准的个体，可以用作名词和形容词。\n含义 link神经典型（Neurotypical，一般简称为NT）指在认知神经功能上符合主流社会“正常”标准的个体。\n“神经典型”可以用作形容词（“他挺神经典型的”）和名词（“他是一个NT”）。\n神经典型与神经殊异（neurodivergent）相对。神经典型是神经殊异（neurodivergent）所偏离的参照点。神经典型与神经殊异（neurodivergent）的关系，类似于异性恋与酷儿的关系。\n对“神经典型”的误解 link 神经典型并不等同于“非孤独谱系”。 神经典型是神经殊异（neurodivergent）的反义词，而非孤独谱系的反义词。孤独谱系只是多种神经特性(Neurodivergence)之一，所以有许多人既不是神经典型，也不是孤独谱系。将“神经典型”等同于“非孤独谱系”，就像将“白人”当作“非黑人”一样荒谬。\n“神经典型”不是贬义词，并没有固有的负面含义。 当然，有时人们在批评神经典型个体行为的语境中使用这个词，但是这不代表“神经典型”本身是贬义词。就像人们会批评某些男性的行为，而这并不代表“男性”是贬义词。\n示例 link正确示例：\n“如果你所在社会的主要语言能准确描述你的感官体验、需求和思维过程，那么你可能享有神经典型特权。” “我姐姐是NT，但因为从小与孤独谱系父亲和兄弟一起生活，她非常适应其他人的神经特性(Neurodivergence)。” 错误示例： “你女儿是孤独谱系还是神经典型？” 这个问题不够严谨，因为这位女儿可能既不是孤独谱系，也不是神经典型——比如她是阅读障碍或唐氏综合征。 神经少数 (Neurominority) link 神经少数群体指受到神经典型偏见影响的神经殊异群体。\n含义 link神经少数群体指符合以下所有条件的神经殊异（neurodivergent）群体：\n他们都具有相似形式的神经特性(Neurodivergence)； 这种神经特性主要是天生的、与个体本质密不可分，构成个体心理、个性及与世界互动方式的核心； 神经典型多数群体通常对这种神经特性表现出某种程度的偏见、误解、歧视甚至压迫（经常通过将这种神经特性定义为医学病理来实现）。 范围 link孤独谱系群体、阅读障碍群体和唐氏综合征群体都是神经少数群体的例子。\n也有神经殊异（neurodivergent）个体不属于神经少数群体，例如创伤性脑损伤个体或通过大量迷幻药使用改变大脑功能的人。\n示例 link“神经少数Neurominority”可以用作名词（“孤独谱系群体是一种神经少数Neurominority”）和形容词（“孤独谱系群体是神经少数群体”）。\n神经多元（Neurodiverse） link 神经分化/多元是指一个群体的成员在认知神经功能上不是同质性的。\n含义 link如果一个群体中有一个或多个成员在认知神经功能上与其他成员呈显著不同，那么该群体是神经分化/多元（Neurodiverse）的。\n换言之，神经分化/多元群体是指这一群体的成员拥有多种不同的认知神经风格。\n因此，如果一个家庭、学校的教职工或学生、城镇人口或电视剧角色阵容中，一部分成员具有与其他成员不同的认知神经风格，比如有些人是神经典型而有些人是孤独谱系，那么这个群体就是神经分化/多元的。\n对“神经多元”的误解 link 很多人错误地将“神经分化/多元”用于表示“神经殊异（neurodivergent）个体”。 在所有关于神经多样性术语的错误中，这是最常见的误用。 不存在“神经分化/多元个体”。正确用法应为“神经殊异（neurodivergent）个体”。 一个个体可以“殊异”，但不能“分化/多元”。 神经分化不等同“非神经典型”。 神经典型的反义词是神经殊异（neurodivergent），而不是神经分化/多元。就像所有人类一样，神经典型个体属于神经多样性光谱涵盖的范围。神经分化/多元的对立面应为神经同质（所有成员神经认知功能相似）。 将神经少数群体或神经殊异（neurodivergent）个体称为“神经分化/多元个体”在语法上是错误的，因为“分化/多元”并不意味着“与多数不同”，而是指“由多种不同类型组成”。所以，按照这种定义，个体永远不可能“分化/多元”。此外，且一个由基本上同一类型的神经殊异（neurodivergent）个体组成的群体（例如完全由孤独谱系个体组成的群体）也不是“神经分化/多元”的。\n“神经分化/多元”一词唯一恰当且语法正确的使用方式，就是用来描述一个内部成员们认知神经风格彼此不同的群体。换句话说，一个每位学生都是孤独谱系个体的班级不是神经分化/多元的，而一个既有NT学生又有非NT学生的班级才是神经分化/多元的。\n人类群体是神经分化/多元的，就像人类群体在种族、族群和文化上是分化/多元的一样。按照定义，没有任何一个人处在人类神经多样性的谱系之外，就像没有任何一个人可以处在人类种族、族群和文化多样性的谱系之外。\n除了语法错误之外，将“分化/多元”误用为“少数群体”还带有压迫性，因为这种误用经常基于一种本质上带有压迫性的假设：即存在一种默认的“正常”状态，而“多样性”仅仅是将“偏离正常”的个体添加到这个“正常”的默认环境中。这种假设正是导致企业、学校及其他社会机构中“象征性代表”的虚伪仪式被当作“多样性”的根源。\n我们也能在种族主义者的话语中看到这种对“分化/多元”的压迫性误用。他们将“分化/多元”作为“非白人”的委婉说法，试图歪曲“分化/多元”的定义，把它解释为“不是特权群体的一部分”。但这不是这个词的本意，而且这样使用反而强化了一种种族主义思维，即认为白人在人类中是本质上与他人分离的，而不是人类族群多样性谱系中的一部分。\n同样的逻辑也适用于将“神经分化/多元”误用为“非神经典型”的情况。将孤独谱系个体、阅读障碍个体或其他神经殊异（neurodivergent）个体称为“神经分化/多元个体”，不仅在语言上是错误的，而且在潜移默化中强化了一种健全主义思维——这种思维认为神经典型群体本质上与其他人群不同，不属于人类神经多样性谱系的一部分。\n总之，将“神经分化/多元”误用为“神经殊异（neurodivergent）个体”（非神经典型个体）不仅仅是语法错误，它还在潜移默化中强化了健全主义，削弱了神经多样性范式的基本原则。我希望这段解释能帮助人们避免此类错误，并在遇到时能够及时纠正。\n示例 link正确示例：\n“我们人类是一个神经分化/多元的物种。” “我们采用多种创造性的教学策略，以满足我们高度神经多元的学生群体中不同的学习风格。” “我的神经分化家庭包括三位神经典型成员、两位孤独谱系成员和一位既是ADHD又是阅读障碍者的成员。” “我觉得他们董事会的每位成员都是神经典型个体。一个号称为神经少数群体儿童服务的组织需要一个更加神经分化/多元的董事会。” 错误示例： “本小组欢迎孤独谱系者和其他神经分化个体。” 被欢迎确实蛮不错的，但 “神经分化个体”并不存在。正确应为“神经殊异（neurodivergent）个体”。 “本小组对神经典型者和神经分化者开放。”\n错，错，错。“神经分化者”？认真的吗？这到底是什么意思？神经多样性的谱系涵盖整个人类物种，因此不能把任何人类子群体称为“神经分化者”。而且神经典型者也是神经多样性的组成部分，所以说“神经典型者和神经分化者”毫无意义。\n正确说法应为：“本小组对神经典型者和神经殊异（neurodivergent）者开放。” 我希望这份术语定义清单能促进人们在使用神经多样性相关术语时更清晰、更准确。我期待读者在所有可能有用的场合分享、引用或摘录本文。如果你正在撰写关于神经多样性的投稿指南（用于期刊、选集、会议或其他项目），欢迎参考本文内容。如果你遇到正在撰写神经多样性相关主题的记者或大学生，请与他们分享此文。在遇到相关术语的使用中出现混淆时，也欢迎使用本文作为参考资料。 小彩蛋：关于译名的困惑与考量 link作者：Rossa\n诚如Nick Walker所言，“新的范式往往需要一组新的词汇”。现有常用译名中，对于Neurodivergent与Neurodivergence这两个术语，我们尚未找到完全符合作者精神的译名。现有的几种译名，或是符合英文原意但背离中文表达习惯，或是符合中文表达习惯但背离了英文原意。因此，经过讨论，我们选择了另起炉灶，用“神经殊异”和“神经特性”两个中文译名来分别对应“Neurodivergent”和“Neurodivergence”。\n关键是对于“divergent”的理解。大英百科全书词典中的释义为“从同一点分离并向不同方向延伸；与……不同；变得不同。”（to split and move out in different directions from a single point；to be or become different），剑桥词典中的释义为“与其他事物不同或变得不同”（different or becoming different from something else）。常用的中译名有“神经多样性（个体）”“神经分歧”“神经发散”。“神经多样性（个体）”的问题前文中已指出，“分歧”和“发散”虽然接近英文释义，但其固有的中文词性和用法使得译名略显怪异。\n值得注意的是，在思维与创造性相关的语境里，“divergent”具有积极含义。剑桥词典提到，心理学语境下该词含义有“考虑许多不同的可能性，尤其是不寻常的可能性，从而帮助你思考新的想法或解决方案”（considering many different possibilities, especially unusual ones, in a way that helps you to think of new ideas or solutions）,例如“divergent thinking”“divergent thinker”。这一用法具有去污名化与自我赋能的积极意义，被我们着重保留。\n综上所述，我们选择了“殊异”这一汉语译名。一方面，它表达了“差异”“不同”的含义；另一方面，在汉语先例中，它有时也有积极、正面的色彩。例如：\n“美无度，殊异乎公路。” （《诗经·汾沮洳》） “都人士女，殊异乎五方。” （《西都赋》班固） “寻淑类之殊异兮，禀上天之休祥。” （《离缴雁赋》曹植）\r以上是我们在翻译中的小小困惑与考量。\n"
+            }
+        );
+    index.add(
+            {
+                id:  3 ,
+                href: "\/docs\/resource\/dbtworkbook\/",
+                title: "翻译丨神经殊异友好的DBT练习册",
+                description: "免费公开资源，作者与设计师：Sonny Jane Wise",
+                content: "作者与设计师：Sonny Jane Wise @livedexperienceeducator\n脑脑空间NeuroBridge汉化志愿者：Admin、XyZ 、小呆、披垒、Guillotine、明月潮生\n专业审阅：韦亦然\n神经殊异友好的DBT练习册－脑脑空间.pdf，作者 Sonny Jane Wise\r"
+            }
+        );
+    index.add(
+            {
+                id:  4 ,
+                href: "\/docs\/neurobridge\/setout\/",
+                title: "脑脑启程丨一张车票，一段旅程，一个世界",
+                description: "脑脑空间的第一篇文章",
+                content: "本文首发：脑脑空间NeuroBridge微信公众号\n首发时间：2025-04-22\n作者：Rossa\n内容概要：\n我们的理念定位 我们的内容构成 这是一份自我介绍。 link当你在浩瀚的网络信息中看到这些字句，当这些字句落入你的眼底，就像从书页间，被遗忘的车票飘落。\n幸运的是，这张车票永不过时。\n汽笛已然鸣响，月台人头攒动。\n我们翘首以盼，望眼迎接你的到来。\n旅程去往一个罕为人知、常被遗忘、屡遭误解的世界——属于神经殊异群体（neurodivergent，即ND）的世界。\n我们唤它作“脑脑空间”，并以此为名。\n“有些大脑喜欢跳舞，不走寻常路。\n这些大脑的“语言”不同，思考世界的方式和大多数人不一样，但同样精彩。\n这就是神经殊异群体（Neurodivergent，也译作“神经多样性群体”“神经多元群体”“神经发散群体”等） —— 包括ASD群体、ADHD群体、读写障碍群体等。”\n这是一个怎样的世界？\n对ND群体而言，这是素昧平生的故乡。\n对所有人而言，这个世界不卑不亢，真切诠释着“参差百态乃幸福之源”。\n为什么我们希望与你同行，搭起桥，一起去往这个世界？\n只因相信，神经多样性与每个人有关。\n那些被否定、被排斥的记忆，那些困惑、无助、沮丧的经历，在这个世界里被真正理解，获得力量。\n为了打破沉默的黑夜，我们要在这个世界发出自己的声音。\n为了ND群体，为了所有人。\n这是一段怎样的旅程？ link“脑脑空间”想把这些献给你：\n通俗的大众科普。 只有帮助人认识自己、理解自己、克服困境，知识才成为武器，而非枷锁。\n我们想传递关乎nd生活的、去污名化的知识，包括但不限于脑科学、心理健康、自助方法、社科理论。\n真诚的生命体验。 “理论是灰色的，而生活之树常青。”我们想讲述自己的故事，给思考以生命的温度，并期待与你共振。\n包括但不限于专业人士访谈、集体写作或赛博茶话、社会观察与思考分享。\n友善的交流空间。 孤独让人弱小懦弱。在与同类的沟通交流中，我们寻找到他人，寻找到自己，寻找到前进的信心与希望。\n我们想撑起一片友爱交流、共同讨论的净土。\n炽热的自我倡导。 “任何命运，不论如何漫长复杂，实际上只反映在人们大彻大悟自己究竟是谁的瞬间。”\n自我倡导是发声，为自己发声，为所有相同经历的人发声，最终让世界转过头来。\n我们想发出声音，传递勇气，共享生存的信心与力量。\n我们共享着一个世界，我们散落于不同“世界”。\n🌏\n但我们都向往着更好的世界。\n在“脑脑空间”里，那些没有血缘的兄弟姐妹们，携起手来。\r我们的小红书：脑脑空间NeuroBridge\n我们的公众号：脑脑空间NeuroBridge\n"
+            }
+        );
+    index.add(
+            {
+                id:  5 ,
+                href: "\/docs\/neurobridge\/",
+                title: "脑脑空间",
+                description: "关于我们",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  6 ,
+                href: "\/docs\/neurodiversity\/",
+                title: "神经多样性",
+                description: "神经多样性理论相关文章和翻译资料",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  7 ,
+                href: "\/docs\/neurodiversity\/dwyer2022\/",
+                title: "翻译丨Dwyer（2022）：神经多样性方法群",
+                description: "Dwyer, P. (2022). The neurodiversity approach (es)",
+                content: "原文献：Dwyer, P. (2022). The neurodiversity approach (es): What are they and what do they mean for researchers?. Human development, 66(2), 73-92.\n作者：Patrick Dwyer\n脑脑空间翻译志愿者：\n翻译：Admin、Guillotine、XyZ 审校：Rossa、Alexander Dwyer - 2022 - The Neurodiversity Approach(es) What Are They and What Do They Mean for Researchers.pdf\r版权声明：原文遵循CC BY 4.0 协议。\n译文首发：脑脑空间NeuroBridge微信公众号\n首发时间：2025-12-25\n"
+            }
+        );
+    index.add(
+            {
+                id:  8 ,
+                href: "\/docs\/interview\/yucunxuesheng\/",
+                title: "渔村学生的生命故事丨主线暂停，支线照常进行中",
+                description: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第2期",
+                content: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第2期\n本文首发: 脑脑空间NeuroBridge小红书\n首发时间：2025-5-11\n主人公：渔村学生\n访谈与整理：小呆\n文章结构：\n不止一次“暂停” 在暂停期间 对暂停的复杂感受 对外界支持的想象 🔖\n我认识渔村学生的时候，他正处在人生的一个“暂停”阶段一一20多岁，大学毕业后在家中生活了两年。 渔村学生是一位双A人士(ASD+ADHD)，目前他把这段时间当作一次必要的休整，不是撤退，也不是终点。 我们的对话像是在一片安静的湖面上划开水纹，那些对自我的理解、对生活节奏的重新感知，悄悄地、坚定地在他心里生长着。\n## 人生进程的中断，不止一次\r他的第一次“暂停”是在初中。\r那时他因课堂中冲动失控、与同学冲突等行为，被父母带去精神科就诊，随后被确诊为 ASD+ADHD。医生建议家属阅读专业书籍、理解孩子并提供相应的支持方式，但这些建议最终没有落实，他也没有接受任何的干预。在这段时间里，他开始独自在房间中与情绪共处，试图靠自己摸索情绪调控的方式。\n高中时期，他再度陷入难以调节的状态。学校建议他“调整后再返校”，这段经历十分曲折，他曾差点被送入强制矫正机构。那次，他情绪激烈抗拒，最终由亲属接走——在那之后，他更难信任主流系统带来的“帮助”。\n暂停期间，他并没有“空着” link他喜欢研究武器、地图册、城市规划资料，也会玩游戏、读旧报纸。每天的生活有些像“低功耗模式”：上午查资料，下午打游戏，晚上刷视频，有时也彻夜难眠。\n他有一位陪伴八年的心理咨询师，也有几个因特殊兴趣结识的网友。在与心理咨询师交流的过程中，他学会了许多处理问题的方法。\n在现实与网络，他也在尝试找到一个“能放松、不解释、不被打扰”的交流方式。\n他自述自己“太相信别人”，也常因信任落空感到受伤；\n由于拒绝性敏感焦虑（RSD），他常说：“我不太确定别人是不是因为礼貌才理我。”，他一直担心自己是“别人社交的边角料”，害怕“不必要地打扰别人”……\n尽管困难重重，他仍在尝试理解自己该如何与人温和地相处。现在的他在网络世界里找到了归属感，但也清楚知道，那不是一个能完全久留的地方。\n他对“暂停”的感受，是复杂的 link起初他对于这些被动的“暂停”感到无奈，后来在自己选择“暂停”之后有了更多对于自我的思考。\n他说自己不喜欢“暴露脆弱后得不到回应”，也在学着设立边界。\n随着身体和情绪慢慢恢复，他也开始问自己：\n“我还能在这里待多久？”\n“我是不是真的准备好回到外面的世界？”\n他并不完全否定这段时间，尽管初期带有“无奈”“被动”的色彩。\n但后期逐渐出现“内省”、“重构”的倾向。他觉得自己在家里大多数时候比较安心，这个过程也是在疗愈自己。\n他对外界支持的想象 link对他来说，支持不需要特别热情或积极。他希望的，是一些不被打扰的空间：\n想要隔音好的居所、均匀的光照与稳定的温湿度 更喜欢摄影展、展览这类安静的线下活动 在线上，他喜欢填写问卷、写点反馈，觉得那样“有被需要的感觉” 在这段暂停的时间里，他一边慢慢调节身体状态，一边尝试厘清：什么样的生活才真正适合自己。\n他也逐渐明白，那些“与别人不同”的地方，并不是他的错，只是过去缺乏一个能容纳这些差异的环境。\n现在的他开始渴望：\n能遇到理解自己节奏与表达方式的人；\n能在这个社会中，找到一个真正可以“做自己”的空间……\n本文亦见：脑脑空间NeuroBridge微信公众号\n"
+            }
+        );
+    index.add(
+            {
+                id:  9 ,
+                href: "\/docs\/interview\/c\/",
+                title: "C的生命故事丨不被定义的时光",
+                description: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期",
+                content: "系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期\n本文首发: 脑脑空间NeuroBridge小红书\n首发时间：2025-5-12\n主人公：C\n访谈与整理：小呆\n文章结构：\n自我觉察的开始 关于GAP year ND身份带来的转变 独自生活的分享 在ADHD和ASD之间来回流动 🔖\n在她的日常里，我看到一种独一无二的生活方式：温柔、可爱、自由、勇敢。\n面对自己的情绪，她选择Gap Year这种方式进行调整。在与自己相处的过程中，她不断探索，最终找到自己的节奏，也学会照顾情绪和重建生活结构，也渐走出误解与孤独，朝着更适合自己的方向前进。\n自我觉察的开始 link去年九月，她原有的抑郁焦虑变得更严重。\n在经历这些情绪后，她决定一个人去各地旅居，这个决定也成为了她的转折点。\n在重庆时，她确诊了ADHD，也开始重新思考关于自己的事情。\n对自己了解得越多，越发现自己和单adhd形象有出入，在逐渐了解ASD相关内容后也在今年确诊了ASD。\n一开她想要自学参加高考，但独自生活的那段时间让她意识到：\n“高考不是唯一的出路。”\n于是，她开始认真考虑出国读预科，去寻找一个更适合自己节奏和特质的学习方式。\n刚开始家长也是反对的，他们担心她一个人在国外，如果情绪再次波动怎么办？但在外面旅居的过程中，她和家长聊了很多关于ND的事，慢慢得到了对方的理解。\n如何描自己的GAP year？ link很多人说，Gap Year是一种“空窗期”，但对她来说不是。\n这段时间，她脱离了“必须做什么”的环境，开始自己决定每天要做什么。\n不想把gap定义成一种暂停或者准备阶段，而是在重新认识自己，摸索属于自己的生活节奏。\n这可能是她第一次感到“自由”，也是第一次想认真地为自己生活。\nND身份带来的转变 link过去的学校生活，有太多无法解释的痛苦。\n确诊ADHD和ASD后，她终于理解了，为什么自己在课堂上总是那么挣扎：\n她的学习方式是“用例子找规律”，不是“被强塞规则”。 明明只是喜欢问问题，但却常被说“装懂”“好高骛远”。 ……… 从小学到高中，这类误解一点点积累成创伤。\n她也曾经以为是自己不够努力，后来才知道，那是“系统性不适配”。 她觉得自己在国内学习的经历是缺少自主选择的：节奏太快、压力太大、缺乏相应的理解。即便是现在寻找语言教学一对一的老师时，也要反复筛选老师，才能遇到合适的。越接纳自己的ND身份，她就越不想再回到那种靠masking换来勉强适应的状态，而是想去一个能尊重自己节奏、允许“活得不同”的地方。\n不过，ND身份也会引起她思考中的一些冲突：因为终于知道自己为什么“不同”，所以也开始找到适合自己的生活方法。但是，她也发现，NT能轻松做到的事，自己却要花好几倍精力；哪怕是日常沟通、查资料、做作业，也常常力不从心……\n同时，对于双A共存的情况，她以前以为如果ADHD药效下降，ASD就没那么明显。但现在她意识到那可能也只是masking。她觉得自己不是某一部分“更严重”，而是这些特质一直都在、一起流动。\n关于独自生活的分享 link她的生活节奏主要是“感知驱动”，比如ADHD特质影响，很多决定都是临时做的，比如出门前才决定去哪儿。但又因为ASD特质共存，她需要“结构提示”来维持日常：牙膏牙刷得放在特定位置，旅途中如果这些顺序一乱，就会变得非常难开始一整天。她习惯每天吃差不多的食物，因为熟悉的食物结构会让她感觉安全、稳定。\nADHD药物让她状态分时段波动非常明显。比如：\n屏幕亮度的接受度会随着药效而改变，一天得调好几次； 本来只是想逛个商场，结果药效来了，环境太刺激，只能回家。 她在生活中总在遇到这种需要“实时应对”的情况，有时真的很累。 在独自生活的过程中，她也发现，自己十分依赖环境。她需要熟悉的物品位置、视觉动线和摆放逻辑，一旦改变会不安甚至无法生活。每次搬家，都像从头再来一遍，需要重新构建完整的“生活结构”。她还需要知道周围的图书馆、公园、便利店、博物馆……感觉那是一种“心理安全地标”。\n对未来，她也存在担忧。留学的生活也许意味着不停的变化，比如转学、搬家，每一次都要重新构建安全感系统，一定会很耗精力。\n“在ADHD和ASD之间来回流动的我” link她觉得自己不是“一个状态”，而是在多个状态间切换的人。\n当她处在ADHD状态时：\n喜欢高刺激环境：摇滚乐、白噪音、边走动边思考、需要不断变换姿势才能集中。喜欢在转椅上“边走边转”…\n当她处在ASD状态时：\n需要低刺激：雨声、中噪音、重复的动作（比如用手写笔画重复图案）带来安定感。转椅也变成“原地旋转”的放松工具……\n她还靠一些东西自我调节，找到生活中的控制感：白噪音、雨声、毛绒玩具、围巾、软软的触感、整理素材分类（像是社交媒体收藏夹、手工道具盒）、反复看喜欢的视频、画重复的图形……\n她设想过属于自己的安全区，里面有帐篷、小音箱、香薰灯、柔软的·毛毯或围巾……可以用来滚来滚去、听音乐、发呆、休息。\n独自生活的过程让她对自己喜欢的环境有了更多的感知，也明白什么东西能让自己稳定方式下来。对于外界社交，她现在不太主动。不是讨厌人，而是还没找到一种让自己舒服又自然的方式。\n虽然也记得过去和NT朋友一起的快乐，但那种“互相走进心里”的深度，似乎总是缺一块。让她觉得最开心的社交方式，是可以一起做很多有趣的事，也可以讨论很多对彼此的观点及内心想法。\n本文亦见：脑脑空间NeuroBridge微信公众号\n"
+            }
+        );
+    index.add(
+            {
+                id:  10 ,
+                href: "\/docs\/interview\/",
+                title: "脑脑访谈",
+                description: "神经殊异人士的人生故事和专业人士访谈",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  11 ,
+                href: "\/docs\/story\/",
+                title: "脑脑故事",
+                description: "神经殊异人士的自述故事",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  12 ,
+                href: "\/docs\/brainstorm\/",
+                title: "头脑风暴",
+                description: "脑脑空间的评论文章",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  13 ,
+                href: "\/docs\/resource\/",
+                title: "资源",
+                description: "练习册和工具",
+                content: ""
+            }
+        );
+    index.add(
+            {
+                id:  14 ,
+                href: "\/docs\/interview\/z17\/",
+                title: "z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究",
+                description: "双重身份————从“被看见”到“自己说”",
+                content: "本文首发: 脑脑空间NeuroBridge小红书\n首发时间：2025-7-9 主人公：z17\n访谈与整理：卷\n文章结构：\n引言 对谈双方介绍 对谈正文 引言 link近年来，关于孤独症谱系障碍（Autism Spectrum Disorder，ASD）的研究不断增多，但主导研究的大多仍是非谱系人士。\n在大量量化数据与行为观察之下，我们仿佛能“客观地”认识孤独谱系——\n但对谱系个体的内在感受、思维方式、与世界的关系，这些难以测量的经验却往往被忽视、误解，甚至被消音。\n与此同时，越来越多孤独症谱系人士开始走入学术系统，尝试从自身经验出发进行研究。\n这种“当事人研究者”身份带来的，不只是研究对象的变化，更是一种视角的转变:\n📣\n从“被看见”到“自己说”。\n但这条路真的容易吗？\n谱系身份会不会成为被质疑的理由？\n“太主观”是否会被视为不专业？\n卷与z17的对话就是在此背景下进行的。\n他们聚焦于谱系当事人和研究者的双重视角，重新审视研究的盲点与伦理，探讨“主观性”与“客观性”的边界，也反思了学术界和职场环境对神经殊异人士（neurodivergent people）的真实态度。\n对谈者介绍 linkZ17：ND，专注孤独症谱系研究的实验室小黑工，日常沉迷文献阅读与写作，偶尔兼职审稿。\n卷：ND，数学系本科生，因自身谱系身份的启发决定转向心理学研究。\n访谈正文 link\rinfo\r说明：\n本文术语使用以采访者和受访者个人偏好为准。\n本文内容均为采访者和受访者个人分享，不代表平台/团队/其他个人的观点及立场。\n01 自我觉察与谱系认知 link\r🎙️\n卷：\n你是怎样意识到自己是孤独谱系的？是在学习心理学之前还是之后？\nZ17:\n大概是同时期。\n我当时心理状态很差，打算辞职去读发展心理学。\n申请阶段，我开始阅读文献，第一次了解到“孤独谱系”这个概念。当时也在接受心理咨询，我跟咨询师提到自己可能在谱系上，他表示认同我的想法，于是我一边申请研究生，一边申请诊断，最后在入学前一个月得到了正式诊断。\n可以说，我认识到自己神经多样性身份和正式进入心理学领域几乎同步。\n02 认知初期的感受 link\r🎙️\n卷：\n知道自己在谱系上的时候，你是什么感受？\nZ17:\n刚知道时是一种解脱，好像多年来的困惑突然都有了解释。\n我记得在咨询时常说的一句话是：“我害怕别人发现我不正常。”\n现在回想起来，这句话正好体现了过去伪装自己的动机。\n了解谱系概念后，我过去那些模糊的疑问一下变得清晰了。\n我查了很多相关的定性研究，看到别人描述自己的体验时，惊讶地发现他们的感受甚至比喻都和我的几乎一样。\n那种感觉就像终于找到了自己的群体一样。\n03 谱系身份与研究动机 link\r🎙️\n卷：\n意识到自己在谱系上，对你研究心理学的兴趣或动机有影响吗？与你个人的经历有关吗？\nZ17:\n影响非常大。\n我决定转行学习心理学之后，研究兴趣其实经历了好几次转变。\n一开始，我选择这个专业是因为我想学习更加“客观”的知识，比如脑科学、生物学相关的课程。但真正学习后，我意识到自己原本所期待的那种绝对的“客观性”并不存在。\n我在上学的过程中做了几个课题，包括基因如何与环境相互作用，激素如何影响大脑发育又如何被环境塑造，这些复杂、交互的因素，背后并没有简单直接的因果关系。\n科学研究的难点与魅力，也正是在于厘清这些混沌复杂的交织关系，并尝试概念化、理论化。\n因此，我现在特别关注的是跨学科的理论。尤其在研究个体的表型和发展时，任何单一学科都无法充分解答这些问题。\n特别是当我意识到自己在谱系上之后，我的研究兴趣就完全转向了自闭症相关的跨学科领域。我的研究动机几乎都源于自身的体验和疑问。\n当我阅读自闭症相关文献时，发现自己感受到的许多重要问题甚至还未被清晰地概念化，更没有深入的系统研究，这让我非常震惊。\n真正学习心理学后，我也更加认识到，我们对神经多样性的了解仍然非常有限，而不是原先以为的那样有明确答案。\n其实很多研究者的选题都源于自身的体验，我们常说研究（research）其实就是“研究自己”（me-search）。\n比如我现在关注的伪装行为、社会认知、自杀倾向和社交压力反应，都和我自己的经历密切相关。\n04 研究模式：自身经验到普遍性 link\r🎙️\n卷：\n所以你的研究模式是不是通常先从自身经历中提炼出问题，再去确认它是否具有普遍性，然后再开展研究？\nZ17:\n是的。我一般都是从直觉出发，根据自己的感受和观察去提出问题，然后再通过查阅文献寻找共鸣，确认其他人是否也有类似体验。\n由于很多现象尚未被概念化，我通常需要通过定性研究的受访者描述，来确认这些感受和体验的普遍性。\n如果发现确实存在这样的共性，我就会开始正式撰写研究计划，大致是这样的过程。\n05 访谈方式 link\r🎙️\n卷：\n我之前面试一位老师时，他质疑我用访谈的方式研究自闭症青少年的社会认知。\n他认为这些青少年本身就存在社交障碍，因此访谈这种互动性较强的形式可能并不合适。你怎么看这个问题？\nZ17:\n我理解他的担忧，但我认为这种观点实际上忽视了心理学研究的一个关键点：\n🧠\n我们研究的是人内心的体验与感受。\n过去心理学主要使用量化实证的方法，这种方法似乎更“客观”，但恰恰也容易导致我们用一种旁观者的视角去理解自闭症群体，永远无法真正进入他们的内在世界。\n尤其是对神经多样群体而言，质性访谈这种以参与者视角为中心的方法，反而是探索他们内心感受的第一步。而且，你的访谈对象并不涉及智力障碍，且具备语言沟通能力，因此完全能够通过适当的沟通方式参与访谈。\n具体来说，我们完全可以通过灵活的访谈设计，最大程度缓解这种社交压力。\n比如，让受访者自主选择更舒适的表达形式，有些人可能偏好文字沟通，有些则适合语音留言，甚至线上会议。\n这种弹性安排能够大幅降低他们在沟通中的焦虑，获得更加真实、深入的回答。\n🎙️\n卷：\n补充一下，我在实际访谈时确实遇到这样的情况。\n有一位受访者从小被诊断为轻度自闭症，她反应速度较慢，无法即刻作出回答。因此她主动提出，希望我能提前将访谈问题发给她，让她做好准备。\nZ17:\n这是一个非常常见且有效的做法。\n事实上，在和谱系群体进行访谈时，提前发送访谈问题清单是一项基本的伦理和研究规范。对许多谱系人士来说，包括我自己在内，这种实时互动式的沟通都可能是一种挑战。\n在我自己马上要开展的研究里，也特别设计了两种参与方式：一种是线上的实时会议，另一种则是开放式书面作答。\n很多谱系人士在交互式的沟通中感到压力很大，反而用文字形式，以自己的节奏自由书写，能够更舒适地表达内心体验，也更容易呈现丰富而真实的内容。\n我认为，这种尊重参与者需求的灵活设计，才是质性研究真正的意义所在。\n06 当事者与研究者的身份关系 link\r🎙️\n卷：\n在你的学术旅程中，“当事者”和“研究者”这两个身份之间是怎样的关系？\n它们是冲突的、互补的，还是在动态转化？\nZ17:\n对我来说，这两个身份并不是冲突或简单互补，而是相互推进的关系。\n作为当事者，我对自身和所属的这个群体有很多未解的疑问，驱动着我不断寻找答案。\n同时，作为研究者，我发现研究是一种非常好的表达方式，也是为这个群体发声的重要途径。\n目前谱系群体面临的最大困境之一是，我们的困难往往是不可见的。这是因为整个社会的主流话语体系，包括学术研究，本质上都是为“社交典型”的人群搭建起来的。因此，我们很多真实的困境甚至从未被明确地定义或概念化，也就很难被外界理解。\n这也导致我在日常生活中经常遇到的一个难题：别人问我，“你到底有什么问题？”但我很难向他们清晰地描述。\n实际上，在我自己的生活圈子里，我几乎不会主动去讨论谱系的事，因为每当我试着去表达时，经常会感到挫败或难过。朋友们的反应往往是“我也有类似情况，但我不想去贴这个标签”，或者觉得诊断可能会成为某种借口。但对我而言，社交的困难是真实存在的，它严重影响了我的生活与工作。\n正是因为这些问题很难被外界看见，研究对我来说才成为了一种表达的舒适区。我现在的每一篇文章都包含了很多主观的体验，甚至带着情绪和情怀。我希望能通过研究为这个群体发声，让我们的困境被理解与关注。\n🎙️\n卷：\n你的说法让我很有共鸣。 我自己也感觉，“命名”是一件非常重要的事。当你能够准确命名某种体验或情绪时，一方面更容易为自己的感受找到归属感，另一方面也能更清晰地向外界表达。\n而且确实如你所说，有很多我们正在经历的困境，都还没有被清晰地定义出来。\n07 发现被忽视的问题 link\r🎙️\n卷：\n你能举个例子吗？就是你如何去发现那些在主流话语中被忽视的研究问题。\nZ17:\n目前，我特别关注自闭症群体中的伪装（camouflaging）行为。\n传统观点普遍认为谱系人士存在明显的社会认知缺陷，尤其是在心理理论（Theory of Mind, ToM）方面，认为他们无法敏锐地感知或理解他人的情绪与意图，或对社会刺激反应迟钝、淡漠，进而造成社交困难。\n但当我审视自身经历时，发现情况可能恰恰相反。我在社交互动中其实非常敏锐地察觉到他人的情绪、意图，以及他人对我的看法和期待。这种敏锐甚至达到了一种“过度唤醒”（hyperarousal）的程度，让我不断捕捉到外界反馈，反而削弱了我的社交专注力。同时，我也意识到自己拥有强烈的共情能力（empathy），这与主流假设中谱系人士共情能力不足的观点明显不符。\n我进一步发现，谱系社群中也有许多人分享类似的体验，但这些体验往往被主流研究所忽视，相关的研究（例如hyperarousal和hyperempathy）目前仍处于相对边缘的位置。\n为了验证这种体验是否具有普遍性，我开始主动查阅更多的质性文献，从其他谱系人士的叙述中寻找共鸣。\n我发现，许多谱系人士其实都能够敏锐地觉察社会期待，并积极学习如何表现出符合期待的行为。\n换句话说，谱系人士对神经典型（neurotypical）世界的理解程度，很可能超过了神经典型人士对谱系世界的理解程度。\n我另外想到了一个有趣的例子。研究者设计了一种基于神经多样视角的心理理论测试，让神经典型人士去完成。\n传统ToM测验（如“读懂他人的眼睛”任务、“奇怪故事”任务）一般以神经典型标准为基础，谱系人士只要偏离了这个标准就会被视为能力不足。但这项新研究反过来发现，当神经典型人士尝试理解神经多样群体的心理时，也同样表现出显著困难。\n这种反向研究的视角非常有启发性，说明长期以来主流心理学对谱系群体的社会认知可能存在重大偏差，也印证了我自己和谱系社群中很多人的体验。\n这种从个人体验出发，敏锐发现主流理论的盲点，然后通过广泛查阅文献来验证其普遍性，最终提出具有创新性的研究问题，就是我通常寻找值得深入研究的议题的方法。\n08 双重身份下的研究考量 link\r🎙️\n卷：\n比如在做访谈或者邀请谱系人士参与研究时，你作为“当事者”和“研究者”这种双重身份，会让你有更多特殊的考量吗？\n你能再举一些具体例子吗？\nZ17:\n我可以举最近担任审稿人时遇到的例子。\n我审了三篇关于谱系儿童和青少年的实验研究，发现这些研究从设计、实施到反馈，每个环节都缺乏谱系参与者本人的声音。\n比如，其中一项研究使用了高强度的TMS（经颅磁刺激）进行干预，研究者关注的仅仅是干预是否“有效”和“可行”，但他们从研究设计、执行到干预后的的访谈环节完全没有纳入参与干预的谱系青少年本人的感受，而是仅仅采访了家长。\n我觉得这里存在一个很核心的问题：\n这些参与者是否真的需要这些干预？\n这些干预究竟是为了提高参与者自身的福祉（well-being），还是仅仅是让他们表现出一种社会能够接受的样子？\n这些问题往往没有被清晰地提出和反思。\n从我作为当事者的视角出发，这样的研究方式让我感到不安。\n如果由我来设计研究，我会在每个步骤都确保谱系参与者本人的声音被真正地听见。不论他们是否有语言能力，我们都可以通过情绪卡片、行为观察或其他合适的方法，让他们表达出自己的真实感受。\n🧠\n我们需要真正关注的是参与者的舒适程度、参与体验，以及他们自己对干预方式的认同与需求，而不是只满足家长、教师或社会的期待。\n09 学术环境中的身份公开 link\r🎙️\n卷：\n在学术环境中，你是否会公开自己的神经多样性身份？\n是完全公开、部分公开，还是倾向于保密？\nZ17:\n我是完全公开的。\n在我现在的学术环境里，公开其实是一种优势。\n我所在的研究团队专门研究非典型发育，每个人都对自闭症有充分了解，因此我可以非常舒适、坦然地呈现自己的身份。\n同时，在更广泛的学术圈，我的身份公开有时也是优势：\n例如其他团队会主动邀请我去审阅他们的研究设计，确保研究更贴合谱系社群的视角，这在一定程度上也增加了我的学术参与度和曝光度。\n10 申请资助中的身份叙事 link\r🎙️\n卷：\n当你申请基金或项目支持的时候，会明确运用你的身份叙事策略吗？\n比如在申请材料中，讲述你自己的体验作为研究动机的一部分？\nZ17:\n一定会的。\n申请基金或博士项目时，我都会用自己的谱系身份叙事，清晰地表达出我的研究动机与个人经历之间的联系。\n比如我的研究重点就是自闭症的伪装行为（camouflaging），它密切关联个人的内在体验与外在表现，和我的生命经验完全相符。\n因此，我几乎在所有申请材料中都会清晰展现这一点，这不仅体现我的研究动机和承诺，也凸显我对这个领域的独特洞察。\n11 身份公开的风险担忧 link\r🎙️\n卷：\n你会担心公开身份带来的风险吗？比如被暗中质疑或排挤？\nZ17:\n申请资金或基金的时候风险不大，但如果涉及具体的研究职位，或者是博士岗位的申请，我觉得风险是肯定存在的。这是因为招聘时最关注的是降低团队合作的风险。\n自闭症意味着在社交互动方面存在临床水平的困难，在招聘方看来可能会带来合作问题，这无疑会提升他们的风险预期。\n但对我来说，这其实是一种双向选择。\n如果对方团队无法接受我的身份和视角，即便我隐瞒后顺利进入团队，后续合作也难免出现问题，这并不是我想要的状态。所以我在申请时都是明确公开的。\n这既是我对自己身份的坦然接受，也是为了确保能找到真正适合我的环境。\n12 “过度共情”与主观性 link\r🎙️\n卷：\n有人批评说孤独症研究者可能会因为“过度共情”而影响研究的客观性。你如何看待这种质疑？\n如果有人认为你“过于主观”，你会怎么回应？\nZ17:\n我认为，这种所谓的“主观性”不仅不是问题，反而是研究谱系群体内心体验所必需的视角。\n心理学本身关注的是个体内在世界，而个体体验本质上无法以完全中立、抽离的视角被真正理解。尤其是在涉及谱系群体时，恰恰需要研究者拥有深刻的共情与内在视角，才能够更准确地捕捉到谱系人士真实而微妙的体验。\n而且，现代研究哲学已经逐渐超越了实证主义所推崇的“绝对客观性”，转而广泛接受建构主义的立场，承认知识生产始终受到研究者的身份、背景、经验的影响。\n这一点在谱系研究领域尤其明显：如反思性研究（reflexivity）、参与式研究（participatory approaches）、叙事分析（narrative analysis）和现象学方法（phenomenological approaches），本质上都是以主观性为核心，强调研究者的反思和主体性体验在研究中的积极作用。\n另一方面，我想指出的是，过度强调客观性的研究，反而更容易造成对谱系人士的误读。\n长期以来，主流研究者通常持有神经典型的视角，可能无意识地将自身的社会标准、认知假设投射到谱系群体上，这本身就是另一种更隐蔽的主观性。\n相反，有意识的“主观性”或自我反思，能够让我们更敏锐地识别出这些潜在的偏见，从而推动理论与实践的进步。\n注：\n参与式研究：\n强调研究对象作为共同参与者而非被动受访者。\n研究过程中的问题设定、资料收集、分析与结果应用，都尽可能让参与者参与决策，体现权力的再分配。\n反思性方法：\n关注研究者在研究过程中的角色与影响力，强调不断反思自己的立场、价值观、研究动机、与被研究者的关系。\n叙事分析：\n聚焦于人们如何通过讲述故事来建构自身经验。它不只是分析“发生了什么”，更看重故事的结构、表达方式、说故事的背景与目的。\n现象学：\n关注经验本身如何被感知与理解，试图回到“事物如何显现于意识中”。\n13 孤独症研究是否需要重塑 link\r🎙️\n卷：\n你认为孤独症研究领域需要经历一次彻底的重塑吗？\n如果需要，该如何进行？\nZ17:\n我认为绝对需要。\n目前孤独症研究领域的主要问题不是缺乏研究本身，而是长期以来由神经典型人士所主导的权力结构与话语体系。\n他们定义了“正常”，并将自身标准强加于谱系人士，造成谱系人群长期被视为“缺陷”与“偏离”。\n如果要实现真正的重塑，我们首先需要的是权力和话语的重新分配，让谱系人士自己拥有定义自身体验和需求的主体性。\n这也意味着研究方法必须彻底转型为参与式、主体性的研究范式，而不是停留在外界对谱系人士的干预与矫正上。\n其次，这种重塑还必须具有伦理与社会正义的高度：\n孤独症研究不仅仅关乎知识生产，更是关乎谱系人士的福祉、权利与尊严。\n研究者不仅要提出问题，还应当为谱系人士在社会层面的平等对待与尊严维护发声。\n最后，这种重塑还需要更多谱系人士成为研究的主体而非被动的客体，真正站在研究的核心位置，从内而外地推动理论与方法的发展。\n🧠\n这场范式转型其实是社会整体对差异与多样性的重新理解，我们需要反思并挑战，到底是谱系人士需要改变，还是社会本身应当包容差异。\n14 学术制度的改进方向 link\r🎙️\n卷：\n你认为学术界在制度层面接纳神经多样性研究者方面，最亟需改进的是哪些环节？\nZ17:\n就我目前这个阶段的体验来看，我觉得最迫切需要改进的是招聘制度和岗位设计。\n当前学术界的招聘流程极度依赖口头面试，常常在短短20到30分钟内，通过社交互动来判断应聘者是否“合适”。\n这种评估方式对谱系人士明显不利，因为谱系人士本身在高强度、实时互动的社交场合中就会面临很大困难，这种方式几乎将他们天然地排除在外。\n此外，在学术研究助理（Research Assistant）的岗位设计上，也普遍存在明显的不友好。\nRA是积累科研经验的非常基础甚至必经之路的岗位。但我在求职的过程中发现，几乎所有RA职位JD里能力要求排名第一的永远是出色的人际沟通能力、热情，期望RA能够帮忙维护好和医院学校家长的人脉关系，招募被试等等，这些恰恰是谱系人士可能最不擅长的能力。\n当岗位本身设定成这样时，实际上已经默认把神经多样群体排除在外了。\n因此，我认为真正的制度性改变应该体现在灵活的岗位设计与多元的评估方式上。\n招聘过程中，学术界应更加关注候选人的核心能力，比如写作能力、文献处理、数据分析能力，而不是刻板地追求社交技巧和互动风格。\n我们需要的是更具弹性的制度设计，让谱系人士能够发挥他们的真实优势，而不是被短板彻底限制。\n本文亦见: 脑脑空间NeuroBridge微信公众号\n"
+            }
+        );
+    index.add(
+            {
+                id:  15 ,
+                href: "\/docs\/brainstorm\/xyz-critique\/",
+                title: "XyZ丨必须批判神经多样性运动",
+                description: "批判有必要澄清前提、划定界限，作者XyZ",
+                content: "本文首发: 脑脑空间NeuroBridge微信公众号\n首发时间：2025-10-02\n作者：XyZ\n引言 什么是神经多样性运动？ 误解、反感还是批判 批判的目光放在哪里？ 批判是建设，而不是破坏 引言 link随着国内神经殊异（ND）群体诊断和意识的发展，神经多样性事实、神经多样性方法、神经多样性运动日渐成为讨论的热门话题。\n随之而来的，也有大量关于神经多样性运动的反思和批判，批评的声音中不乏简单粗暴的全盘否定。\n有人反感主流声音的单调，有人质疑其中的精英色彩，还有人认为这只是身份政治的延伸，因此呼吁彻底否定神经多样性运动。\n我们需要承认，神经多样性运动必须接受批判。然而，这种批判不等于简单地全盘否定，而是要回到“批判”的原初定义：\n澄清前提、划定界限。\n什么是神经多样性运动？ link从根本上来说，神经多样性运动是为神经少数群体争取合理权利的社会运动。\n所谓“神经少数”，指的是因为神经特性的差异，在特定的历史与现实条件下，被边缘化、被视为“异常”的群体，例如孤独谱系障碍群体、ADHD群体、特定学习障碍群体等。\n他们在教育、劳动、医疗和日常生活等领域，往往面临额外的障碍与不平等。\n不过，神经多样性运动并不存在一个统一的指挥中心。\n不同群体和个体认同的具体方法可能差异巨大，有的强调社会包容，有的着眼合理便利措施，有的追问结构性压迫。无论推崇何种路径，共性都在于寻求让神经少数的处境更合理、更平等。这是神经多样性运动的目的。\n误解、反感还是批判？ link批评神经多样性运动的声音可以分为三类：\n1、源于误解 link一些人将运动理解为极端立场，如认为神经多样性运动等同于否认残障，或等同于反对科学研究，或等同于拒绝支持、只局限于障碍较少的群体，或等同于“阿斯”优越论、ND- NT对立。\n这种现象源于误解的否定没有“澄清前提”，因而批评完全错位：攻击的对象并非神经多样性运动本身，而是一个承载误解的稻草人。\n2、源于片面反感 link一些人因反感运动中局部现象或问题，如部分倡导者的言论、行为或价值取向，便将其上升为对整个运动的全面否定。\n这种现象源于片面反感的否定没有“划定界限”，混淆了“部分路径”和“运动整体”的边界。于是，局部的现象被当作整体的本质，片面的不满被放大为全盘的否定；这不是批判，而是对批判的误用。\n3、源于建设性反思 link关注运动的具体问题，如过度代表、叙事单一、概念泛化，试图通过反思推动运动走向平衡和包容。\n真正的批判必须“澄清前提、划定界限”，明确讨论概念的定义，区分观点与事实，厘清局部和整体。不仅讨论是什么、不是什么，更讨论应该是什么、应该怎么做。这种批判，要立足历史性、结构性和现实性三个维度。\n批判的目光放在哪里？ link如果源于误解和片面反感的否定，是因没有澄清前提和划定界限而产生的错误，那么真正的批判，则要将目光投向那些需要被正视和解决的真实问题。这些问题集中在运动的历史、结构和现实三个维度上。\n1、历史性问题 link“正常”和“异常”的区分从何而来，它们的界限形成于怎样的历史和经济背景，运动触及到这些基础了吗？\n为什么一些神经特性被视为（或曾被视为）“缺陷”、需要“矫正”，要被去除的对象到底是什么？\n污名是如何形成的，将走向何方，运动如何影响污名的进程？\n今天使用的核心概念，比如孤独谱系障碍、残障、掩饰，是如何在历史中被不断扩展和偏移的？这些变化如何影响个体？\n……\n2、结构性问题 link在教育、劳动、医疗等领域，神经少数群体是否受到了持续的边缘化？这种情况是如何被制度化和循环强化的？\n环境、社会和历史因素如何影响残障和适应性？\n具体的科学研究是客观的，还是囿于成见？怎样才能引入当事者的视角，促进社群与研究者、工作者的合作？\n追求的措施是否会成为新的压迫？\n社群分裂了吗，应该分割吗？互联网和AI如何影响了社群的结构？怎样听到不同群体的声音？\n……\n3、现实性问题 link如何应对ND个体日常生活中的困境？\n哪些群体是可以沟通和合作的？\n目前的环境下，能够实现哪些支持、可能争取哪些支持、可以展望怎样的（远期）愿景？\n……\n历史性、结构性、现实性的批判，才能超越情绪的输出、对个体的攻击、内部的争斗，指向现实情境和结构困境。\n批判是建设，而不是破坏 link总而言之，批判的意义在于：\n澄清前提：明确神经多样性运动的目的和本质；\n划定界限：区分具体方法/局部现象和运动本身，避免以偏概全；\n指向现实：追问历史性和结构性的根源，推动现实性的改变。\n我们必须批判神经多样性运动，但必须从情绪宣泄、党同伐异、简单否定中走出来，走向真实的、现实的、多元的建设。\n"
+            }
+        );
+    index.add(
+            {
+                id:  16 ,
+                href: "\/docs\/",
+                title: "文章",
+                description: "",
+                content: ""
+            }
+        );
+    search.addEventListener('input', show_results, true);
+
+    function show_results(){
+        const maxResult =  5 ;
+        const minlength =  0 ;
+        var searchQuery = sanitizeHTML(this.value);
+        var results = index.search(searchQuery, {limit: maxResult, enrich: true});
+
+        
+        const flatResults = new Map(); 
+        for (const result of results.flatMap(r => r.result)) {
+        if (flatResults.has(result.doc.href)) continue;
+        flatResults.set(result.doc.href, result.doc);
+        }
+
+        suggestions.innerHTML = "";
+        suggestions.classList.remove('d-none');
+
+        
+        if (searchQuery.length < minlength) {
+            const minCharMessage = document.createElement('div')
+            minCharMessage.innerHTML = `Please type at least <strong>${minlength}</strong> characters`
+            minCharMessage.classList.add("suggestion__no-results");
+            suggestions.appendChild(minCharMessage);
+            return;
+        } else {
+            
+            if (flatResults.size === 0 && searchQuery) {
+                const noResultsMessage = document.createElement('div')
+                noResultsMessage.innerHTML = "No results for" + ` "<strong>${searchQuery}</strong>"`
+                noResultsMessage.classList.add("suggestion__no-results");
+                suggestions.appendChild(noResultsMessage);
+                return;
+            }
+        }
+
+        
+        for(const [href, doc] of flatResults) {
+            const entry = document.createElement('div');
+            suggestions.appendChild(entry);
+
+            const a = document.createElement('a');
+            a.href = href;
+            entry.appendChild(a);
+
+            const title = document.createElement('span');
+            title.textContent = doc.title;
+            title.classList.add("suggestion__title");
+            a.appendChild(title);
+
+            const description = document.createElement('span');
+            description.textContent = doc.description;
+            description.classList.add("suggestion__description");
+            a.appendChild(description);
+
+            suggestions.appendChild(entry);
+
+            if(suggestions.childElementCount == maxResult) break;
+        }
+    }
+    }());
+</script>
+        
+    </body>
+</html>

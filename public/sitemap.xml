@@ -2,50 +2,59 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://neurobridge.cn/docs/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4/%E5%BF%85%E9%A1%BB%E6%89%B9%E5%88%A4%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E8%AE%BF%E8%B0%88/artemis/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7/%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7%E6%9C%AF%E8%AF%AD/</loc>
-    <lastmod>2025-12-21T17:04:45+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%B5%84%E6%BA%90/dbt%E7%BB%83%E4%B9%A0%E5%86%8C/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E7%A9%BA%E9%97%B4/%E8%84%91%E8%84%91%E5%90%AF%E7%A8%8B/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E7%A9%BA%E9%97%B4/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7/</loc>
-    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7/%E7%A5%9E%E7%BB%8F%E5%A4%9A%E6%A0%B7%E6%80%A7%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2025-12-21T17:04:45+08:00</lastmod>
-  </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E8%AE%BF%E8%B0%88/%E6%B8%94%E6%9D%91%E5%AD%A6%E7%94%9F/</loc>
+    <loc>https://neurobridge.cn/docs/story/fa-dream/</loc>
     <lastmod>2025-12-22T17:06:44+08:00</lastmod>
   </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E8%AE%BF%E8%B0%88/c/</loc>
+    <loc>https://neurobridge.cn/docs/interview/artemis/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/neurodiversity/walker2014/</loc>
+    <lastmod>2025-12-21T17:04:45+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/resource/dbtworkbook/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/neurobridge/setout/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/neurobridge/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/neurodiversity/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/neurodiversity/dwyer2022/</loc>
+    <lastmod>2025-12-21T17:04:45+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/interview/yucunxuesheng/</loc>
     <lastmod>2025-12-22T17:06:44+08:00</lastmod>
   </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%84%91%E8%84%91%E8%AE%BF%E8%B0%88/</loc>
+    <loc>https://neurobridge.cn/docs/interview/c/</loc>
+    <lastmod>2025-12-22T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/interview/</loc>
     <lastmod>2025-12-21T17:06:44+08:00</lastmod>
   </url><url>
-    <loc>https://neurobridge.cn/docs/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4/</loc>
+    <loc>https://neurobridge.cn/docs/story/</loc>
     <lastmod>2025-12-21T17:06:44+08:00</lastmod>
   </url><url>
-    <loc>https://neurobridge.cn/docs/%E8%B5%84%E6%BA%90/</loc>
+    <loc>https://neurobridge.cn/docs/brainstorm/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/resource/</loc>
+    <lastmod>2025-12-21T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/interview/z17/</loc>
+    <lastmod>2025-12-23T17:06:44+08:00</lastmod>
+  </url><url>
+    <loc>https://neurobridge.cn/docs/brainstorm/xyz-critique/</loc>
     <lastmod>2025-12-21T17:06:44+08:00</lastmod>
   </url><url>
     <loc>https://neurobridge.cn/docs/</loc>
     <lastmod>2025-12-21T17:07:47+08:00</lastmod>
   </url><url>
     <loc>https://neurobridge.cn/</loc>
-    <lastmod>2025-12-22T17:06:44+08:00</lastmod>
+    <lastmod>2025-12-23T17:06:44+08:00</lastmod>
   </url><url>
     <loc>https://neurobridge.cn/categories/</loc>
   </url><url>
