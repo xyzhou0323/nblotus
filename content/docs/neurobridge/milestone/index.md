@@ -89,7 +89,8 @@ timeline
     
     
 - **5月 - 8月**  
-    小呆访谈[Artemis]({{% relref "/docs/interview/artemis" %}})、[渔村学生]({{% relref "/docs/interview/yucunxuesheng" %}})、[C]({{% relref "/docs/interview/c" %}})  
+    小呆访谈[Artemis]({{% relref "/docs/interview/artemis" %}})、[渔村学生]({{% relref "/docs/interview/yucunxuesheng" %}})、[C]({{% relref "/docs/interview/c" %}})、[聪聪]({{% relref "/docs/interview/congcong" %}})  
+    C访谈[面包]({{% relref "/docs/interview/mianbao" %}})  
     卷访谈[Z17]({{% relref "/docs/interview/z17" %}})、[Dr.Shevaun Lewis]({{% relref "/docs/interview/lewis" %}})  
     内容持续更新，社群讨论氛围活跃，构建多个主题板块。
     
@@ -142,4 +143,4 @@ timeline
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

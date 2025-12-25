@@ -25,8 +25,8 @@ toc: true
 <a href="https:&#x2F;&#x2F;www.canva.cn&#x2F;design&#x2F;DAG6hfTJ5Jg&#x2F;2U85_1eXMZkf3JNomC1zpQ&#x2F;view?utm_content=DAG6hfTJ5Jg&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Dwyer - 2022 - The Neurodiversity Approach(es) What Are They and What Do They Mean for Researchers.pdf</a>
 
 
-版权声明：原文遵循<a href="https://creativecommons.org/licenses/by/4.0/" style="color: inherit; text-decoration: none;">CC BY 4.0 协议</a>。  
-译文首发：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/r8tM5a1IahnfJ4AAFwps1w)  
+版权声明：原文遵循<a href="https://creativecommons.org/licenses/by/4.0/" style="color: inherit; text-decoration: none;">CC BY 4.0 协议</a>。中文译文由脑脑空间NeuroBridge志愿者团队翻译。  
+译文首发：脑脑空间NeuroBridge微信公众号[第一部分](https://mp.weixin.qq.com/s/r8tM5a1IahnfJ4AAFwps1w)、[第二部分](https://mp.weixin.qq.com/s/MTlN4SJIVPzDcwuyQihmYA)、[第三部分](https://mp.weixin.qq.com/s/S0guzpCRhfjZ1Zh8lPTLpg)  
 首发时间：2025-12-25  
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

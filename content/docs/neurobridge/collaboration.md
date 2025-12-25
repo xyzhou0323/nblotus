@@ -12,6 +12,8 @@ toc: true
 首发时间：2025-11-26  
 作者：脑脑空间成员 
 
+（约500字，阅读约需1分钟，读屏幕软件约需2分钟）
+
 大家好，这里是专注神经多样性科普与倡导的脑脑空间。  
 我们由一群神经殊异志愿者运营，采用去中心化、无代表制的协作模式，以志愿劳动为基础，共同推动神经多样性议题的传播与理解。
 
@@ -31,4 +33,4 @@ toc: true
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

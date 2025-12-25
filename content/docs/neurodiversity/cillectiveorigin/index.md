@@ -12,6 +12,8 @@ toc: true
 首发时间：2025-10-16  
 作者：[XyZ](https://neuroxyz.cn) 
 
+（约3300字，阅读约需7分钟，读屏幕软件约需11分钟）
+
 本文结构：
 1. 引言：一个广为流传的起源故事
 2. 起点：90年代早期的网络社群
@@ -19,7 +21,9 @@ toc: true
 4. 重定位：关键人物的角色
 5. 结语：叙述这段历史
 ---
+
 ## 引言：一个广为流传的起源故事
+
 在许多讨论中，“神经多样性”（neurodiversity）这个词的诞生似乎有一个清晰的起点：  
 澳大利亚社会学家朱迪·辛格（Judy Singer）发明了神经多样性一词。
 
@@ -137,4 +141,4 @@ ANI成员如吉姆·辛克莱（Jim Sinclair），残障倡导者埃德·罗伯�
 ---
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/s49FUougy8HKOWEKpfZe9w)
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

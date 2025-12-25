@@ -12,7 +12,10 @@ toc: true
 首发时间：2025-12-03  
 作者：[XyZ](https://neuroxyz.cn) 
 
+（约2800字，阅读约需6分钟，读屏幕软件约需10分钟）
+
 本文结构：
+
 1. 引言：更具传播效力的叙事？
 2. 问题提出
 3. 异质性
@@ -20,7 +23,6 @@ toc: true
 5. 残障正义
 6. 分类的作用
 7. Reclaim夺回
-（全文约2800字，预计阅读8分钟）
 
 ---
 ## 引言：更具传播效力的叙事？
@@ -141,11 +143,11 @@ Crip Theory（McRuer，2006）的发展，就展示了被贬损的词汇（传�
 ---
 ### 延伸阅读：
 1. [Dwyer, P. (2022). The neurodiversity approach (es): What are they and what do they mean for researchers?. Human development, 66(2), 73-92.](https://doi.org/10.1159/000523723)  
-    [中文译文：脑脑空间Neurobridge](https://neurobridge.cn/docs/neurodiversity/dwyer2022)
+    中文译文：[脑脑空间Neurobridge译本 Dwyer 2022]({{% relref "/docs/neurodiversity/dwyer2022" %}})
 2. [Dwyer, P., Gurba, A. N., Kapp, S. K., Kilgallon, E., Hersh, L. H., Chang, D. S., ... & Gillespie-Lynch, K. (2025). Community views of neurodiversity, models of disability and autism intervention: Mixed methods reveal shared goals and key tensions. Autism, 29(9), 2297-2314.](https://doi.org/10.1177/13623613241273029)
 3. [Srinivasan, H. (2025). Neurodiversity 2.0-Harnessing cross-disciplinary disability insights. Research in Autism, 127, 202652.](https://doi.org/10.1016/j.reia.2025.202652)
 4. [Shain M. Neumeier. (2018)‘To Siri With Love’ and the Problem With Neurodiversity Lite](https://rewirenewsgroup.com/2018/02/09/siri-love-problem-neurodiversity-lite/)
 
 ---
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

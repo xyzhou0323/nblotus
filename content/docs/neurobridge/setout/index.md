@@ -12,11 +12,17 @@ toc: true
 首发时间：2025-04-22  
 作者：Rossa  
 
+（约1200字，阅读约需3分钟，读屏幕软件约需4分钟）
+
 内容概要：
+
 - 我们的理念定位
 - 我们的内容构成
+
 ---
+
 ## 这是一份自我介绍。
+
 当你在浩瀚的网络信息中看到这些字句，当这些字句落入你的眼底，就像从书页间，被遗忘的车票飘落。  
 幸运的是，这张车票永不过时。
 
@@ -41,8 +47,11 @@ toc: true
 为了ND群体，为了所有人。   
 
 ---
+
 ## 这是一段怎样的旅程？
+
 “脑脑空间”想把这些献给你：
+
 - **通俗的大众科普。**
  只有帮助人认识自己、理解自己、克服困境，知识才成为武器，而非枷锁。  
  我们想传递关乎nd生活的、去污名化的知识，包括但不限于脑科学、心理健康、自助方法、社科理论。
@@ -67,9 +76,10 @@ toc: true
 在“脑脑空间”里，那些没有血缘的兄弟姐妹们，携起手来。
 
 ---
+
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)
 
-[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
+关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
