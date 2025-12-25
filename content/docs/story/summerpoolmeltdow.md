@@ -1,5 +1,5 @@
 ---
-weight: 2
+weight: 3
 title: "夏天的游泳池丨记一次meltdown（约4/10严重度）"
 description: "Trigger Warning（内容预警）：Meltdown（崩溃、熔断），自我伤害，家庭暴力，体验被否定，大量文字（可能过载）"
 icon: "Arrow_Drop_Down_Circle"
