@@ -9,10 +9,8 @@ draft: false
 toc: true
 ---
 系列访谈——“我们该怎么称呼‘不适合社会’的人”第2期  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/1u8bUQxTxfu)  
-首发时间：2025-5-11  
 主人公：渔村学生  
-访谈与整理：小呆
+访谈与整理：[小呆](https://xhslink.com/m/A0TGop1zIv4)
 
 （约1300字，阅读约需3分钟，读屏幕软件约需5分钟）
 
@@ -94,9 +92,15 @@ toc: true
 ---
 
 同系列访谈：“我们该怎么称呼‘不适合社会’的人”  
-小呆访谈：[Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己]({{% relref "/docs/interview/artemis" %}})
-小呆访谈：[C的生命故事丨不被定义的时光]({{% relref "/docs/interview/c" %}})
+[小呆](https://xhslink.com/m/A0TGop1zIv4)访谈：[Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己]({{% relref "/docs/interview/artemis" %}})
+[小呆](https://xhslink.com/m/A0TGop1zIv4)访谈：[C的生命故事丨不被定义的时光]({{% relref "/docs/interview/c" %}})
 
-本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/EBwNFSLM4Gr3SqvS0oxx1A)
+---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/1u8bUQxTxfu)  
+首发时间：2025-5-11  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/EBwNFSLM4Gr3SqvS0oxx1A)  
+公众号排版：Rossa
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

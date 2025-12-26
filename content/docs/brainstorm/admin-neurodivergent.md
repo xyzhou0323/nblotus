@@ -1,5 +1,5 @@
 ---
-weight: 3
+weight: 4
 title: "Admin丨当我们争论“殊异”时，我们在争论什么？"
 description: "ND社群的路线分歧与生存逻辑，作者Admin"
 icon: "Groups_3"
@@ -8,8 +8,7 @@ lastmod: "2025-12-25T10:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridg微信公众号](https://mp.weixin.qq.com/s/4R2rLKqReGpiFxlU_gmZdg)  
-首发时间：2025-11-30  
+
 作者：[Admin](https://xhslink.com/m/6e2tpWcngRg)
 
 （约9600字，阅读约需18分钟，读屏幕软件约需30分钟）
@@ -348,5 +347,9 @@ toc: true
 {{% /alert %}}
 
 ---
+
+本文首发: [脑脑空间NeuroBridg微信公众号](https://mp.weixin.qq.com/s/4R2rLKqReGpiFxlU_gmZdg)  
+首发时间：2025-11-30  
+首发排版：[XyZ](https://neuroxyz.cn)
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

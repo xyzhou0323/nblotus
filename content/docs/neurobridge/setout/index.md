@@ -8,8 +8,7 @@ lastmod: "2025-12-21T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)  
-首发时间：2025-04-22  
+ 
 作者：Rossa  
 
 （约1200字，阅读约需3分钟，读屏幕软件约需4分钟）
@@ -77,9 +76,17 @@ toc: true
 
 ---
 
+关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
+
+---
+
+本文首发：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)  
+首发时间：2025-04-22  
+首发排版：Rossa  
+本文亦见：[脑脑空间NeuroBridge小红书](http://xhslink.com/o/6og7FNt946r)   
+小红书排版、模板：[XyZ](https://neuroxyz.cn/resource/xyz.html)  
+
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)
-
-关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

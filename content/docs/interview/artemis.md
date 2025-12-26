@@ -9,10 +9,8 @@ draft: false
 toc: true
 ---
 系列访谈——“我们该怎么称呼‘不适合社会’的人”第1期  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/8exYh19setK)  
-首发时间：2025-5-10  
 主人公：Artemis  
-访谈与整理：小呆
+访谈与整理：[小呆](https://xhslink.com/m/A0TGop1zIv4)
 
 （约3500字，阅读约需7分钟，读屏幕软件约需12分钟）
 
@@ -98,7 +96,12 @@ CPTSD的疗愈可能还需要很久。但努力建构起ND的独特生活叙事�
 小呆访谈：[渔村学生的生命故事丨主线暂停，支线照常进行中]({{% relref "/docs/interview/yucunxuesheng" %}})
 小呆访谈：[C的生命故事丨不被定义的时光]({{% relref "/docs/interview/c" %}})
 
+---
 
-本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/L6Kq0BKmWmX2cvw2Dermng)
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/8exYh19setK)  
+首发时间：2025-5-10  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/L6Kq0BKmWmX2cvw2Dermng)  
+公众号排版：Rossa，Alexander
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/uqlcqpDYUV4LkSvLXbdGFw)  
-首发时间：2025-10-18  
+
 本期参与者（按写作顺序）：  
 （1）XyZ，（2）从从，（3）明月潮生（4）z17，（5）kariz，（6）Lynn（7）Xavier，（8）毛肚儿，（9）小呆（10）披垒，（11）西瓜，（12）睿睿
 
@@ -330,5 +329,9 @@ toc: true
 独自**去医院**，现在，能做到，但是，必须，按照，记忆流程。不按照流程，被打断，就会哭闹，不知道，该怎么做。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/uqlcqpDYUV4LkSvLXbdGFw)  
+首发时间：2025-10-18  
+公众号题图 & 排版：披垒疼得吱哇乱叫  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

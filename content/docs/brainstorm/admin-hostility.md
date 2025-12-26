@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/v1B3nS54En )  
-首发时间：2025-11-9  
+
 作者：[Admin](https://xhslink.com/m/6e2tpWcngRg) 
 
 （约3800字，阅读约需8分钟，读屏幕软件约需13分钟）
@@ -135,6 +134,10 @@ toc: true
 
 ---
 
-本文亦见: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/jXhXTUvXtjwLSA9xmKS_Pg)  
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/v1B3nS54En )  
+首发时间：2025-11-9  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/jXhXTUvXtjwLSA9xmKS_Pg)   
+公众号题图 & 排版：披垒讨厌阴天 
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

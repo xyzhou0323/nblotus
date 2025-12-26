@@ -12,8 +12,6 @@ toc: true
 原标题：“Neurodiversity: Some Basic Terms & Definitions”   
 作者：Nick Walker，加州整合大学（CIIS）心理学教授、孤独谱系障碍酷儿学者  
 （本译文已由原作者授权。）  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/3yzQzOQiHWz)  
-首发时间：2025-4-23  
 翻译：Alexander，Rossa，[XyZ](https://neuroxyz.cn) 
 
 （约9500字，阅读约需19分钟，读屏幕软件约需32分钟）
@@ -292,7 +290,9 @@ l hope my work is useful to you in expanding your minds and the minds of others,
 在遇到相关术语的使用中出现混淆时，也欢迎使用本文作为参考资料。
 
 ---
+
 ## 小彩蛋：关于译名的困惑与考量
+
 作者：Rossa@NeuroBridge  
 
 诚如Nick Walker所言，“新的范式往往需要一组新的词汇”。  
@@ -322,5 +322,14 @@ l hope my work is useful to you in expanding your minds and the minds of others,
 ---
 
 更多关于殊异的看法，详见Admin关于译名的讨论：[Admin丨当我们争论“殊异”时，我们在争论什么？]({{% relref "/docs/brainstorm/admin-neurodivergent" %}})
+
+---
+
+本文首发: 脑脑空间NeuroBridge小红书：[文献介绍与作者寄语](http://xhslink.com/o/3yzQzOQiHWz)、[上](http://xhslink.com/o/A0WKOQ9cSQd)、[中](http://xhslink.com/o/7g03pyTPvf7)、[下](http://xhslink.com/o/6NqQJUUCkSw)、[彩蛋](http://xhslink.com/o/73EhCcyBVut)  
+首发时间：2025-4-23  
+首发排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)（文献介绍与作者寄语、彩蛋）、[小呆](https://xhslink.com/m/A0TGop1zIv4)（上、中、下）
+制图：[XyZ](https://neuroxyz.cn/resource/xyz.html)
+本文亦见：脑脑空间NeuroBridge微信公众号：[上](https://mp.weixin.qq.com/s/2qKeHijQveS5S5S0FUyqZQ)、[下](https://mp.weixin.qq.com/s/9M9z0Qmkyuq3-cVmh2GKgQ)  
+公众号排版：Rossa  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

@@ -8,9 +8,8 @@ lastmod: "2025-12-25T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/4KXmqPB43qG)  
-首发时间：2025-8-13  
-分享者：阿米
+
+分享者：阿米  
 注释：小呆
 
 （约3200字，阅读约需7分钟，读屏幕软件约需11分钟）
@@ -84,5 +83,9 @@ toc: true
 {{% /alert %}}
 
 ---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/4KXmqPB43qG)  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+首发时间：2025-8-13  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

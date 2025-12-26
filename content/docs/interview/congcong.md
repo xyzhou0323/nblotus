@@ -9,10 +9,8 @@ draft: false
 toc: true
 ---
 系列访谈——“ND的一万种生活方式” 第1期  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/8exYh19setK)  
-首发时间：2025-5-14  
 主人公：聪聪  
-访谈与整理：小呆
+访谈与整理：[小呆](https://xhslink.com/m/A0TGop1zIv4)
 
 （约1900字，阅读约需4分钟，读屏幕软件约需7分钟）
 
@@ -98,5 +96,9 @@ toc: true
 
 同系列访谈：“ND的一万种生活方式”  
 [C]({{% relref "/docs/interview/c" %}})访谈：[面包的个人探索丨确诊ASD之后，我开始脱下面具]({{% relref "/docs/interview/congcong" %}})
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/1pIuYEomrfG)  
+首发时间：2025-5-14  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

@@ -9,8 +9,6 @@ draft: false
 toc: true
 ---
 系列访谈——“ND的一万种生活方式” 第2期  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/9ybTEUkfOO4)  
-首发时间：2025-5-23  
 主人公：面包  
 访谈与整理：C
 
@@ -114,5 +112,11 @@ Masking是她过去求生存的方式，是在一个无法理解她的环境里�
 
 同系列访谈：“ND的一万种生活方式”  
 小呆访谈：[聪聪的生命故事丨ASD的我，刚刚开始的故事]({{% relref "/docs/interview/congcong" %}})
+
+---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/9ybTEUkfOO4)  
+首发时间：2025-5-23  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

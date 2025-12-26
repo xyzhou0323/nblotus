@@ -8,8 +8,7 @@ lastmod: "2025-12-25T12:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/psniv4PXc3U401i1mL6Q4Q)  
-首发时间：2025-10-02  
+
 作者：[XyZ](https://neuroxyz.cn) 
 
 （约2200字，阅读约需5分钟，读屏幕软件约需8分钟）
@@ -127,5 +126,9 @@ toc: true
 {{% /alert %}}
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/psniv4PXc3U401i1mL6Q4Q)  
+首发时间：2025-10-02  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

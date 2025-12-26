@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/loiHsBwzfYpUdlYts19YuQ)  
-首发时间：2025-9-26   
+ 
 主人公：Dr. Shevaun Lewis  
 访谈者：卷  
 整理者：小呆
@@ -287,5 +286,11 @@ toc: true
 [卷 和 Z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究]({{% relref "/docs/interview/z17" %}})
 
 神经多样性方法与学术界改革建议的更多讨论：[Dwyer 2022]({{% relref "/docs/neurodiversity/dwyer2022" %}})
+
+---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/loiHsBwzfYpUdlYts19YuQ)  
+首发时间：2025-9-26  
+整理和排版：[小呆](https://xhslink.com/m/A0TGop1zIv4) 
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Vq5ZS1AewvI5nfJXc5Q0Tw)  
-首发时间：2025-11-16  
+
 本期参与者（按写作顺序）：  
 （1）从从，（2）Xavier，（3）小呆
 （4）匿名，（5）西瓜，（6）J
@@ -253,5 +252,9 @@ anyways，我是本着一个致歉的态度和对方披露的，本意是“抱�
 他们在了解了我身上nd相关的特性以后，对我的确诊和自我了解感到很高兴，因为这让我们的关系变得更好。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Vq5ZS1AewvI5nfJXc5Q0Tw)  
+首发时间：2025-11-16  
+公众号编辑 & 题图 & 排版：披垒背痛版
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

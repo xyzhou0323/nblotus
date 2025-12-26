@@ -1,5 +1,5 @@
 ---
-weight: 2
+weight: 3
 title: "大发丨确诊故事分享：无限包容，继续前进"
 description: "痛苦变得柔软，新的生命力将从这里长出来，作者大发"
 icon: "Diagnosis"
@@ -130,4 +130,4 @@ toc: true
 大发的另一个故事：  
 [大发丨梦境：不可思议的修复]({{% relref "/docs/story/fadream" %}})
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

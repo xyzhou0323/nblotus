@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/2WaiPadtrLHokeI_pjdwYg)  
-首发时间：2025-12-10 
+
 本期参与者（按写作顺序）：  
 （1）披垒，（2）老北京肌肉卷，（3）呆，（4）渔村学生，（5）Rossa，（6）Lynn，（7）Xavier，（8）匿名，（9）Admin，（10）ASDog，（11）睿睿，（12）XyZ，（13）小春
 
@@ -254,6 +253,11 @@ toc: true
 未来的期许和畅想不太清楚，大概就是每个个体都是一块独特的积木，自成一体，在共同感兴趣的事上可以偶尔摞起来成为某个形状，又能在结束后躲起来找回自己这块积木这样吧。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/2WaiPadtrLHokeI_pjdwYg)  
+首发时间：2025-12-10  
+公众号编辑 & 题图 & 排版：披垒讨厌冬天没有太阳  
+词云：[XyZ](https://neuroxyz.cn)  
 
 欢迎移步公众号的评论区，留下你对脑脑空间的想法（也可以是批评和建议~）： [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/2WaiPadtrLHokeI_pjdwYg)  
 

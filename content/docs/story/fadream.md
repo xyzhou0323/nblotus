@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 2
 title: "大发丨梦境：不可思议的修复"
 description: "这些梦，重写了我对过去的感受，作者大发"
 icon: "Partly_Cloudy_Night"
@@ -131,4 +131,7 @@ toc: true
 
 ---
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+大发的另一个故事：  
+[大发丨确诊故事分享：无限包容，继续前进]({{% relref "/docs/story/fadiagnosis" %}})
+
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

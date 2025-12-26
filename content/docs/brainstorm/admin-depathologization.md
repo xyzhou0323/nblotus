@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 3
 title: "Admin丨关于神经多样性中“去病化”的讨论"
 description: "“病”首先是一种“生存的语言”，作者Admin"
 icon: "Local_Hospital"
@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/2sx3l3rRB4n)  
-首发时间：2025-10-23  
+
 作者：[Admin](https://xhslink.com/m/6e2tpWcngRg) 
 
 （约3000字，阅读约需6分钟，读屏幕软件约需10分钟）
@@ -118,7 +117,10 @@ ND孩子孤僻、不合群、在公共场合情绪失控，邻里、亲戚、甚
 所以真正的议题或许不是“去病化”，而是“如何在一个必须依赖疾病的标签才能生存的社会里，活得更有尊严、更有质量”，以及“如何逐步改造我们的文化，让这个标签有一天变得不再是生存的必需品”。
 
 ---
-
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/2sx3l3rRB4n)  
+首发时间：2025-10-23  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
 本文亦见: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/jXhXTUvXtjwLSA9xmKS_Pg)  
+公众号题图 & 排版：披垒讨厌阴天
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

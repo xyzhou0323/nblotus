@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/z_VBZrTkD4T8VR_g7h9FOQ)  
-首发时间：2025-11-27  
+
 本期参与者（按写作顺序）：  
 （1）XyZ,（2）Xavier,（3）小呆,（4）西瓜,（5）披垒,
 （6）Acul,（7）从从,（8）Admin,（9）J,（10）渔村学生,
@@ -297,5 +296,9 @@ toc: true
 ---
 
 公众号的评论区还有很多神经殊异（ND）小伙伴分享自己的爱好，欢迎移步： [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/z_VBZrTkD4T8VR_g7h9FOQ)  
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/z_VBZrTkD4T8VR_g7h9FOQ)  
+首发时间：2025-11-27  
+公众号编辑 & 题图 & 排版：披垒爱逛公园版
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

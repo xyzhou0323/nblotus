@@ -9,10 +9,8 @@ draft: false
 toc: true
 ---
 系列访谈——“我们该怎么称呼‘不适合社会’的人”第3期  
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/90W9SSQBpQh)  
-首发时间：2025-5-12  
 主人公：C  
-访谈与整理：小呆
+访谈与整理：[小呆](https://xhslink.com/m/A0TGop1zIv4)
 
 （约2300字，阅读约需5分钟，读屏幕软件约需8分钟）
 
@@ -113,6 +111,12 @@ ADHD药物让她状态分时段波动非常明显。比如：
 小呆访谈：[Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己]({{% relref "/docs/interview/artemis" %}})
 小呆访谈：[渔村学生的生命故事丨主线暂停，支线照常进行中]({{% relref "/docs/interview/yucunxuesheng" %}})
 
-本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/B37yxN8C4RAhSX7mPZINtw)
+---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/90W9SSQBpQh)  
+首发时间：2025-5-12  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/B37yxN8C4RAhSX7mPZINtw)  
+公众号排版：Rossa
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

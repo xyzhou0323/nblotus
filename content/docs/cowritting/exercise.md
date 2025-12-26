@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/tvxiVt1JA4lHbrDTrrvljg)  
-首发时间：2025-11-21  
+
 本期参与者（按写作顺序）：  
 （1）Xavier,（2）小呆,（3）XyZ,
 （4）披垒,（5）猫猫日日新,（6）Lynn,
@@ -235,5 +234,9 @@ City Walk、长跑和徒步是我的兴趣爱好。我身边的多数人都会�
 喜欢跳来跳去。特别喜欢立定跳远，因为我有跳远天赋，每次都能跳出去很远，这给了我成就感。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/tvxiVt1JA4lHbrDTrrvljg)  
+首发时间：2025-11-21  
+公众号编辑 & 题图 & 排版：披垒晒太阳睡大觉
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

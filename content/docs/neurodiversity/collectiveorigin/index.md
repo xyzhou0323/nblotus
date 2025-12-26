@@ -8,8 +8,7 @@ lastmod: "2025-12-21T17:04:45+08:00"
 draft: false
 toc: true
 ---
-本文首发：[脑脑空间NeuroBridge小红书](http://xhslink.com/o/4qVUuhkp28L)  
-首发时间：2025-10-16  
+
 作者：[XyZ](https://neuroxyz.cn) 
 
 （约3300字，阅读约需7分钟，读屏幕软件约需11分钟）
@@ -135,10 +134,18 @@ ANI成员如吉姆·辛克莱（Jim Sinclair），残障倡导者埃德·罗伯�
 因此，在理解这段历史后，如果再将神经多样性的创造与理论发展不加批判地归于某一个人，将是对神经殊异群体自身历史和主体性的抹杀。
 
 ---
+
 ### 参考资料
+
 1. [Botha, M., Chapman, R., Giwa Onaiwu, M., Kapp, S. K., Stannard Ashley, A., & Walker, N. (2024). The neurodiversity concept was developed collectively: An overdue correction on the origins of neurodiversity theory. Autism, 28(6), 1591-1594.](https://doi.org/10.1177/13623613241237871)
 2. [InLv网站](https://www.inlv.org/)
+
 ---
-本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/s49FUougy8HKOWEKpfZe9w)
+
+本文首发：[脑脑空间NeuroBridge小红书](http://xhslink.com/o/4qVUuhkp28L)  
+首发时间：2025-10-16  
+首发排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/s49FUougy8HKOWEKpfZe9w)  
+公众号题图、排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

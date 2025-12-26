@@ -82,4 +82,4 @@ toc: true
 
 [人际场景解码练习](https://contextxyz.netlify.app/)：大语言模型生成的人际场景练习题，可用于提升孤独谱系与非孤独谱系间的社交理解，有儿童版和成人版。需要自备API。
 
-{{< figure src="/images/qrcode.png" caption="欢迎关注脑脑空间NeuroBridge" >}}
+{{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

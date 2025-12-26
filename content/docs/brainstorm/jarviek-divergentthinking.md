@@ -8,8 +8,7 @@ lastmod: "2025-12-25T16:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/6US7UhYDiVt )  
-首发时间：2025-8-11  
+
 作者：[JarvieK](https://wiarlawd.me/) 
 
 （约1500字，阅读约需3分钟，读屏幕软件约需5分钟）
@@ -93,5 +92,10 @@ toc: true
 5. White, H. A., & Shah, P. (2011). Creative style and achievement in adults with attention-deficit/hyperactivity disorder. Personality and Individual Differences, 50(5), 673–677. https://doi.org/10.1016/j.paid.2010.12.015
 
 ---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/6US7UhYDiVt )  
+首发时间：2025-8-11  
+内容整理：[Admin](https://xhslink.com/m/6e2tpWcngRg)  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
