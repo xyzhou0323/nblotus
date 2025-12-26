@@ -111,7 +111,8 @@ Masking是她过去求生存的方式，是在一个无法理解她的环境里�
 ---
 
 同系列访谈：“ND的一万种生活方式”  
-小呆访谈：[聪聪的生命故事丨ASD的我，刚刚开始的故事]({{% relref "/docs/interview/congcong" %}})
+小呆访谈：[聪聪的生命故事丨ASD的我，刚刚开始的故事]({{% relref "/docs/interview/congcong" %}})  
+小呆访谈：[洗碗机的生命故事丨在面包店探索喜欢的生活]({{% relref "/docs/interview/dishwasher" %}})  
 
 ---
 

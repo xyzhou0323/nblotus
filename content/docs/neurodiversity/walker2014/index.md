@@ -327,8 +327,8 @@ l hope my work is useful to you in expanding your minds and the minds of others,
 
 本文首发: 脑脑空间NeuroBridge小红书：[文献介绍与作者寄语](http://xhslink.com/o/3yzQzOQiHWz)、[上](http://xhslink.com/o/A0WKOQ9cSQd)、[中](http://xhslink.com/o/7g03pyTPvf7)、[下](http://xhslink.com/o/6NqQJUUCkSw)、[彩蛋](http://xhslink.com/o/73EhCcyBVut)  
 首发时间：2025-4-23  
-首发排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)（文献介绍与作者寄语、彩蛋）、[小呆](https://xhslink.com/m/A0TGop1zIv4)（上、中、下）
-制图：[XyZ](https://neuroxyz.cn/resource/xyz.html)
+首发排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)（文献介绍与作者寄语、彩蛋）、[小呆](https://xhslink.com/m/A0TGop1zIv4)（上、中、下）  
+制图：[XyZ](https://neuroxyz.cn/resource/xyz.html)  
 本文亦见：脑脑空间NeuroBridge微信公众号：[上](https://mp.weixin.qq.com/s/2qKeHijQveS5S5S0FUyqZQ)、[下](https://mp.weixin.qq.com/s/9M9z0Qmkyuq3-cVmh2GKgQ)  
 公众号排版：Rossa  
 

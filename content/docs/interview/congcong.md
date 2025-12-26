@@ -95,7 +95,8 @@ toc: true
 ---
 
 同系列访谈：“ND的一万种生活方式”  
-[C]({{% relref "/docs/interview/c" %}})访谈：[面包的个人探索丨确诊ASD之后，我开始脱下面具]({{% relref "/docs/interview/congcong" %}})
+[C]({{% relref "/docs/interview/c" %}})访谈：[面包的个人探索丨确诊ASD之后，我开始脱下面具]({{% relref "/docs/interview/congcong" %}})  
+小呆访谈：[洗碗机的生命故事丨在面包店探索喜欢的生活]({{% relref "/docs/interview/dishwasher" %}})  
 
 本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/1pIuYEomrfG)  
 首发时间：2025-5-14  
