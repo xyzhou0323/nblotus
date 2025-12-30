@@ -77,7 +77,7 @@ timeline
     
     Alex 组建了脑脑空间 core 核心组，群组正式复活。  
 
-    之后的几日，小呆创建了脑脑空间的Notion空间，睿睿创建了脑脑空间[微信公众号](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)，XyZ创建了脑脑空间[小红书](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4) ，脑脑矩阵成功建立。
+    之后的几日，小呆创建了脑脑空间的Notion空间，[睿睿](https://xhslink.com/m/4xYTTEx1N06)创建了脑脑空间[微信公众号](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)，XyZ创建了脑脑空间[小红书](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4) ，脑脑矩阵成功建立。
     
 - **4月22日**
     
@@ -163,7 +163,7 @@ timeline
 
 - **7月下半月**
 
-    睿睿来到上海，与Alex、XyZ等朋友交流，翻译小组完成了Aspie Quiz V5的翻译工作：[测试丨Aspie Quiz V5 中文版]({{% relref "/docs/resource/aspiequiz/" %}})。
+    [睿睿](https://xhslink.com/m/4xYTTEx1N06)来到上海，与Alex、XyZ等朋友交流，翻译小组完成了Aspie Quiz V5的翻译工作：[测试丨Aspie Quiz V5 中文版]({{% relref "/docs/resource/aspiequiz/" %}})。
     
 ### 8月
 
@@ -187,7 +187,7 @@ timeline
 
 - **8月12日**
 
-    发布睿睿、Admin文章：孤独症人士的教育与工作：他们不是例外，而是多样性的一部分
+    发布[睿睿](https://xhslink.com/m/4xYTTEx1N06)、Admin文章：[睿睿、Admin丨孤独症人士的教育与工作：他们不是例外，而是多样性的一部分]({{% relref "docs/brainstorm/ruiautism/" %}})
 
 - **8月13日**
 

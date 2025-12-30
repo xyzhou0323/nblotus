@@ -10,7 +10,7 @@ toc: true
 ---
 作者：[Leif Ekblad](https://rdos.net/)  
 测试：[Aspie Quiz V5](https://rdos.net/china/)   
-脑脑空间NeuroBridge翻译志愿者：Alexander Ma马张骏骐, 蓝俊雄, 欧阳睿泽, [XyZ](https://neuroxyz.cn/resource/xyz.html) 
+脑脑空间NeuroBridge翻译志愿者：Alexander Ma马张骏骐, 蓝俊雄, [欧阳睿泽](https://xhslink.com/m/4xYTTEx1N06), [XyZ](https://neuroxyz.cn/resource/xyz.html) 
 
 （约3700字，阅读约需8分钟，读屏幕软件约需13分钟）
 

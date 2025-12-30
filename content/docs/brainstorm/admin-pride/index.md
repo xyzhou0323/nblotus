@@ -2,7 +2,7 @@
 weight: 1
 title: "Admin丨重新思考“孤独症骄傲日”"
 description: "“病”首先是一种“生存的语言”，作者Admin"
-icon: "Local_Hospital"
+icon: "Accessibility_New"
 date: "2025-06-24T17:06:44+08:00"
 lastmod: "2025-12-26T17:06:44+08:00"
 draft: false
