@@ -8,8 +8,7 @@ lastmod: "2025-12-23T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Z3bSQTvfyNzYrw5LtanRHQ)  
-首发时间：2025-9-27  
+
 作者：夏天的游泳池
 
 1. 前言
@@ -258,6 +257,11 @@ Meltdown（崩溃、熔断），自我伤害，家庭暴力，体验被否定，
 最后还是要说，我很关心我的父母，我的父母也很关心我。大家都是在慢慢成长的过程，既然还可以有交流的机会，还是再交流看看吧。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Z3bSQTvfyNzYrw5LtanRHQ)  
+首发时间：2025-9-27  
+题图：披垒今天吃到草莓蛋糕了吗  
+编辑&排版：披垒没有吃到草莓蛋糕  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
 

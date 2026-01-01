@@ -57,7 +57,7 @@ l hope my work is useful to you in expanding your minds and the minds of others,
 
 因此，为服务大众，我列出了几个神经多样性范式相关的关键术语、它们的含义和正确用法，以及它们最常见的误用方式。
 
-{{< figure src="terms.png" caption="图片内容：关键术语关系示意图" >}}
+{{< figure src="terms.png" width="700" caption="上图内容：神经多样性关键术语关系示意图" >}}
 
 ---
 
@@ -305,7 +305,7 @@ l hope my work is useful to you in expanding your minds and the minds of others,
 
 值得注意的是，在思维与创造性相关的语境里，“divergent”具有积极含义。剑桥词典提到，心理学语境下该词含义有“考虑许多不同的可能性，尤其是不寻常的可能性，从而帮助你思考新的想法或解决方案”（considering many different possibilities, especially unusual ones, in a way that helps you to think of new ideas or solutions）,例如“divergent thinking”“divergent thinker”。这一用法具有去污名化与自我赋能的积极意义，被我们着重保留。
 
-{{< figure src="divergent.jpg" caption="图片内容：剑桥词典中divergent的释义" >}}
+{{< figure src="divergent.jpg" width="500" caption="图片内容：剑桥词典中divergent的释义" >}}
 
 综上所述，我们选择了“殊异”这一汉语译名。  
 一方面，它表达了“差异”“不同”的含义；  

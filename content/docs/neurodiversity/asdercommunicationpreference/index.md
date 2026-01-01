@@ -1,7 +1,7 @@
 ---
 weight: 3
 title: "成年ASDer的沟通方式偏好"
-description: "孤独谱系社群集体智慧和自我赋权的结晶"
+description: "孤独谱系障碍个体可能在面对不同的对象时存在不同的沟通方式偏好"
 icon: "Communication"
 date: "2025-10-16T17:04:45+08:00"
 lastmod: "2025-12-21T17:04:45+08:00"

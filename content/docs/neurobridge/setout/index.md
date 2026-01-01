@@ -1,7 +1,7 @@
 ---
 weight: 1
 title: "脑脑启程丨一张车票，一段旅程，一个世界"
-description: "脑脑空间的第一篇文章"
+description: "脑脑空间的第一篇文章，作者Rossa"
 icon: "Travel"
 date: "2025-04-22T17:06:44+08:00"
 lastmod: "2025-12-21T17:06:44+08:00"

@@ -11,6 +11,7 @@ toc: true
 作者与设计师：Sonny Jane Wise @livedexperienceeducator  
 脑脑空间NeuroBridge汉化志愿者：[Admin](https://xhslink.com/m/6e2tpWcngRg) 、[XyZ](https://neuroxyz.cn) 、小呆、披垒、Guillotine、明月潮生  
 专业审阅：韦亦然  
+
 <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
  border-radius: 8px; will-change: transform;">
@@ -19,5 +20,10 @@ toc: true
   </iframe>
 </div>
 <a href="https:&#x2F;&#x2F;www.canva.cn&#x2F;design&#x2F;DAG4lDcoflY&#x2F;jho-uATlGM1U_8ziDqgjVw&#x2F;view?utm_content=DAG4lDcoflY&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">神经殊异友好的DBT练习册－脑脑空间.pdf</a>，作者 Sonny Jane Wise
+
+---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/1WBxfQHaZGg)  
+排版：XyZ  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

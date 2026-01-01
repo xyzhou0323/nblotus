@@ -14,7 +14,7 @@ title = '脑脑客厅'
         disable = false
 
 [params.footer]
-  copyright = "[沪ICP备2025135615号-2](https://beian.miit.gov.cn/) 丨 © 2025 [XyZ](https://neuroxyz.cn)@NeuroBridge"
+  copyright = "![沪公网安备31011202021844号](/images/beian.png) [沪公网安备31011202021844号](https://beian.mps.gov.cn/#/query/webSearch?code=31011202021844) [沪ICP备2025135615号-2](https://beian.miit.gov.cn/) 丨 © 2025 [XyZ](https://neuroxyz.cn)@NeuroBridge"
 
 [markup.goldmark.renderer]
     unsafe = true

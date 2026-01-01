@@ -8,8 +8,7 @@ lastmod: "2025-12-26T17:02:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/ANCZc3js2DL )  
-首发时间：2025-7-8  
+
 发起人：嘉嘉  
 参与者：鲸鱼、苯乙酸、希达、困、ano、匿名、晴君、孤独星球的小肥啾、嘉嘉
 整理：小呆
@@ -146,5 +145,9 @@ toc: true
 每一个人对生日的定义以及过生日这件事情的存在不同看法，也许NT们也有着不同的观点，欢迎大家说说自己对这件事的看法。
 
 ---
+
+本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/ANCZc3js2DL)  
+首发时间：2025-7-8  
+首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

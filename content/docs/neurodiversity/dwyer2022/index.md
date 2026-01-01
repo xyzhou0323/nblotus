@@ -30,6 +30,7 @@ toc: true
 译文首发：脑脑空间NeuroBridge微信公众号[第一部分](https://mp.weixin.qq.com/s/r8tM5a1IahnfJ4AAFwps1w)、[第二部分](https://mp.weixin.qq.com/s/MTlN4SJIVPzDcwuyQihmYA)、[第三部分](https://mp.weixin.qq.com/s/S0guzpCRhfjZ1Zh8lPTLpg)  
 首发时间：2025-12-25  
 首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge小红书](http://xhslink.com/o/5c1l4l7Qvw3)  
 pdf排版：[XyZ](https://neuroxyz.cn/resource/xyz.html)
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

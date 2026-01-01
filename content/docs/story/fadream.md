@@ -8,10 +8,8 @@ lastmod: "2025-12-22T17:06:44+08:00"
 draft: false
 toc: true
 ---
-本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/4uAJ4A6K0GpWxF6EWXDy_w)  
-首发时间：2025-8-18  
+
 作者：大发  
-整理：小呆
 
 1. 梦境修复
 2. 梦的涌现
@@ -133,5 +131,12 @@ toc: true
 
 大发的另一个故事：  
 [大发丨确诊故事分享：无限包容，继续前进]({{% relref "/docs/story/fadiagnosis" %}})
+
+---
+
+本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/4uAJ4A6K0GpWxF6EWXDy_w)  
+首发时间：2025-8-18  
+整理：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+排版：睿睿  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
