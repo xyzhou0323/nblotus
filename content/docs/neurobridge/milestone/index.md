@@ -278,7 +278,7 @@ timeline
     
 - **10月18日**
     
-    重启脑脑共写（茶话会），发布首篇推送[共写 1丨ASDer生活中的自理困难（2025.10）]({{% relref "/docs/cowritting/selfcare" %}})，参与者：XyZ、从从、明月潮生、z17、kariz、Lynn、Xavier、毛肚儿、小呆、披垒、西瓜、睿睿，整理、题图和排版：披垒疼得吱哇乱叫。
+    重启脑脑共写（茶话会），发布首篇推送[共写 1丨ASDer生活中的自理困难（2025.10）]({{% relref "/docs/cowriting/selfcare" %}})，参与者：XyZ、从从、明月潮生、z17、kariz、Lynn、Xavier、毛肚儿、小呆、披垒、西瓜、睿睿，整理、题图和排版：披垒疼得吱哇乱叫。
 
 
 ### 11月
@@ -289,7 +289,7 @@ timeline
 
 - **11月16日**
 
-    发布第二期脑脑共写：[共写 2丨ND身份披露经验（2025.11）]({{% relref "/docs/cowritting/disclosure" %}})，参与者：从从、Xavier、小呆、匿名、西瓜、J 、允泽、匿名、C，整理、题图和排版：披垒背痛版。
+    发布第二期脑脑共写：[共写 2丨ND身份披露经验（2025.11）]({{% relref "/docs/cowriting/disclosure" %}})，参与者：从从、Xavier、小呆、匿名、西瓜、J 、允泽、匿名、C，整理、题图和排版：披垒背痛版。
     
 - **11月17日**
 
@@ -297,7 +297,7 @@ timeline
 
 - **11月21日**
 
-    发布第三期脑脑共写：[共写 3丨在身体里生活：ND伙伴的锻炼/运动经验！（2025.11）]({{% relref "/docs/cowritting/exercise" %}})，参与者：Xavier、小呆、XyZ、披垒、猫猫日日新、Lynn、Acul,、西瓜、SnOOpY、Admin、彗星、Termi、允泽、C、熊猫鲸，整理、题图和排版：披垒晒太阳睡大觉。
+    发布第三期脑脑共写：[共写 3丨在身体里生活：ND伙伴的锻炼/运动经验！（2025.11）]({{% relref "/docs/cowriting/exercise" %}})，参与者：Xavier、小呆、XyZ、披垒、猫猫日日新、Lynn、Acul,、西瓜、SnOOpY、Admin、彗星、Termi、允泽、C、熊猫鲸，整理、题图和排版：披垒晒太阳睡大觉。
 
 - **11月23日**
 
@@ -309,7 +309,7 @@ timeline
 
 - **11月27日**
 
-    发布第四期脑脑共写：[共写 4丨刻板行为/自我刺激的快乐（2025.11）]({{% relref "/docs/cowritting/rrb" %}})，参与者：XyZ、Xavier、小呆、西瓜、披垒、Acul、从从、Admin、J、渔村学生、Lynn、明月潮生、充盈压、C、Termi、允泽、熊猫鲸，整理和排版：披垒爱逛公园版。
+    发布第四期脑脑共写：[共写 4丨刻板行为/自我刺激的快乐（2025.11）]({{% relref "/docs/cowriting/rrb" %}})，参与者：XyZ、Xavier、小呆、西瓜、披垒、Acul、从从、Admin、J、渔村学生、Lynn、明月潮生、充盈压、C、Termi、允泽、熊猫鲸，整理和排版：披垒爱逛公园版。
 
 - **11月30日**
 
@@ -339,7 +339,7 @@ timeline
 
 - **12月10日**
 
-    发布第五期脑脑共写：[共写 5丨我看“脑脑空间”（2025.12）]({{% relref "/docs/cowritting/neurobridge" %}})，参与者：披垒、老北京肌肉卷、呆、渔村学生、Rossa、Lynn、Xavier、匿名、Admin、ASDog、睿睿、XyZ、小春，整理、题图和排版：披垒讨厌冬天没有太阳。
+    发布第五期脑脑共写：[共写 5丨我看“脑脑空间”（2025.12）]({{% relref "/docs/cowriting/neurobridge" %}})，参与者：披垒、老北京肌肉卷、呆、渔村学生、Rossa、Lynn、Xavier、匿名、Admin、ASDog、睿睿、XyZ、小春，整理、题图和排版：披垒讨厌冬天没有太阳。
     
 - **12月20日**
     
@@ -347,7 +347,7 @@ timeline
 
 - **12月23日**
 
-    发布第六期脑脑共写：[共写 6丨我们如何过冬（2025.12）]({{% relref "/docs/cowritting/winter" %}})，参与者：披垒、空气茧、渔村学生、z17、XyZ、西瓜、ASDog、蓝天C、从从、明月潮生、Josie、Xavier、野人、工程机、J、呆、小春，排版：XyZ。
+    发布第六期脑脑共写：[共写 6丨我们如何过冬（2025.12）]({{% relref "/docs/cowriting/winter" %}})，参与者：披垒、空气茧、渔村学生、z17、XyZ、西瓜、ASDog、蓝天C、从从、明月潮生、Josie、Xavier、野人、工程机、J、呆、小春，排版：XyZ。
 
 - **12月31日**
 
