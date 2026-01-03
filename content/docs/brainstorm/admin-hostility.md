@@ -1,5 +1,5 @@
 ---
-weight: 2
+weight: 4
 title: "Admin丨互联网对ND群体的敌意从何而来?"
 description: "“公正世界”的冷酷，“政治污名化”的傲慢，作者Admin"
 icon: "preview"

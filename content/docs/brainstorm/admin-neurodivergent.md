@@ -1,5 +1,5 @@
 ---
-weight: 4
+weight: 5
 title: "Admin丨当我们争论“殊异”时，我们在争论什么？"
 description: "ND社群的路线分歧与生存逻辑，作者Admin"
 icon: "Groups_3"
