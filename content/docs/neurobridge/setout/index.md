@@ -76,7 +76,7 @@ toc: true
 
 ---
 
-关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/neurobridge/setout" %}})
+关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/cowriting/neurobridge" %}})
 
 ---
 

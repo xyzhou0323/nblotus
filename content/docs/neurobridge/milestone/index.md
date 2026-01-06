@@ -82,11 +82,11 @@ timeline
     
 - **4月22日**
     
-    发布了脑脑空间的第一篇推送：[脑脑启程丨一张车票，一段旅程，一个世界]({{% relref "/docs/neurobridge/setout" %}})，作者：Rosaa，排版：Rossa、XyZ，宣告脑脑空间正式重新启动。
+    发布了脑脑空间的第一篇推送：[脑脑启程丨一张车票，一段旅程，一个世界]({{% relref "/docs/neurobridge/setout" %}})，作者：Rosaa，排版：Rossa、XyZ（小红书），宣告脑脑空间正式重新启动。
     
 - **4月25日**
     
-    发布第一篇内容：[翻译丨Walker（2014）：神经多样性：基本术语与定义]({{% relref "/docs/neurodiversity/walker2014" %}})，翻译志愿者：Alexander、Rossa、XyZ，排版：小呆、Rossa、XyZ。
+    发布第一篇内容：[翻译丨Walker（2014）：神经多样性：基本术语与定义]({{% relref "/docs/neurodiversity/walker2014" %}})，翻译志愿者：Alexander、Rossa、XyZ，排版：小呆（小红书）、Rossa（公众号）、XyZ（小红书）。
     
     ➝ 此后，脑脑空间开始在小红书与公众号（不）定期更新内容。
 
@@ -106,23 +106,23 @@ timeline
 
 - **5月10日及之后**
 
-    发布小呆访谈Artemis：[Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己”s]({{% relref "/docs/interview/artemis" %}})，访谈者：小呆，主人公：Artemis，排版：小呆、Rossa、Alexander。
+    发布小呆访谈Artemis：[Artemis的生命故事丨“当我不再用‘正常人’的标准衡量自己”s]({{% relref "/docs/interview/artemis" %}})，访谈者：小呆，主人公：Artemis，排版：小呆（小红书）、Rossa（公众号）、Alexander（公众号）。
 
 - **5月11日**
 
-    发布小呆访谈渔村学生：[渔村学生的生命故事丨主线暂停，支线照常进行中]({{% relref "/docs/interview/yucunxuesheng" %}})，访谈者：小呆，主人公：渔村学生，排版：小呆、Rossa。
+    发布小呆访谈渔村学生：[渔村学生的生命故事丨主线暂停，支线照常进行中]({{% relref "/docs/interview/yucunxuesheng" %}})，访谈者：小呆，主人公：渔村学生，排版：小呆（小红书）、Rossa（公众号）。
     
 - **5月12日**
 
-    发布小呆访C：[C的生命故事丨不被定义的时光]({{% relref "/docs/interview/c" %}})，访谈者：小呆，主人公：C，排版：小呆、Rossa。
+    发布小呆访C：[C的生命故事丨不被定义的时光]({{% relref "/docs/interview/c" %}})，访谈者：小呆，主人公：C，排版：小呆（小红书）、Rossa（公众号）。
 
 - **5月14日**
 
-    发布小呆访聪聪：[聪聪的生命故事丨ASD的我，刚刚开始的故事]({{% relref "/docs/interview/congcong" %}})，访谈者：小呆，主人公：聪聪，排版：小呆。
+    发布小呆访聪聪：[聪聪的生命故事丨ASD的我，刚刚开始的故事]({{% relref "/docs/interview/congcong" %}})，访谈者：小呆，主人公：聪聪，排版：小呆（小红书）、XyZ（公众号）。
 
 - **5月23日**
 
-    发布C访谈面包：[面包的个人探索丨确诊ASD之后，我开始脱下面具]({{% relref "/docs/interview/mianbao" %}})，访谈者：C，主人公：面包，排版：小呆。
+    发布C访谈面包：[面包的个人探索丨确诊ASD之后，我开始脱下面具]({{% relref "/docs/interview/mianbao" %}})，访谈者：C，主人公：面包，排版：小呆（小红书）、XyZ（公众号）。
 
     后续社群讨论氛围活跃，构建多个主题板块。
 
@@ -134,11 +134,11 @@ timeline
 
 - **6月3日**
 
-    发布Alexander与peihan的对话：[Alexaner & peihan丨在误解中生长：神经多样性与我们所处的世界]({{% relref "/docs/interview/alexpeihan" %}})，对谈双方：Alexander、peihan，排版：小呆。
+    发布Alexander与peihan的对话：[Alexaner & peihan丨在误解中生长：神经多样性与我们所处的世界]({{% relref "/docs/interview/alexpeihan" %}})，对谈双方：Alexander、peihan，排版：小呆（小红书）。
 
 - **6月10日**
 
-    发布小呆访谈：[洗碗机的生命故事丨在面包店探索喜欢的生活]({{% relref "/docs/interview/dishwasher" %}}) ，访谈者：小呆，主人公：洗碗机，排版：小呆。
+    发布小呆访谈：[洗碗机的生命故事丨在面包店探索喜欢的生活]({{% relref "/docs/interview/dishwasher" %}}) ，访谈者：小呆，主人公：洗碗机，排版：小呆（小红书）。
 
 - **6月21日**
 
@@ -146,25 +146,25 @@ timeline
 
 - **6月27日**
 
-    发布群聊记录：ND填报高考志愿那点事儿，整理和排版：小呆。
+    发布群聊记录：ND填报高考志愿那点事儿，整理和排版：小呆（小红书）。
 
 ### 7月
 
 - **7月3日**
 
-    发布Admin文章：“你让让他又怎么了”，作者：Admin，排版：小呆。
+    发布Admin文章：“你让让他又怎么了”，作者：Admin，排版：小呆（小红书）。
 
 - **7月8日**
 
-    发布嘉嘉发起的讨论了[嘉嘉丨ND与NT的生日]({{% relref "/docs/story/jiajiabirthday" %}}) ，作者：嘉嘉，参与者：鲸鱼、苯乙酸、希达、困、ano、匿名、晴君、孤独星球的小肥啾、嘉嘉，排版：小呆。
+    发布嘉嘉发起的讨论了[嘉嘉丨ND与NT的生日]({{% relref "/docs/story/jiajiabirthday" %}}) ，作者：嘉嘉，参与者：鲸鱼、苯乙酸、希达、困、ano、匿名、晴君、孤独星球的小肥啾、嘉嘉，排版：小呆（小红书）。
 
 - **7月9日**
 
-    发布卷访谈z17：[z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究]({{% relref "/docs/interview/z17" %}})，访谈者：卷，主人公：z17，排版：小呆、披垒是什么不知道。
+    发布卷访谈z17：[z17丨拥有谱系身份的研究者：“双重视角”下的孤独症研究]({{% relref "/docs/interview/z17" %}})，访谈者：卷，主人公：z17，排版：小呆（小红书）、披垒是什么不知道（公众号）。
 
 - **7月18日**
 
-    发布Alexander：[成年ASDer的沟通方式偏好]({{% relref "/docs/neurodiversity/asdercommunicationpreference" %}})，作者：Alexander，排版：Alexander。
+    发布Alexander：[成年ASDer的沟通方式偏好]({{% relref "/docs/neurodiversity/asdercommunicationpreference" %}})，作者：Alexander，排版：Alexander（公众号）。
 
 - **7月下半月**
 
@@ -174,67 +174,67 @@ timeline
 
 - **8月4日**
 
-    发布Admin文章：角色期望与语言风格错位，作者：Admin，排版：小呆。
+    发布Admin文章：角色期望与语言风格错位，作者：Admin，排版：小呆（小红书）。
 
 - **8月5日**
     
     第一阶段群组运作告一段落，正式迁移至第二个新群组。
 
-    发布Admin文章：Meltdown在中文语境中的表述困境，作者：Admin，排版：小呆。
+    发布Admin文章：Meltdown在中文语境中的表述困境，作者：Admin，排版：小呆（小红书）。
 
 - **8月8日**
 
-    发布Admin文章：如何避免“高功能”成为一种标签，作者：Admin，排版：小呆。
+    发布Admin文章：如何避免“高功能”成为一种标签，作者：Admin，排版：小呆（小红书）。
 
 - **8月11日**
 
-    发布JarvieK评论文章：[JarvieK丨发散性思维：天才的火花，还是失控的症状？]({{% relref "/docs/brainstorm/jarviek-divergentthinking/" %}})，作者：JarvieK，内容整理：Admin，排版：小呆。
+    发布JarvieK评论文章：[JarvieK丨发散性思维：天才的火花，还是失控的症状？]({{% relref "/docs/brainstorm/jarviek-divergentthinking/" %}})，作者：JarvieK，内容整理：Admin，排版：小呆（小红书）。
 
 - **8月12日**
 
-    发布[睿睿](https://xhslink.com/m/4xYTTEx1N06)、Admin文章：[睿睿、Admin丨孤独症人士的教育与工作：他们不是例外，而是多样性的一部分]({{% relref "docs/brainstorm/ruiautism/" %}})，作者：睿睿、Admin，排版：睿睿。
+    发布[睿睿](https://xhslink.com/m/4xYTTEx1N06)、Admin文章：[睿睿、Admin丨孤独症人士的教育与工作：他们不是例外，而是多样性的一部分]({{% relref "docs/brainstorm/ruiautism/" %}})，作者：睿睿、Admin，排版：睿睿（公众号）。
 
 - **8月13日**
 
-    发布阿米的外部视角文章：[阿米丨跨越脑间的桥梁：当NT开始了解ND]({{% relref "/docs/external/amint" %}})，作者：阿米，注释和排版：小呆。
+    发布阿米的外部视角文章：[阿米丨跨越脑间的桥梁：当NT开始了解ND]({{% relref "/docs/external/amint" %}})，作者：阿米，注释和排版：小呆（小红书）。
 
 - **8月18日**
 
-    发布大发的故事：[大发丨梦境：不可思议的修复]({{% relref "/docs/story/fadream" %}})，作者：大发，文案整理：小呆，排版：睿睿。
+    发布大发的故事：[大发丨梦境：不可思议的修复]({{% relref "/docs/story/fadream" %}})，作者：大发，文案整理：小呆，排版：睿睿（公众号）。
 
-    发布群聊记录：赛博确诊，排版：小呆。
+    发布群聊记录：赛博确诊，排版：小呆（小红书）。
 
 - **8月19日**
 
-    发布群内共识再思考，整理和排版：小呆。
+    发布群内共识再思考，整理和排版：小呆（小红书）。
 
 - **8月22日**
 
-    发布大发的故事：[大发丨确诊故事分享：无限包容，继续前进]({{% relref "/docs/story/fadiagnosis" %}})，作者：大发，排版：小呆。
+    发布大发的故事：[大发丨确诊故事分享：无限包容，继续前进]({{% relref "/docs/story/fadiagnosis" %}})，作者：大发，排版：小呆（小红书）。
 
 - **8月22日**
 
-    发布JarvieK文章：什么是“有效管理和健康表达感情”，作者：JarvieK，排版：小呆。
+    发布JarvieK文章：什么是“有效管理和健康表达感情”，作者：JarvieK，排版：小呆（小红书）。
 
 ### 9月
 
 - **9月9日**
 
-    发布小呆友邻推荐：日本神经多样性协会，作者：小呆，排版：小呆。
+    发布小呆友邻推荐：日本神经多样性协会，作者：小呆，排版：小呆（小红书）。
 
 - **9月9日**
 
-    发布小呆访谈Évariste：跨越中日的桥梁，访谈者：小呆，主人公：Évariste，排版：小呆。
+    发布小呆访谈Évariste：跨越中日的桥梁，访谈者：小呆，主人公：Évariste，排版：小呆（小红书）。
 
-    发布Admin文章：ND支持性社群的实践思考，作者：Admin，排版：小呆。
+    发布Admin文章：ND支持性社群的实践思考，作者：Admin，排版：小呆（小红书）。
     
 - **9月15日**
 
-    发布群聊记录：关于神经多样性批评及批评的风险，整理和排版：小呆。
+    发布群聊记录：关于神经多样性批评及批评的风险，整理和排版：小呆（小红书）。
 
 - **9月19日**
 
-    发布Admin文章：关于神经多样性运动的四个迷思，作者：Admin，排版：小呆。
+    发布Admin文章：[关于神经多样性运动的四个迷思]({{% relref "/docs/brainstorm/admin-4miths" %}})，作者：Admin，排版：小呆（小红书）、XyZ。
     
 - **9月20日**
     
@@ -242,15 +242,15 @@ timeline
     
 - **9月23日**
 
-    发布Admin文章：中文ND社群最常见的10个反复性问题，作者：Admin，排版：小呆。
+    发布Admin文章：中文ND社群最常见的10个反复性问题，作者：Admin，排版：小呆（小红书）。
 
 - **9月26日**
 
-    发布卷访谈Dr.Shevaun Lewis：[Dr. Shevaun Lewis丨让校园更加ND友好]({{% relref "/docs/interview/lewis" %}}) ，访谈者：卷，主人公：Dr.Shevaun Lewis，整理和排版：小呆
+    发布卷访谈Dr.Shevaun Lewis：[Dr. Shevaun Lewis丨让校园更加ND友好]({{% relref "/docs/interview/lewis" %}}) ，访谈者：卷，主人公：Dr.Shevaun Lewis，整理和排版：小呆（公众号）。
 
 - **9月26日**
 
-    发布夏天的游泳池的故事：[夏天的游泳池丨记一次meltdown（约4/10严重度）]({{% relref "/docs/story/summerpoolmeltdow" %}})，作者：夏天的游泳池，题图：披垒今天吃到草莓蛋糕了吗，编辑&排版：披垒没有吃到草莓蛋糕
+    发布夏天的游泳池的故事：[夏天的游泳池丨记一次meltdown（约4/10严重度）]({{% relref "/docs/story/summerpoolmeltdow" %}})，作者：夏天的游泳池，题图：披垒今天吃到草莓蛋糕了吗（公众号），编辑&排版：披垒没有吃到草莓蛋糕（公众号）。
 
 ### 10月
     
@@ -260,11 +260,11 @@ timeline
 
 - **10月2日**
 
-    发布XyZ评论文章：[XyZ丨必须批判神经多样性运动]({{% relref "/docs/brainstorm/xyz-critique/" %}})，排版：小呆。
+    发布XyZ评论文章：[XyZ丨必须批判神经多样性运动]({{% relref "/docs/brainstorm/xyz-critique/" %}})，排版：小呆（公众号）。
 
 - **10月6日**
 
-    发布JarvieK故事：我身上有个曾经不可战胜的夏天，作者JarvieK，排版：小呆。
+    发布JarvieK故事：我身上有个曾经不可战胜的夏天，作者JarvieK，排版：小呆（小红书）。
     
 - **10月12日**
     
@@ -274,46 +274,46 @@ timeline
 
 - **10月16日**
 
-    发布[“神经多样性”的诞生：一段被遗忘的社群历史]({{% relref "/docs/neurodiversity/collectiveorigin" %}})，作者：XyZ，排版：XyZ。
+    发布[“神经多样性”的诞生：一段被遗忘的社群历史]({{% relref "/docs/neurodiversity/collectiveorigin" %}})，作者：XyZ，排版：XyZ（小红书、公众号）。
     
 - **10月18日**
     
-    重启脑脑共写（茶话会），发布首篇推送[共写 1丨ASDer生活中的自理困难（2025.10）]({{% relref "/docs/cowriting/selfcare" %}})，参与者：XyZ、从从、明月潮生、z17、kariz、Lynn、Xavier、毛肚儿、小呆、披垒、西瓜、睿睿，整理、题图和排版：披垒疼得吱哇乱叫。
+    重启脑脑共写（茶话会），发布首篇推送[共写 1丨ASDer生活中的自理困难（2025.10）]({{% relref "/docs/cowriting/selfcare" %}})，参与者：XyZ、从从、明月潮生、z17、kariz、Lynn、Xavier、毛肚儿、小呆、披垒、西瓜、睿睿，整理、题图和排版：披垒疼得吱哇乱叫（公众号）。
 
 
 ### 11月
 
 - **11月9日**
 
-    发布Admin评论文章：[Admin丨互联网对ND群体的敌意从何而来?]({{% relref "/docs/brainstorm/admin-hostility/" %}})，作者：Admin，排版：小呆。
+    发布Admin评论文章：[Admin丨互联网对ND群体的敌意从何而来?]({{% relref "/docs/brainstorm/admin-hostility/" %}})，作者：Admin，排版：小呆（小红书）。
 
 - **11月16日**
 
-    发布第二期脑脑共写：[共写 2丨ND身份披露经验（2025.11）]({{% relref "/docs/cowriting/disclosure" %}})，参与者：从从、Xavier、小呆、匿名、西瓜、J 、允泽、匿名、C，整理、题图和排版：披垒背痛版。
+    发布第二期脑脑共写：[共写 2丨ND身份披露经验（2025.11）]({{% relref "/docs/cowriting/disclosure" %}})，参与者：从从、Xavier、小呆、匿名、西瓜、J 、允泽、匿名、C，整理、题图和排版：披垒背痛版（公众号）。
     
 - **11月17日**
 
-    发布Admin设计的工具：[NSAC-30 神经殊异自理与启动能力简表](https://neuroxyz.cn/tests/nsac30.html)，作者：Admin，网页：XyZ，排版：Xavier。
+    发布Admin设计的工具：[NSAC-30 神经殊异自理与启动能力简表](https://neuroxyz.cn/tests/nsac30.html)，作者：Admin，网页：XyZ，排版：Xavier（小红书）。
 
 - **11月21日**
 
-    发布第三期脑脑共写：[共写 3丨在身体里生活：ND伙伴的锻炼/运动经验！（2025.11）]({{% relref "/docs/cowriting/exercise" %}})，参与者：Xavier、小呆、XyZ、披垒、猫猫日日新、Lynn、Acul,、西瓜、SnOOpY、Admin、彗星、Termi、允泽、C、熊猫鲸，整理、题图和排版：披垒晒太阳睡大觉。
+    发布第三期脑脑共写：[共写 3丨在身体里生活：ND伙伴的锻炼/运动经验！（2025.11）]({{% relref "/docs/cowriting/exercise" %}})，参与者：Xavier、小呆、XyZ、披垒、猫猫日日新、Lynn、Acul,、西瓜、SnOOpY、Admin、彗星、Termi、允泽、C、熊猫鲸，整理、题图和排版：披垒晒太阳睡大觉（公众号）。
 
 - **11月23日**
 
-    发布Admin评论文章：[Admin丨关于神经多样性中“去病化”的讨论]({{% relref "/docs/brainstorm/admin-depathologization/" %}})，作者：Admin，排版：小呆、披垒讨厌阴天。
+    发布Admin评论文章：[Admin丨关于神经多样性中“去病化”的讨论]({{% relref "/docs/brainstorm/admin-depathologization/" %}})，作者：Admin，排版：小呆（小红书）、披垒讨厌阴天（公众号）。
 
 - **11月26日**
 
-    发布[脑脑空间对外协作说明书]({{% relref "/docs/neurobridge/collaboration" %}})，声明脑脑空间相对独立的发展路径，作者：Admin等多位脑脑空间成员，排版：小呆。
+    发布[脑脑空间对外协作说明书]({{% relref "/docs/neurobridge/collaboration" %}})，声明脑脑空间相对独立的发展路径，作者：Admin等多位脑脑空间成员，排版：小呆（小红书）。
 
 - **11月27日**
 
-    发布第四期脑脑共写：[共写 4丨刻板行为/自我刺激的快乐（2025.11）]({{% relref "/docs/cowriting/rrb" %}})，参与者：XyZ、Xavier、小呆、西瓜、披垒、Acul、从从、Admin、J、渔村学生、Lynn、明月潮生、充盈压、C、Termi、允泽、熊猫鲸，整理和排版：披垒爱逛公园版。
+    发布第四期脑脑共写：[共写 4丨刻板行为/自我刺激的快乐（2025.11）]({{% relref "/docs/cowriting/rrb" %}})，参与者：XyZ、Xavier、小呆、西瓜、披垒、Acul、从从、Admin、J、渔村学生、Lynn、明月潮生、充盈压、C、Termi、允泽、熊猫鲸，整理和排版：披垒爱逛公园版（公众号）。
 
 - **11月30日**
 
-    发布Admin评论文章：[Admin丨当我们争论“殊异”时，我们在争论什么？]({{% relref "/docs/brainstorm/admin-neurodivergent/" %}})，作者：Admin，排版：XyZ。
+    发布Admin评论文章：[Admin丨当我们争论“殊异”时，我们在争论什么？]({{% relref "/docs/brainstorm/admin-neurodivergent/" %}})，作者：Admin，排版：XyZ（公众号）。
 
 ### 12月
     
@@ -323,23 +323,23 @@ timeline
     
 - **10月2日**
 
-    发布XyZ评论文章：[“神经多样性-Lite”叙事，抛弃了什么？]({{% relref "/docs/brainstorm/xyz-ndlite/" %}})，作者：XyZ，排版：XyZ。
+    发布XyZ评论文章：[“神经多样性-Lite”叙事，抛弃了什么？]({{% relref "/docs/brainstorm/xyz-ndlite/" %}})，作者：XyZ，排版：XyZ（公众号）。
     
 - **12月4日**
     
-    完成[Dwyer 2022]({{% relref "/docs/neurodiversity/dwyer2022" %}})的翻译、排版及推送，翻译：Admin 、Guillotine、XyZ，审校：Rossa、Alexander，公众号排版：小呆，pdf排版：XyZ。
+    完成[Dwyer 2022]({{% relref "/docs/neurodiversity/dwyer2022" %}})的翻译、排版及推送，翻译：Admin 、Guillotine、XyZ，审校：Rossa、Alexander，排版：小呆（公众号）、XyZ（pdf、小红书）。
 
 - **12月5日**
 
-    转发Miya访谈加拿大巴勒斯坦裔小说作家 Jackie Khalilieh：“哈啰，友人在吗？”，翻译与审校：Miya，排版：小呆。
+    转发Miya访谈加拿大巴勒斯坦裔小说作家 Jackie Khalilieh：“哈啰，友人在吗？”，翻译与审校：Miya，排版：小呆（公众号）。
 
 - **12月8日**
 
-    转发vois bunny文章：神经多样性、去病化以及为什么泛自闭光谱者应该团结，翻译与审校：Miya，排版：小呆。
+    转发vois bunny文章：神经多样性、去病化以及为什么泛自闭光谱者应该团结，翻译与审校：Miya，排版：小呆（公众号）。
 
 - **12月10日**
 
-    发布第五期脑脑共写：[共写 5丨我看“脑脑空间”（2025.12）]({{% relref "/docs/cowriting/neurobridge" %}})，参与者：披垒、老北京肌肉卷、呆、渔村学生、Rossa、Lynn、Xavier、匿名、Admin、ASDog、睿睿、XyZ、小春，整理、题图和排版：披垒讨厌冬天没有太阳。
+    发布第五期脑脑共写：[共写 5丨我看“脑脑空间”（2025.12）]({{% relref "/docs/cowriting/neurobridge" %}})，参与者：披垒、老北京肌肉卷、呆、渔村学生、Rossa、Lynn、Xavier、匿名、Admin、ASDog、睿睿、XyZ、小春，整理、题图和排版：披垒讨厌冬天没有太阳（公众号）。
     
 - **12月20日**
     
@@ -347,11 +347,11 @@ timeline
 
 - **12月23日**
 
-    发布第六期脑脑共写：[共写 6丨我们如何过冬（2025.12）]({{% relref "/docs/cowriting/winter" %}})，参与者：披垒、空气茧、渔村学生、z17、XyZ、西瓜、ASDog、蓝天C、从从、明月潮生、Josie、Xavier、野人、工程机、J、呆、小春，排版：XyZ。
+    发布第六期脑脑共写：[共写 6丨我们如何过冬（2025.12）]({{% relref "/docs/cowriting/winter" %}})，参与者：披垒、空气茧、渔村学生、z17、XyZ、西瓜、ASDog、蓝天C、从从、明月潮生、Josie、Xavier、野人、工程机、J、呆、小春，排版：XyZ（公众号）。
 
 - **12月31日**
 
-    发布脑脑空间2025年度总结，文案：Alexander、呆、XyZ，排版：XyZ。
+    发布脑脑空间2025年度总结，文案：Alexander、呆、XyZ，排版：XyZ（公众号、小红书）。
 
 
 ## 📍 2026
