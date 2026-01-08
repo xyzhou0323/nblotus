@@ -119,5 +119,7 @@ Masking是她过去求生存的方式，是在一个无法理解她的环境里�
 本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/9ybTEUkfOO4)  
 首发时间：2025-5-23  
 首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/b_qc553uZ9yD5zuN325shA)  
+公众号排版：[XyZ](https://neuroxyz.cn)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

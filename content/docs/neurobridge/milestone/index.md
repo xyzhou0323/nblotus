@@ -293,7 +293,7 @@ timeline
     
 - **11月17日**
 
-    发布Admin设计的工具：[NSAC-30 神经殊异自理与启动能力简表](https://neuroxyz.cn/tests/nsac30.html)，作者：Admin，网页：XyZ，排版：Xavier（小红书）。
+    发布Admin设计的[工具](https://neuroxyz.cn/tests/nsac30.html)：[NSAC-30 神经殊异自理与启动能力简表]({{% relref "/docs/resource/nsac30/" %}})，作者：Admin，网页：XyZ，排版：Xavier（小红书）。
 
 - **11月21日**
 
@@ -353,12 +353,20 @@ timeline
 
     发布脑脑空间2025年度总结，文案：Alexander、呆、XyZ，排版：XyZ（公众号、小红书）。
 
+---
 
 ## 📍 2026
 
 ### 1月
 
-    新年快乐！
+- **1月2日**
+
+    转发小呆发起的共写：ND群体表达“爱”的共同记录计划（2025），参与者：小呆、Xavier、泠、潇潇、小米、十万分之一、J、小春、XyZ、Admin、小野、小记、睿睿、Z17、Alexander、渔村学生、西瓜，排版制作：小呆。
+
+- **1月6日**
+
+    发布XyZ文章：[神经多样性“去病理化”的三类立场]({{% relref "/docs/brainstorm/xyz-depathologization/" %}})，作者：XyZ，排版：XyZ。
+
 
 ---
 
@@ -366,6 +374,8 @@ timeline
 首发时间：2025-12-23  
 网站排版、制图：[XyZ](https://neuroxyz.cn/resource/xyz.html)  
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Kbwwfa6wL4-b_jnxSko2PA)、[脑脑空间NeuroBridge小红书](http://xhslink.com/o/2noxBPzJEOS)
+
+---
 
 我们的小红书：[脑脑空间NeuroBridge](https://www.xiaohongshu.com/user/profile/59b9453c82ec393da71b50a4)  
 我们的公众号：[脑脑空间NeuroBridge](https://mp.weixin.qq.com/s/8zczFhhQLW_f4nRf2UGP7Q)  

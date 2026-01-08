@@ -68,5 +68,7 @@ toc: true
 本文首发: [脑脑空间NeuroBridge小红书](http://xhslink.com/o/9PjQwyutP2E)  
 首发时间：2025-9-19   
 首发排版：[小呆](https://xhslink.com/m/A0TGop1zIv4)  
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/L8frN_cqK9926LjIqXkO5g)  
+公众号排版：[XyZ](https://neuroxyz.cn)  
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
