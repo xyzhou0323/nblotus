@@ -367,6 +367,24 @@ timeline
 
     发布XyZ文章：[神经多样性“去病理化”的三类立场]({{% relref "/docs/brainstorm/xyz-depathologization/" %}})，作者：XyZ，排版：XyZ。
 
+- **1月22日**
+
+    发布小呆故事：[小呆丨我与学习]({{% relref "/docs/story/dailearning/" %}})，作者：小呆，排版：小呆。  
+    发布Xavier分享：[Xavier丨你使用无障碍设施吗？]({{% relref "/docs/story/xavieraccessibility/" %}})，作者：Xavier，排版：Xavier。
+
+- **1月23日**
+
+    发布小呆整理文章：[溯源：残障权利运动简史]({{% relref "/docs/neurodiversity/disabilityrightsmovement/" %}})，作者：小呆，排版：小呆。
+
+- **1月24日**
+
+    发布Admin文章：[Admin丨你凭什么戴那个胸针？]({{% relref "/docs/brainstorm/admin-pin/" %}})，作者：Admin，排版：Admin，公众号排版：小呆。
+
+- **1月28日**
+
+    发布论文翻译：[Mandy(2025)：如今，孤独谱系究竟是什么？]({{% relref "/docs/neurodiversity/mandy2025/" %}})，作者：Will Mandy，脑脑空间翻译志愿者：  
+     翻译：[Admin](https://xhslink.com/m/6e2tpWcngRg)、薛定谔的猫、[睿睿](https://xhslink.com/m/4xYTTEx1N06)、[小蓝](https://mp.weixin.qq.com/s/VLJ9hHCmd3XmJ3P3JKNwlg)（按译文顺序排序）  
+     审校：Alexander、[小呆](https://xhslink.com/m/A0TGop1zIv4)、Guillotine、明月潮生、[XyZ](https://neuroxyz.cn) （按首字母排序）
 
 ---
 

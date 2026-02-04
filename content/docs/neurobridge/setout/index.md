@@ -76,7 +76,8 @@ toc: true
 
 ---
 
-关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/cowriting/neurobridge" %}})
+关于志愿者们对脑脑空间的感受，欢迎阅读：[共写：脑脑成员心中的脑脑空间]({{% relref "/docs/cowriting/neurobridge" %}})  
+加入脑脑客厅交流群，和我们一起同行：[欢迎大家来脑脑客厅做客！](https://mp.weixin.qq.com/s/81jv2lVA_Yahd0bGMWU_iw)
 
 ---
 

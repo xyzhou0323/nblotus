@@ -1,5 +1,5 @@
 ---
-weight: 3
+weight: 4
 title: "成年ASDer的沟通方式偏好"
 description: "孤独谱系障碍个体可能在面对不同的对象时存在不同的沟通方式偏好"
 icon: "Communication"
