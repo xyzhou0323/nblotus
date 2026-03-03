@@ -4,7 +4,7 @@ title: "Xavier丨你使用无障碍设施吗？"
 description: "无障碍设施是为所有人而设的，作者Xavier"
 icon: "Accessibility"
 date: "2026-02-04T14:06:44+08:00"
-lastmod: "2025-12-21T14:50:44+08:00"
+lastmod: "2026-02-04T14:50:44+08:00"
 draft: false
 toc: true
 ---

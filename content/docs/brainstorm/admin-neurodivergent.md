@@ -24,6 +24,7 @@ toc: true
 7. 写给还在犹豫的人
 
 ---
+
 {{% alert icon="🔖" context="warning" %}}
 最近中文神经多样性社群内部出现了一场关于术语的讨论：  
 应该用“神经殊异”还是“神经多样性”来翻译Neurodivergent？
@@ -351,5 +352,7 @@ toc: true
 本文首发: [脑脑空间NeuroBridg微信公众号](https://mp.weixin.qq.com/s/4R2rLKqReGpiFxlU_gmZdg)  
 首发时间：2025-11-30  
 首发排版：[XyZ](https://neuroxyz.cn)
+
+头脑风暴内容为投稿者分享，不代表脑脑空间及其他个人的观点及立场。
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

@@ -20,6 +20,7 @@ toc: true
 3. 再思“文字游戏”：太阳是鸡叫出来的吗？
 
 ---
+
 {{% alert context="light" %}}
 当我们“抠字眼”时，究竟是在争论什么？近期出现了一些有关“神经多样性”（neurodiversity）相关术语翻译的讨论。  
 
@@ -109,6 +110,11 @@ toc: true
 
 本文首发: 脑脑客厅网站  
 首发时间：2026-2-4  
-作者曾将上一版投稿：[神经光谱社公众号](https://mp.weixin.qq.com/s/vjArn5qlPb2HjY0HHiN62w)
+作者曾将上一版投稿：[神经光谱社公众号](https://mp.weixin.qq.com/s/vjArn5qlPb2HjY0HHiN62w)  
+
+本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/SfwoWivyGlD7tW6bqmGobA)  
+公众号排版：[XyZ](https://neuroxyz.cn)  
+
+头脑风暴内容为投稿者分享，不代表脑脑空间及其他个人的观点及立场。
 
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

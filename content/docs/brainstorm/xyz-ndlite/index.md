@@ -175,4 +175,6 @@ Crip Theory（McRuer，2006）的发展，就展示了被贬损的词汇（传�
 本文首发: [脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/Gwzb2MO6BKLwlBiSkoWFaQ)  
 首发时间：2025-12-03  
 
+头脑风暴内容为投稿者分享，不代表脑脑空间及其他个人的观点及立场。
+
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}

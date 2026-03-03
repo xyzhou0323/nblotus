@@ -173,4 +173,6 @@ toc: true
 本文亦见：[脑脑空间NeuroBridge微信公众号](https://mp.weixin.qq.com/s/lJHn7Zt_GMKjCumcmzf90A)  
 排版：XyZ  
 
+头脑风暴内容为投稿者分享，不代表脑脑空间及其他个人的观点及立场。
+
 {{< figure src="/images/qrcode.png" caption="上图内容：脑脑空间的小红书、公众号、网站二维码，欢迎关注脑脑空间NeuroBridge" >}}
