@@ -6,7 +6,9 @@
       "Bash(gh issue *)",
       "Bash(curl -s \"https://raw.githubusercontent.com/gohugoio/hugo/master/docs/content/en/functions/images/text.md\")",
       "Bash(rm -rf public/opengraph)",
-      "Bash(hugo)"
+      "Bash(hugo)",
+      "Bash(find archetypes *)",
+      "Bash(ls archetypes/)"
     ]
   }
 }
