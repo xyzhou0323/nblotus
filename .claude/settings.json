@@ -8,7 +8,22 @@
       "Bash(rm -rf public/opengraph)",
       "Bash(hugo)",
       "Bash(find archetypes *)",
-      "Bash(ls archetypes/)"
+      "Bash(ls archetypes/)",
+      "Bash(hugo server *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:1313/docs/story/adminfirstarrival/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:1313/docs/story/adminfirstarrival/index.html)",
+      "Bash(curl -s http://localhost:1313/docs/story/adminfirstarrival/)",
+      "Bash(kill %1)",
+      "Bash(rm -rf resources/_gen)",
+      "Bash(curl -s -o /dev/null -w \"Clean URL: %{http_code}\\\\n\" http://localhost:1313/docs/story/adminfirstarrival/)",
+      "Bash(curl -s -o /dev/null -w \"With slash: %{http_code}\\\\n\" http://localhost:1313/docs/story/adminfirstarrival/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:1313/docs/interview/misanlang/)",
+      "Bash(curl -s http://localhost:1313/docs/interview/misanlang/)",
+      "Bash(curl -s http://localhost:1314/docs/interview/misanlang/)",
+      "Bash(hugo --logLevel debug)",
+      "Bash(curl -s http://localhost:1313/docs/neurobridge/milestone/)",
+      "Bash(wget -q -O - http://localhost:1313/docs/neurobridge/milestone/)",
+      "Bash(grep -oP '发布脑脑成员文章.{0,200}</a>')"
     ]
   }
 }
