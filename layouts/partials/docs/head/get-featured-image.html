@@ -1,0 +1,94 @@
+{{ $images := $.Resources.ByType "image" }}
+{{ $featured := $images.GetMatch "*feature*" }}
+{{ if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end }}
+{{ if not $featured }}
+    {{ $featured = resources.Get "/opengraph/card-base-2.png" }}
+    {{ $font := resources.Get "/fonts/simhei.ttf" }}
+
+    {{ $title := $.LinkTitle }}
+    {{ $titleLen := $title | strings.RuneCount }}
+    {{ $sizeTitle := 80 }}
+    {{ $sizeDesc := 50 }}
+    {{ $descPadding := 0 }}
+    {{ $titleCPL := 13 }}
+
+    {{ if gt $titleLen 14 }}
+        {{ $sizeTitle = 60 }}
+        {{ $sizeDesc = 48 }}
+        {{ $titleCPL = 17 }}
+        {{ $descPadding = 48 }}
+    {{ end }}
+    {{ if gt $titleLen 23 }}
+        {{ $sizeTitle = 52 }}
+        {{ $sizeDesc = 44 }}
+        {{ $titleCPL = 20 }}
+        {{ $descPadding = 62 }}
+    {{ end }}
+    {{ if gt $titleLen 36 }}
+        {{ $sizeTitle = 44 }}
+        {{ $sizeDesc = 40 }}
+        {{ $titleCPL = 24 }}
+        {{ $descPadding = 100 }}
+    {{ end }}
+
+    {{ $textTitle := $title }}
+    {{ $titleLines := findRE (printf ".{1,%d}" $titleCPL) $title }}
+    {{ with $titleLines }}
+        {{ $textTitle = delimit $titleLines "\n" }}
+    {{ end }}
+
+    {{ $textTitleOptions := dict
+        "color" "#2e2e2e"
+        "size" $sizeTitle
+        "lineSpacing" 10
+        "x" 65 "y" 180
+        "font" $font
+    }}
+
+    {{ $filters := slice (images.Text $textTitle $textTitleOptions) }}
+
+    {{ $logo := resources.Get "images/logos/logo.png" }}
+    {{ with $logo }}
+        {{ $logo = $logo.Resize "x60" }}
+        {{ $logoFilter := (images.Overlay $logo 65 110) }}
+        {{ $filters = $filters | append $logoFilter }}
+    {{ end }}
+
+    {{ $description := $.Description }}
+    {{ with $description }}
+        {{ $descCPL := 21 }}
+        {{ if le $sizeDesc 44 }}{{ $descCPL = 24 }}{{ end }}
+        {{ if le $sizeDesc 40 }}{{ $descCPL = 27 }}{{ end }}
+        {{ $descLines := findRE (printf ".{1,%d}" $descCPL) $description }}
+        {{ $textDesc := $description }}
+        {{ with $descLines }}
+            {{ $textDesc = delimit $descLines "\n" }}
+        {{ end }}
+        {{ $textDescOptions := dict
+            "color" "#8e8e8e"
+            "size" $sizeDesc
+            "lineSpacing" 10
+            "x" 65 "y" (add 290 $descPadding)
+            "font" $font
+        }}
+        {{ $descFilter := (images.Text $textDesc $textDescOptions) }}
+        {{ $filters = $filters | append $descFilter }}
+    {{ end }}
+
+    {{ $textSiteTitle := $.Site.Title }}
+    {{ with $textSiteTitle }}
+        {{ $textSiteTitleOptions := dict
+            "color" "#5e5e5e"
+            "size" 35
+            "lineSpacing" 10
+            "x" 65 "y" 550
+            "font" $font
+        }}
+        {{ $siteTitleFilter := (images.Text $textSiteTitle $textSiteTitleOptions)}}
+        {{ $filters = $filters | append $siteTitleFilter }}
+    {{ end }}
+
+    {{ $featured = $featured | images.Filter $filters }}
+{{ end }}
+
+{{ return $featured }}
