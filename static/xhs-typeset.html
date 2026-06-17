@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书一键排版 · 脑脑空间 NeuroBridge</title>
+<style>
+:root {
+  --bg: #f5f5f5; --panel-bg: #fff; --border: #e0e0e0;
+  --text: #333; --text2: #888; --primary: #4a7db5; --primary-h: #3a6da5;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); height:100vh; overflow:hidden; }
+.tool-app { display:flex; flex-direction:column; height:100vh; }
+.tool-header {
+  background:#fff; border-bottom:1px solid var(--border);
+  padding:12px 24px; display:flex; align-items:center; gap:16px; flex-shrink:0;
+  box-shadow:0 1px 4px rgba(0,0,0,0.04); z-index:10;
+}
+.tool-header h1 { font-size:18px; font-weight:700; color:#1a1a1a; white-space:nowrap; letter-spacing:0.5px; }
+.tool-header h1 span { color:var(--primary); }
+.tool-header select { padding:5px 10px; border:1px solid #ddd; border-radius:4px; font-size:13px; }
+.tool-header .back-link { margin-left:auto; font-size:12px; color:var(--text2); text-decoration:none; white-space:nowrap; }
+.tool-header .back-link:hover { color:var(--primary); }
+
+.tool-main { display:flex; flex:1; gap:2px; overflow:hidden; background:var(--border); }
+
+.panel { background:var(--panel-bg); display:flex; flex-direction:column; overflow:hidden; }
+.panel-editor { flex:0 0 40%; }
+.panel-preview { flex:1; }
+.panel-header {
+  padding:8px 14px; border-bottom:1px solid var(--border);
+  font-size:13px; color:var(--text2); display:flex; align-items:center; justify-content:space-between;
+  flex-shrink:0; background:#fafbfc;
+}
+.panel-header .label { font-weight:600; color:#555; }
+
+#editor {
+  width:100%; flex:1; border:none; outline:none; resize:none;
+  padding:16px 20px; font-size:14px; line-height:1.8;
+  font-family:"SF Mono","Fira Code","Consolas","Microsoft YaHei",monospace;
+  color:#333; background:#fff;
+}
+#editor::placeholder { color:#ccc; font-size:13px; font-family:inherit; }
+.toolbar { display:flex; gap:4px; padding:6px 14px; border-top:1px solid var(--border); flex-shrink:0; background:#fafbfc; flex-wrap:wrap; }
+.toolbar button { padding:4px 10px; border:1px solid #ddd; border-radius:4px; background:#fff; cursor:pointer; font-size:11px; color:#666; transition:all 0.15s; white-space:nowrap; }
+.toolbar button:hover { border-color:var(--primary); color:var(--primary); background:#f5f9ff; }
+.toolbar .sep { width:1px; background:#ddd; margin:0 2px; }
+
+.preview-wrap { flex:1; overflow:auto; display:flex; align-items:flex-start; justify-content:center; padding:20px; }
+#previewCanvas { max-width:100%; max-height:70vh; box-shadow:0 4px 24px rgba(0,0,0,0.12); border-radius:4px; }
+
+.page-nav { display:flex; align-items:center; justify-content:center; gap:12px; padding:8px; flex-shrink:0; border-top:1px solid var(--border); background:#fafbfc; }
+.page-nav button {
+  padding:4px 14px; border:1px solid #ddd; border-radius:4px; background:#fff; cursor:pointer; font-size:12px; color:#666;
+}
+.page-nav button:hover { border-color:var(--primary); color:var(--primary); }
+.page-nav button:disabled { opacity:0.4; cursor:default; }
+.page-nav .page-info { font-size:13px; color:var(--text2); min-width:80px; text-align:center; }
+
+.tool-actions { padding:8px 20px; border-top:1px solid var(--border); display:flex; gap:10px; justify-content:center; flex-shrink:0; background:#fff; }
+.btn { padding:9px 24px; border:none; border-radius:6px; cursor:pointer; font-size:14px; font-weight:600; transition:all 0.2s; }
+.btn-success { background:#27ae60; color:#fff; }
+.btn-success:hover { background:#219a52; }
+.btn-secondary { background:#f0f2f5; color:#555; }
+.btn-secondary:hover { background:#e4e6e9; }
+.btn:disabled { opacity:0.5; cursor:not-allowed; }
+.btn-ai { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color:#fff; border:none; }
+.btn-ai:hover { opacity:0.9; }
+.btn-ai:disabled { opacity:0.5; cursor:not-allowed; }
+.btn-warning { background:#f39c12; color:#fff; }
+.btn-warning:hover { background:#e08e0b; }
+
+.toast { position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#333; color:#fff; padding:10px 24px; border-radius:20px; font-size:14px; z-index:1000; opacity:0; transition:opacity 0.3s; pointer-events:none; }
+.toast.show { opacity:1; pointer-events:auto; }
+.toast.success { background:#27ae60; }
+
+/* Custom sidebar */
+.custom-sidebar { background:var(--panel-bg); border-left:1px solid var(--border); flex-shrink:0; width:230px; display:flex; flex-direction:column; overflow:hidden; transition:width 0.25s; }
+.custom-sidebar.closed { width:32px; }
+.custom-panel-header { padding:8px 10px; border-bottom:1px solid var(--border); font-size:13px; color:var(--text2); cursor:pointer; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; background:#fafbfc; user-select:none; }
+.custom-panel-header .arrow { transition:transform 0.25s; font-size:10px; }
+.custom-sidebar.closed .arrow { transform:rotate(180deg); }
+.custom-sidebar-scroll { flex:1; overflow-y:auto; padding:10px 12px; }
+.custom-sidebar.closed .custom-sidebar-scroll { display:none; }
+.custom-sidebar.closed .custom-panel-header span:first-child { display:none; }
+.ctrl-group { margin-bottom:8px; }
+.ctrl-group label { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--text2); margin-bottom:2px; }
+.ctrl-group label .val { font-weight:600; color:var(--primary); font-size:11px; }
+.ctrl-group input[type=range] { width:100%; accent-color:var(--primary); }
+.ctrl-group select { width:100%; padding:4px 6px; border:1px solid #ddd; border-radius:4px; font-size:11px; }
+.sidebar-section-title { font-size:10px; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:1px; margin:10px 0 6px; padding-top:8px; border-top:1px solid var(--border); }
+.sidebar-section-title:first-child { margin-top:0; border-top:none; padding-top:0; }
+.color-dot-row { display:flex; gap:2px; align-items:center; justify-content:space-between; }
+.color-dot-wrap { display:flex; flex-direction:column; align-items:center; gap:2px; }
+.color-dot-label { font-size:9px; color:#aaa; }
+.color-dot {
+  width:20px; height:20px; border-radius:50%; cursor:pointer;
+  border:1px solid #ddd; position:relative; overflow:hidden;
+  transition:transform 0.15s;
+}
+.color-dot:hover { transform:scale(1.2); }
+.color-dot input[type=color] {
+  position:absolute; top:-6px; left:-6px;
+  width:32px; height:32px; border:none; cursor:pointer; opacity:0;
+}
+
+/* API Panel */
+.api-panel { display:none; background:#fafbfc; border-bottom:1px solid var(--border); padding:8px 24px; flex-shrink:0; }
+.api-panel.show { display:block; }
+.api-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.api-row input { padding:6px 10px; border:1px solid #ddd; border-radius:4px; font-size:13px; outline:none; min-width:140px; flex:1; }
+.api-row input:focus { border-color:var(--primary); }
+.api-row select { padding:6px 10px; border:1px solid #ddd; border-radius:4px; font-size:13px; outline:none; }
+.api-panel .api-hint { font-size:11px; color:#aaa; margin-top:6px; }
+.btn-api-toggle { padding:6px 14px; border:1px solid #ddd; border-radius:16px; cursor:pointer; font-size:12px; color:#888; background:transparent; transition:all 0.2s; }
+.btn-api-toggle:hover { border-color:#aaa; color:#555; }
+.btn-api-toggle.active { background:#f0f2f5; color:var(--primary); border-color:var(--primary); }
+.btn-api-save { padding:6px 14px; border:none; border-radius:4px; background:var(--primary); color:#fff; cursor:pointer; font-size:13px; white-space:nowrap; }
+.btn-api-save:hover { background:var(--primary-h); }
+.btn-ai-sm { padding:6px 14px; border:1px solid #27ae60; border-radius:4px; background:#fff; color:#27ae60; cursor:pointer; font-size:12px; font-weight:600; transition:all 0.2s; white-space:nowrap; }
+.btn-ai-sm:hover { background:#27ae60; color:#fff; }
+.btn-ai-sm:disabled { opacity:0.5; cursor:not-allowed; }
+
+@media (max-width:768px) {
+  .tool-main { flex-direction:column; }
+  .panel-editor { flex:none; height:40%; }
+  .tool-header { flex-wrap:wrap; gap:6px; padding:8px 10px; }
+  .tool-header h1 { font-size:14px; }
+  .custom-sidebar { width:180px; }
+  .api-panel { right:10px; left:10px; min-width:auto; }
+}
+</style>
+</head>
+<body>
+<div class="tool-app">
+
+<div class="tool-header">
+  <h1>小红书<span>一键排版</span></h1>
+  <select id="templateSelect">
+    <option value="interview">专业访谈</option>
+    <option value="science">科普</option>
+    <option value="translation">翻译</option>
+    <option value="life">生活访谈</option>
+    <option value="green">绿色</option>
+    <option value="misc">待定</option>
+  </select>
+  <button class="btn-api-toggle" id="btnApiToggle" onclick="toggleApiPanel()" title="API 设置">⚙ API</button>
+  <a href="/docs/resource/" class="back-link">← 返回资源</a>
+  <input type="file" id="fileInput" accept=".md,.pdf,.docx" style="display:none" onchange="handleFileUpload(event)">
+</div>
+
+<div id="apiPanel" class="api-panel">
+  <div class="api-row">
+    <select id="apiProvider" onchange="onProviderChange()">
+      <option value="">自定义</option>
+      <option value="deepseek">DeepSeek</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic</option>
+      <option value="zhipu">智谱 GLM</option>
+      <option value="qwen">通义千问</option>
+      <option value="moonshot">Kimi</option>
+    </select>
+    <input type="password" id="apiKey" placeholder="API Key" autocomplete="off">
+    <input type="text" id="apiEndpoint" placeholder="API 地址">
+    <input type="text" id="apiModel" placeholder="模型名">
+    <select id="apiFormat">
+      <option value="openai">OpenAI 兼容</option>
+      <option value="anthropic">Anthropic</option>
+    </select>
+    <input type="number" id="apiMaxTokens" placeholder="16384" style="min-width:80px;flex:0.5">
+    <button class="btn-api-save" onclick="saveApiSettings()">保存</button>
+  </div>
+  <div class="api-hint">选择提供商自动填入配置，或选"自定义"手动填写。CORS 错误请用 http://localhost 打开此页面。</div>
+</div>
+
+<div class="tool-main">
+  <div class="panel panel-editor">
+    <div class="panel-header"><span class="label">编辑区</span><span style="font-size:11px;color:#bbb">Markdown 语法</span></div>
+    <textarea id="editor" placeholder="# 标题
+（标题的第二行直接回车）
+## 副标题（可选）
+作者：XXX
+排版：XXX
+---
+### 第一个小标题
+
+段落文字。**粗体**标记关键词，*斜体*标记强调。
+
+[高亮]核心观点用高亮标记[/高亮]
+
+> 引用文字用 > 开头，会有左侧竖线装饰
+
+### 第二个小标题
+
+继续写更多内容..."></textarea>
+    <div class="toolbar">
+      <button onclick="applyFormat('bold')" title="加粗">B</button>
+      <button onclick="applyFormat('italic')" title="斜体">I</button>
+      <span class="sep"></span>
+      <button onclick="applyFormat('h3')" title="小标题">H3</button>
+      <button onclick="applyFormat('highlight')" title="高亮">★</button>
+      <button onclick="applyFormat('quote')" title="引用">❝</button>
+      <span class="sep"></span>
+      <span class="sep"></span>
+      <button onclick="applyFormat('ul')" title="无序列表">•</button>
+      <button onclick="applyFormat('ol')" title="有序列表">1.</button>
+      <span class="sep"></span>
+      <button onclick="applyFormat('divider')" title="分割线">—</button>
+      <button onclick="applyFormat('image')" title="插入图片">🖼</button>
+      <button onclick="applyFormat('imageCaption')" title="图注">^^图注</button>
+      <button onclick="applyFormat('ref')" title="参考文献">@@文献</button>
+      <span class="sep"></span>
+      <button onclick="applyFormat('hilightLine')" title="重点行">✦行</button>
+    </div>
+  </div>
+  <div class="panel panel-preview">
+    <div class="panel-header"><span class="label">预览</span><span style="font-size:11px;color:#bbb">1242×1660</span></div>
+    <div class="preview-wrap"><canvas id="previewCanvas"></canvas></div>
+    <div class="page-nav">
+      <button id="btnPrev" onclick="prevPage()">← 上一页</button>
+      <span class="page-info" id="pageInfo">封面</span>
+      <button id="btnNext" onclick="nextPage()">下一页 →</button>
+      <button id="btnDownloadPage" onclick="downloadCurrent()" disabled style="margin-left:8px">下载当前页</button>
+    </div>
+  </div>
+  <div class="custom-sidebar open" id="customPanel">
+    <div class="custom-panel-header" onclick="toggleCustomPanel()">
+      <span>自定</span><span class="arrow">◀</span>
+    </div>
+    <div class="custom-sidebar-scroll">
+      <div class="sidebar-section-title">封面</div>
+      <div class="ctrl-group"><label>标题字号 <span class="val" id="valTitleSize">96</span></label><input type="range" id="titleSize" min="64" max="160" value="96" step="2"></div>
+      <div class="ctrl-group"><label>副标题字号 <span class="val" id="valSubtitleSize">48</span></label><input type="range" id="subtitleSize" min="32" max="80" value="48" step="2"></div>
+      <div class="ctrl-group"><label>作者/排版字号 <span class="val" id="valMetaSize">36</span></label><input type="range" id="metaSize" min="24" max="60" value="36" step="2"></div>
+      <div class="sidebar-section-title">内页</div>
+      <div class="ctrl-group"><label>小标题字号 <span class="val" id="valHeadingSize">60</span></label><input type="range" id="headingSize" min="40" max="88" value="60" step="2"></div>
+      <div class="ctrl-group"><label>正文字号 <span class="val" id="valBodySize">42</span></label><input type="range" id="bodySize" min="28" max="64" value="42" step="2"></div>
+      <div class="ctrl-group"><label>行距 <span class="val" id="valLineHeight">1.85</span></label><input type="range" id="lineHeight" min="1.5" max="2.5" value="1.85" step="0.05"></div>
+      <div class="sidebar-section-title">标记样式</div>
+      <div class="ctrl-group"><label>高亮样式</label><select id="highlightStyle"><option value="yellow">黄色底纹</option><option value="green">绿色底纹</option><option value="blue">蓝色底纹</option><option value="underline">细下划线</option><option value="boldline">粗下划线</option></select></div>
+      <div class="sidebar-section-title">配色</div>
+      <div class="ctrl-group">
+        <div class="color-dot-row">
+          <div class="color-dot-wrap"><span class="color-dot-label">标题</span><span class="color-dot" id="dotHeading" style="background:#2d2d2d"><input type="color" id="colorHeading" value="#2d2d2d"></span></div>
+          <div class="color-dot-wrap"><span class="color-dot-label">副标题</span><span class="color-dot" id="dotSubtitle" style="background:#555"><input type="color" id="colorSubtitle" value="#555555"></span></div>
+          <div class="color-dot-wrap"><span class="color-dot-label">正文</span><span class="color-dot" id="dotBody" style="background:#2d2d2d"><input type="color" id="colorBody" value="#2d2d2d"></span></div>
+        </div>
+        <div class="color-dot-row" style="margin-top:6px">
+          <div class="color-dot-wrap"><span class="color-dot-label">加粗</span><span class="color-dot" id="dotBold" style="background:#1a1a1a"><input type="color" id="colorBold" value="#1a1a1a"></span></div>
+          <div class="color-dot-wrap"><span class="color-dot-label">重点</span><span class="color-dot" id="dotHighlight" style="background:#c0392b"><input type="color" id="colorHighlight" value="#c0392b"></span></div>
+          <div class="color-dot-wrap"><span class="color-dot-label">下线</span><span class="color-dot" id="dotUnderline" style="background:#4a7db5"><input type="color" id="colorUnderline" value="#4a7db5"></span></div>
+        </div>
+      </div>
+      <div id="pageAdjustSection">
+        <div class="sidebar-section-title">当前页调整</div>
+        <div id="pageAdjustCoverHint" style="font-size:11px;color:#bbb;padding:4px 0">切换到内页以调整</div>
+        <div id="pageAdjustControls" style="display:none">
+          <div class="ctrl-group">
+            <label>正文字号 <span class="val" id="valPageFS">42</span></label>
+            <input type="range" id="pageFS" min="24" max="80" value="42" step="2">
+          </div>
+          <div class="ctrl-group">
+            <label>行距 <span class="val" id="valPageLH">1.85</span></label>
+            <input type="range" id="pageLH" min="1.2" max="3.0" value="1.85" step="0.05">
+          </div>
+          <div style="margin-top:6px">
+            <button onclick="resetPageSettings()" id="btnResetPage" style="width:100%;padding:4px 0;border:1px solid #e0c0c0;border-radius:4px;background:#fff;cursor:pointer;font-size:11px;color:#c0392b;display:none">重置本页 → 全局默认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-actions">
+  <button class="btn btn-ai" onclick="aiFormat()" id="btnAiBottom">AI 智能排版</button>
+  <button class="btn btn-success" id="btnExport" onclick="exportAll()">导出全部 PNG</button>
+  <button class="btn btn-secondary" onclick="resetAll()">清空</button>
+  <button class="btn btn-secondary" id="btnUpload2" onclick="document.getElementById('fileInput').click()">上传文件</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script>
+// ===== Template definitions =====
+const TEMPLATES = {
+  interview:    { name: '专业访谈', cover: 'interview-cover.png',  inner: 'interview-inner.png' },
+  science:      { name: '科普',     cover: 'science-cover.png',    inner: 'science-inner.png' },
+  translation:  { name: '翻译',     cover: 'translation-cover.png',inner: 'translation-inner.png' },
+  life:         { name: '生活访谈', cover: 'life-cover.png',       inner: 'life-inner.png' },
+  green:        { name: '绿色',     cover: 'cover-green.png',      inner: 'inner-green.png' },
+  misc:         { name: '待定',     cover: 'misc-cover.png',       inner: 'misc-inner.png' }
+};
+
+const CANVAS_W = 1242;
+const CANVAS_H = 1660;
+
+// Layout params (all in canvas pixels)
+let COVER_TITLE_Y = 550;
+let COVER_META_Y = 1340;
+let INNER_HEADING_Y = 160;
+let INNER_BODY_Y = 320;
+const INNER_BODY_BOTTOM = 1600;
+const INNER_MARGIN = 120;
+const INNER_WIDTH = CANVAS_W - INNER_MARGIN * 2;
+
+// Font sizes (customizable via sliders)
+let FS_TITLE = 96;
+let FS_SUBTITLE = 48;
+let FS_META = 36;
+let FS_HEADING = 60;
+let FS_BODY = 42;
+let LH_BODY = 1.85;
+let highlightStyle = 'yellow';
+
+let fontLoaded = false;
+let pages = [];         // [{type:'cover'|'inner', canvas:HTMLCanvasElement, heading, paragraphs, fsBody, lhBody, fsHeading}]
+let cachedCoverImg = null;
+let cachedInnerImg = null;
+let headingPageMap = {};
+let imagePageMap = {};
+let currentPage = 0;
+let currentTemplate = 'interview';
+let colorHeading = '#2d2d2d';
+let colorSubtitle = '#555555';
+let colorBody = '#2d2d2d';
+let colorBold = '#1a1a1a';
+let colorHighlight = '#c0392b';
+let colorUnderline = '#4a7db5';
+
+// ===== Font loading =====
+async function loadFont() {
+  if (fontLoaded) return;
+  const font = new FontFace('CangerJinkai', 'url(/fonts/仓耳今楷03-W04.ttf)');
+  await font.load();
+  document.fonts.add(font);
+  // Also preload in a temp canvas to ensure it's available
+  const c = document.createElement('canvas');
+  c.width = 100; c.height = 100;
+  const ctx = c.getContext('2d');
+  ctx.font = '36px CangerJinkai';
+  ctx.fillText('测', 0, 50);
+  fontLoaded = true;
+}
+
+// ===== Inline tokenizer =====
+function tokenize(text) {
+  const tokens = [];
+  const re = /(\*\*(.+?)\*\*|\*(.+?)\*|\[高亮\](.+?)\[\/高亮\])/g;
+  let last = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) tokens.push({ text: text.slice(last, m.index), bold: false, italic: false, highlight: false });
+    if (m[2])      tokens.push({ text: m[2], bold: true,  italic: false, highlight: false });
+    else if (m[3]) tokens.push({ text: m[3], bold: false, italic: true,  highlight: false });
+    else if (m[4]) tokens.push({ text: m[4], bold: false, italic: false, highlight: true });
+    last = re.lastIndex;
+  }
+  if (last < text.length) tokens.push({ text: text.slice(last), bold: false, italic: false, highlight: false });
+  return tokens;
+}
+
+// ===== Rich text layout (char-level wrapping) =====
+function layoutRichLines(ctx, tokens, maxWidth, fontSize) {
+  const fs = fontSize || FS_BODY;
+  // Flatten tokens to styled chars
+  const chars = [];
+  for (const t of tokens) {
+    for (const ch of t.text) {
+      chars.push({ char: ch, bold: t.bold, italic: t.italic, highlight: t.highlight });
+    }
+  }
+
+  // Wrap at char boundaries, measuring each char with its own font
+  const NO_LINE_START = /^[，。！？：；》】」』〉）\.,!\?:;\)]$/;
+  const lines = [];
+  let curChars = [];
+  let curW = 0;
+  for (const c of chars) {
+    ctx.font = c.bold ? `bold ${fs}px CangerJinkai` : `${fs}px CangerJinkai`;
+    const cw = ctx.measureText(c.char).width;
+    if (curW + cw > maxWidth && curChars.length > 0) {
+      // Don't let punctuation start a new line alone
+      if (NO_LINE_START.test(c.char) && curChars.length >= 2) {
+        const last = curChars.pop();
+        ctx.font = last.bold ? `bold ${FS_BODY}px CangerJinkai` : `${FS_BODY}px CangerJinkai`;
+        curW -= ctx.measureText(last.char).width;
+        lines.push(charsToTokens(curChars));
+        curChars = [last, c];
+        ctx.font = c.bold ? `bold ${FS_BODY}px CangerJinkai` : `${FS_BODY}px CangerJinkai`;
+        curW = ctx.measureText(last.char).width + cw;
+      } else {
+        lines.push(charsToTokens(curChars));
+        curChars = [c];
+        curW = cw;
+      }
+    } else {
+      curChars.push(c);
+      curW += cw;
+    }
+  }
+  if (curChars.length > 0) lines.push(charsToTokens(curChars));
+  return lines;
+}
+
+function charsToTokens(chars) {
+  if (chars.length === 0) return [];
+  const tokens = [];
+  let cur = { text: chars[0].char, bold: chars[0].bold, italic: chars[0].italic, highlight: chars[0].highlight };
+  for (let i = 1; i < chars.length; i++) {
+    const c = chars[i];
+    if (c.bold === cur.bold && c.italic === cur.italic && c.highlight === cur.highlight) {
+      cur.text += c.char;
+    } else {
+      tokens.push({ ...cur });
+      cur = { text: c.char, bold: c.bold, italic: c.italic, highlight: c.highlight };
+    }
+  }
+  tokens.push({ ...cur });
+  return tokens;
+}
+
+function measureRichHeight(ctx, tokens, maxWidth, lineHeight, fontSize) {
+  return layoutRichLines(ctx, tokens, maxWidth, fontSize).length * lineHeight;
+}
+
+// Draw a single line of rich tokens
+function drawRichLine(ctx, lineTokens, x, y, baseFontSize) {
+  let cx = x;
+  for (const t of lineTokens) {
+    let fontStr = `${baseFontSize}px CangerJinkai`;
+    if (t.bold) fontStr = `bold ${baseFontSize}px CangerJinkai`;
+    ctx.font = fontStr;
+    const tw = ctx.measureText(t.text).width;
+
+    if (t.highlight) {
+      const fh = baseFontSize;
+      const h = highlightStyle || 'yellow';
+      if (h === 'underline') {
+        ctx.fillStyle = colorUnderline;
+        ctx.globalAlpha = 0.6;
+        ctx.fillRect(cx - 1, y + fh * 1.05, tw + 2, Math.max(2, fh * 0.06));
+        ctx.globalAlpha = 1;
+      } else if (h === 'boldline') {
+        ctx.fillStyle = colorUnderline;
+        ctx.globalAlpha = 0.22;
+        ctx.fillRect(cx - 1, y + fh * 0.65, tw + 2, Math.round(fh * 0.45));
+        ctx.globalAlpha = 1;
+      } else {
+        const bgColors = { yellow: 'rgba(255,220,80,0.4)', green: 'rgba(150,220,140,0.4)', blue: 'rgba(130,190,240,0.4)' };
+        ctx.fillStyle = bgColors[h] || bgColors.yellow;
+        ctx.fillRect(cx - 2, y - fh * 0.05, tw + 4, fh * 1.1);
+      }
+    }
+
+    ctx.fillStyle = t.highlight ? colorHighlight : (t.bold ? colorBold : (t.italic ? lightenColor(colorBody) : colorBody));
+    ctx.fillText(t.text, cx, y);
+    cx += tw;
+  }
+  return y + baseFontSize * LH_BODY;
+}
+
+function lightenColor(hex) {
+  const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
+  const mix = (c) => Math.round(c + (180 - c) * 0.4).toString(16).padStart(2, '0');
+  return '#' + mix(r) + mix(g) + mix(b);
+}
+
+// Simple char-level wrap for cover text (no inline formatting)
+function wrapLines(ctx, text, maxWidth) {
+  const NO_LINE_START = /^[，。！？：；》】」』〉）\.,!\?:;\)]$/;
+  const lines = [];
+  let current = '';
+  for (const ch of text) {
+    const test = current + ch;
+    if (ctx.measureText(test).width > maxWidth && current.length > 0) {
+      if (NO_LINE_START.test(ch) && current.length >= 2) {
+        const last = current.slice(-1);
+        lines.push(current.slice(0, -1));
+        current = last + ch;
+      } else {
+        lines.push(current);
+        current = ch;
+      }
+    } else { current = test; }
+  }
+  if (current) lines.push(current);
+  return lines;
+}
+
+// ===== Drawing helpers =====
+function drawCover(ctx, tpl, meta) {
+  ctx.fillStyle = colorHeading;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+
+  let endY = COVER_TITLE_Y;
+
+  // Title — split by manual \n first, then auto-wrap each segment if too long
+  if (meta.title) {
+    ctx.font = `bold ${FS_TITLE}px CangerJinkai`;
+    const manualLines = meta.title.split('\n');
+    for (const seg of manualLines) {
+      if (!seg.trim()) { endY += FS_TITLE * 0.6; continue; }
+      const wrapped = wrapLines(ctx, seg.trim(), CANVAS_W - 160);
+      for (const line of wrapped) {
+        ctx.fillText(line, CANVAS_W / 2, endY);
+        endY += FS_TITLE * 1.3;
+      }
+    }
+  }
+
+  // Subtitle
+  if (meta.subtitle) {
+    endY += FS_TITLE * 0.3; // gap after title
+    ctx.font = `${FS_SUBTITLE}px CangerJinkai`;
+    ctx.fillStyle = colorSubtitle;
+    ctx.globalAlpha = 0.75;
+    const subLines = wrapLines(ctx, meta.subtitle, CANVAS_W - 200);
+    for (const line of subLines) {
+      ctx.fillText(line, CANVAS_W / 2, endY);
+      endY += FS_SUBTITLE * 1.4;
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Author / Typesetter (bottom center, fixed position)
+  ctx.textAlign = 'center';
+  ctx.font = `${FS_META}px CangerJinkai`;
+  ctx.fillStyle = colorBody;
+  ctx.globalAlpha = 0.7;
+  let my = COVER_META_Y;
+  if (meta.author) { ctx.fillText(`作者：${meta.author}`, CANVAS_W / 2, my); my += FS_META * 1.6; }
+  if (meta.typesetter) { ctx.fillText(`排版：${meta.typesetter}`, CANVAS_W / 2, my); }
+  ctx.globalAlpha = 1;
+}
+
+function drawInnerPage(ctx, tpl, heading, paragraphs) {
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+
+  // Heading
+  if (heading) {
+    ctx.font = `bold ${FS_HEADING}px CangerJinkai`;
+    ctx.fillStyle = colorHeading;
+    ctx.fillText(heading, INNER_MARGIN, INNER_HEADING_Y);
+  }
+
+  const lh = FS_BODY * LH_BODY;
+  let y = heading ? INNER_BODY_Y : INNER_HEADING_Y;
+
+  for (const para of paragraphs) {
+    if (para.type === 'image') {
+      const imgH = para._imgHeight || 400;
+      if (y + imgH > INNER_BODY_BOTTOM) return false;
+      if (para._img) {
+        const imgW = para._imgWidth || INNER_WIDTH;
+        const x = INNER_MARGIN + (INNER_WIDTH - imgW) / 2;
+        ctx.drawImage(para._img, x, y, imgW, imgH);
+      }
+      y += imgH + lh * 0.4;
+      continue;
+    }
+
+    if (para.type === 'caption') {
+      const captionFS = Math.round(FS_BODY * 0.78);
+      const captionLH = captionFS * 1.5;
+      const captionLines = layoutRichLines(ctx, para.tokens, INNER_WIDTH - 80, captionFS);
+      if (y + captionLH * captionLines.length > INNER_BODY_BOTTOM) return false;
+      const saveBody = colorBody, saveBold = colorBold, saveHL = colorHighlight;
+      colorBody = '#999999';
+      colorBold = '#777777';
+      colorHighlight = '#999999';
+      ctx.textAlign = 'center';
+      for (const cl of captionLines) {
+        drawRichLine(ctx, cl, CANVAS_W / 2, y, captionFS);
+        y += captionLH;
+      }
+      ctx.textAlign = 'left';
+      colorBody = saveBody; colorBold = saveBold; colorHighlight = saveHL;
+      y += lh * 0.15;
+      continue;
+    }
+
+    if (para.type === 'ref') {
+      const refFS = Math.round(FS_BODY * 0.78);
+      const refLH = refFS * 1.5;
+      const refLines = layoutRichLines(ctx, para.tokens, INNER_WIDTH, refFS);
+      if (y + refLH * refLines.length > INNER_BODY_BOTTOM) return false;
+      const saveBody = colorBody, saveBold = colorBold, saveHL = colorHighlight;
+      colorBody = '#999999';
+      colorBold = '#777777';
+      colorHighlight = '#999999';
+      for (const cl of refLines) {
+        drawRichLine(ctx, cl, INNER_MARGIN, y, refFS);
+        y += refLH;
+      }
+      colorBody = saveBody; colorBold = saveBold; colorHighlight = saveHL;
+      y += lh * 0.3;
+      continue;
+    }
+
+    if (para.type === 'list') {
+      const markerW = 48;
+      const listW = INNER_WIDTH - markerW;
+      const textX = INNER_MARGIN + markerW;
+      for (let idx = 0; idx < para.items.length; idx++) {
+        const item = para.items[idx];
+        const marker = para.listType === 'ol' ? (idx + 1) + '.' : '•';
+        const itemLines = layoutRichLines(ctx, item.tokens, listW);
+        if (itemLines.length === 0) continue;
+        if (y + lh * itemLines.length > INNER_BODY_BOTTOM) return false;
+
+        // Draw marker on first line
+        ctx.font = `${FS_BODY}px CangerJinkai`;
+        ctx.fillStyle = para.listType === 'ol' ? colorHeading : colorBody;
+        ctx.textBaseline = 'top';
+        ctx.fillText(marker, INNER_MARGIN + 8, y);
+
+        // Draw item text lines
+        for (let li = 0; li < itemLines.length; li++) {
+          drawRichLine(ctx, itemLines[li], textX, y, FS_BODY);
+          y += lh;
+        }
+        y += lh * 0.15;
+      }
+      y += lh * 0.25;
+      continue;
+    }
+
+    const isBQ = para.type === 'blockquote';
+    const textX = isBQ ? INNER_MARGIN + 36 : INNER_MARGIN;
+    const w = isBQ ? INNER_WIDTH - 36 : INNER_WIDTH;
+
+    const lines = layoutRichLines(ctx, para.tokens, w);
+    for (const lineTokens of lines) {
+      if (y + lh > INNER_BODY_BOTTOM) return false;
+
+      if (isBQ) {
+        ctx.fillStyle = colorUnderline;
+        ctx.globalAlpha = 0.3;
+        ctx.fillRect(INNER_MARGIN + 6, y - FS_BODY * 0.75, 4, lh);
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = colorBody;
+        ctx.globalAlpha = 0.75;
+      }
+
+      drawRichLine(ctx, lineTokens, textX, y, FS_BODY);
+      if (isBQ) ctx.globalAlpha = 1;
+      y += lh;
+    }
+    y += lh * 0.4;
+  }
+  return true;
+}
+
+// ===== Pagination =====
+function parseEditor(text) {
+  const lines = text.split('\n');
+  const meta = { title: '', subtitle: '', author: '', typesetter: '' };
+  let contentStart = -1;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line === '---') { contentStart = i + 1; break; }
+    if (line.startsWith('# ') && !meta.title) { meta.title = line.replace(/^#\s+/, ''); }
+    else if (line.startsWith('## ')) { meta.subtitle = line.replace(/^##\s+/, ''); }
+    else if (line.startsWith('作者：')) { meta.author = line.replace(/^作者：/, ''); }
+    else if (line.startsWith('排版：')) { meta.typesetter = line.replace(/^排版：/, ''); }
+    else if (meta.title && !meta.subtitle && line && !line.startsWith('#')) {
+      meta.title += '\n' + line;
+    } else if (meta.subtitle && !meta.author && line && !line.startsWith('#')) {
+      meta.subtitle += '\n' + line;
+    }
+  }
+
+  // Parse content sections
+  const sections = [];
+  let currentSection = { heading: null, paragraphs: [] };
+  let pendingBQLines = [];
+  let pendingRefLines = [];
+
+  function flushBQ() {
+    if (pendingBQLines.length > 0) {
+      const raw = pendingBQLines.join('\n');
+      currentSection.paragraphs.push({ type: 'blockquote', raw, tokens: tokenize(raw) });
+      pendingBQLines = [];
+    }
+  }
+
+  function flushRef() {
+    if (pendingRefLines.length > 0) {
+      const raw = pendingRefLines.join('\n');
+      currentSection.paragraphs.push({ type: 'ref', raw, tokens: tokenize(raw) });
+      pendingRefLines = [];
+    }
+  }
+
+  function pushPara(text) {
+    currentSection.paragraphs.push({ type: 'normal', raw: text, tokens: tokenize(text) });
+  }
+
+  let pendingList = null; // {type:'ul'|'ol', items:[{raw, tokens}]}
+
+  function flushList() {
+    if (pendingList && pendingList.items.length > 0) {
+      currentSection.paragraphs.push({ type: 'list', listType: pendingList.type, items: pendingList.items });
+      pendingList = null;
+    }
+  }
+
+  const contentLines = contentStart >= 0 ? lines.slice(contentStart) : [];
+  for (const line of contentLines) {
+    const trimmed = line.trim();
+    if (trimmed === '---') {
+      flushBQ(); flushList(); flushRef();
+      if (currentSection.heading !== null || currentSection.paragraphs.length > 0) {
+        sections.push(currentSection);
+      }
+      currentSection = { heading: null, paragraphs: [] };
+    } else if (/^###\s+(.+)/.test(trimmed)) {
+      flushBQ(); flushList(); flushRef();
+      if (currentSection.heading !== null || currentSection.paragraphs.length > 0) {
+        sections.push(currentSection);
+      }
+      currentSection = { heading: trimmed.replace(/^###\s+/, ''), paragraphs: [] };
+    } else if (/^!\[([^\]]*)\]\(([^)]+)\)\s*$/.test(trimmed)) {
+      flushBQ(); flushList(); flushRef();
+      const m = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)\s*$/);
+      currentSection.paragraphs.push({ type: 'image', src: m[2], alt: m[1] });
+    } else if (/^\^\^\s+(.*)/.test(trimmed)) {
+      flushBQ(); flushList(); flushRef();
+      const captionText = trimmed.replace(/^\^\^\s+/, '');
+      currentSection.paragraphs.push({ type: 'caption', raw: captionText, tokens: tokenize(captionText) });
+    } else if (/^>\s*(.*)/.test(trimmed)) {
+      flushList(); flushRef();
+      pendingBQLines.push(trimmed.replace(/^>\s*/, ''));
+    } else if (/^@@\s+(.*)/.test(trimmed)) {
+      flushBQ(); flushList();
+      pendingRefLines.push(trimmed.replace(/^@@\s+/, ''));
+    } else if (/^[-*+]\s+(.+)/.test(trimmed)) {
+      flushBQ(); flushRef();
+      if (!pendingList || pendingList.type !== 'ul') { flushList(); pendingList = { type: 'ul', items: [] }; }
+      const itemText = trimmed.replace(/^[-*+]\s+/, '');
+      pendingList.items.push({ raw: itemText, tokens: tokenize(itemText) });
+    } else if (/^\d+[.)]\s+(.+)/.test(trimmed)) {
+      flushBQ(); flushRef();
+      if (!pendingList || pendingList.type !== 'ol') { flushList(); pendingList = { type: 'ol', items: [] }; }
+      const itemText = trimmed.replace(/^\d+[.)]\s+/, '');
+      pendingList.items.push({ raw: itemText, tokens: tokenize(itemText) });
+    } else if (trimmed === '') {
+      flushBQ(); flushList(); flushRef();
+    } else {
+      flushBQ(); flushList(); flushRef();
+      pushPara(trimmed);
+    }
+  }
+  flushBQ(); flushList(); flushRef();
+  if (currentSection.heading !== null || currentSection.paragraphs.length > 0) {
+    sections.push(currentSection);
+  }
+
+  return { meta, sections };
+}
+
+async function buildPages() {
+  await loadFont();
+  const tpl = TEMPLATES[currentTemplate];
+  const { meta, sections } = parseEditor(document.getElementById('editor').value);
+
+  // Capture per-page overrides from current pages before resetting.
+  // Key by heading, or by section index for null-heading sections (e.g. --- page breaks).
+  const curPageObj = pages[currentPage];
+  const curHeading = curPageObj && curPageObj.heading;
+  const curSectionIndex = curPageObj && curPageObj.sectionIndex;
+  const curPageKey = curHeading || (curSectionIndex !== undefined ? '__s' + curSectionIndex + '__' : null);
+  const overrides = {};
+  for (const p of pages) {
+    if (p.type !== 'inner') continue;
+    const key = p.heading || (p.sectionIndex !== undefined ? '__s' + p.sectionIndex + '__' : null);
+    if (key && (p.fsBody !== undefined || p.lhBody !== undefined)) {
+      overrides[key] = overrides[key] || {};
+      if (p.fsBody !== undefined) overrides[key].fsBody = p.fsBody;
+      if (p.lhBody !== undefined) overrides[key].lhBody = p.lhBody;
+    }
+  }
+
+  pages = [];
+
+  // Load cover image
+  const coverImg = await loadImage('/images/xhs/' + tpl.cover);
+  // Load inner image
+  const innerImg = await loadImage('/images/xhs/' + tpl.inner);
+  cachedCoverImg = coverImg;
+  cachedInnerImg = innerImg;
+
+  // === Cover page ===
+  const coverCanvas = document.createElement('canvas');
+  coverCanvas.width = CANVAS_W;
+  coverCanvas.height = CANVAS_H;
+  const coverCtx = coverCanvas.getContext('2d');
+  coverCtx.drawImage(coverImg, 0, 0, CANVAS_W, CANVAS_H);
+  drawCover(coverCtx, tpl, meta);
+  pages.push({ type: 'cover', canvas: coverCanvas });
+
+  // === Inner pages ===
+  const measureCanvas = document.createElement('canvas');
+  measureCanvas.width = CANVAS_W;
+  measureCanvas.height = CANVAS_H;
+  const mCtx = measureCanvas.getContext('2d');
+
+  // Preload all content images
+  const MAX_IMG_HEIGHT = 600;
+  for (const section of sections) {
+    for (const para of section.paragraphs) {
+      if (para.type === 'image') {
+        try {
+          const src = resolveImageSrc(para.src);
+          if (!src) throw new Error('Unresolved paste URL');
+          const img = await loadImage(src);
+          para._img = img;
+          const scale = Math.min(1, INNER_WIDTH / img.naturalWidth);
+          para._imgWidth = Math.round(img.naturalWidth * scale);
+          para._imgHeight = Math.min(MAX_IMG_HEIGHT, Math.round(img.naturalHeight * scale));
+        } catch(e) {
+          para._img = null;
+          para._imgHeight = 200;
+          para._imgWidth = INNER_WIDTH;
+        }
+      }
+    }
+  }
+
+  // Measurement helpers that use current section's fs/lh (closures over secFS, secLh)
+  let secFS = FS_BODY;
+  let secLh = FS_BODY * LH_BODY;
+  function measParaH(para) {
+    if (para.type === 'image') return para._imgHeight || 200;
+    if (para.type === 'caption') {
+      const capFS = Math.round(secFS * 0.78);
+      return measureRichHeight(mCtx, para.tokens, INNER_WIDTH - 80, capFS * 1.5, capFS);
+    }
+    if (para.type === 'ref') {
+      const refFS = Math.round(secFS * 0.78);
+      return measureRichHeight(mCtx, para.tokens, INNER_WIDTH, refFS * 1.5, refFS);
+    }
+    if (para.type === 'list') {
+      const listW = INNER_WIDTH - 60;
+      let h = 0;
+      for (const item of para.items) {
+        h += measureRichHeight(mCtx, item.tokens, listW, secLh, secFS);
+      }
+      h += (para.items.length - 1) * secLh * 0.15;
+      return h;
+    }
+    const w = para.type === 'blockquote' ? INNER_WIDTH - 36 : INNER_WIDTH;
+    return measureRichHeight(mCtx, para.tokens, w, secLh, secFS);
+  }
+
+  const defaultLh = FS_BODY * LH_BODY;
+  const maxH = INNER_BODY_BOTTOM - INNER_BODY_Y;
+
+  for (let si = 0; si < sections.length; si++) {
+    const section = sections[si];
+    // Apply per-section font overrides for measurement (so content reflows)
+    const sectionKey = section.heading || '__s' + si + '__';
+    const ov = overrides[sectionKey];
+    secFS = (ov && ov.fsBody !== undefined) ? ov.fsBody : FS_BODY;
+    const secLH = (ov && ov.lhBody !== undefined) ? ov.lhBody : LH_BODY;
+    secLh = secFS * secLH;
+
+    // Section-specific body Y and max height (accounts for override font size)
+    const secBodyY = INNER_HEADING_Y + FS_HEADING * 1.5 + secFS * 0.8;
+    const secMaxH = INNER_BODY_BOTTOM - secBodyY;
+
+    let remainingParas = [...section.paragraphs];
+    let firstPageOfSection = true;
+
+    while (remainingParas.length > 0) {
+      const innerCanvas = document.createElement('canvas');
+      innerCanvas.width = CANVAS_W;
+      innerCanvas.height = CANVAS_H;
+      const innerCtx = innerCanvas.getContext('2d');
+      innerCtx.drawImage(innerImg, 0, 0, CANVAS_W, CANVAS_H);
+
+      const heading = firstPageOfSection ? section.heading : null;
+      let availableH = heading ? secMaxH : INNER_BODY_BOTTOM - INNER_HEADING_Y;
+
+      const fittedParas = [];
+      const overflowParas = [];
+      let usedH = 0;
+      let canFit = true;
+
+      for (let i = 0; i < remainingParas.length; i++) {
+        const para = remainingParas[i];
+        const paraH = measParaH(para);
+        const paraSpace = paraH + (i < remainingParas.length - 1 || fittedParas.length > 0 ? secLh * 0.4 : 0);
+
+        if (usedH + paraSpace <= availableH) {
+          fittedParas.push(para);
+          usedH += paraSpace;
+        } else if (para.type === 'caption' && fittedParas.length > 0 && fittedParas[fittedParas.length - 1].type === 'image') {
+          // Caption must stay with its image — rewind image to next page
+          const lastImg = fittedParas.pop();
+          const imgH = measParaH(lastImg);
+          usedH -= imgH + secLh * 0.4;
+          overflowParas.push(lastImg, para);
+          overflowParas.push(...remainingParas.slice(i + 1));
+          canFit = false;
+          break;
+        } else {
+          if (i === 0 && usedH === 0 && para.type === 'image') {
+            // Image doesn't fit even on empty page — force it in anyway
+            fittedParas.push(para);
+            overflowParas.push(...remainingParas.slice(i + 1));
+          } else if (i === 0 && usedH === 0 && para.type === 'list') {
+            // Split list at item boundary
+            const listW = INNER_WIDTH - 60;
+            let partialItems = [], partialH = 0, splitL = 0;
+            for (let s = 0; s < para.items.length; s++) {
+              const itemH = measureRichHeight(mCtx, para.items[s].tokens, listW, secLh, secFS) + secLh * 0.15;
+              if (partialH + itemH <= availableH) {
+                partialItems.push(para.items[s]); partialH += itemH; splitL = s + 1;
+              } else if (splitL > 0) { break; }
+              else { partialItems.push(para.items[s]); splitL = s + 1; break; }
+            }
+            fittedParas.push({ type: 'list', listType: para.listType, items: partialItems });
+            const rem = para.items.slice(splitL);
+            if (rem.length > 0) overflowParas.push({ type: 'list', listType: para.listType, items: rem });
+            overflowParas.push(...remainingParas.slice(i + 1));
+          } else if (i === 0 && usedH === 0) {
+            // Split text paragraph at sentence boundaries
+            const sentences = para.raw.split(/(?<=[。！？])/);
+            let partialRaw = '';
+            let partialH = 0;
+            let splitIdx = 0;
+            const w = para.type === 'blockquote' ? INNER_WIDTH - 36 : INNER_WIDTH;
+            for (let s = 0; s < sentences.length; s++) {
+              const testRaw = partialRaw + sentences[s];
+              const testTokens = tokenize(testRaw);
+              const sh = measureRichHeight(mCtx, testTokens, w, secLh, secFS);
+              if (partialH + sh <= availableH) {
+                partialRaw = testRaw;
+                partialH = sh;
+                splitIdx = s + 1;
+              } else if (splitIdx > 0) {
+                break;
+              } else {
+                partialRaw = testRaw;
+                splitIdx = s + 1;
+                break;
+              }
+            }
+            fittedParas.push({ type: para.type, raw: partialRaw, tokens: tokenize(partialRaw) });
+            const remainder = sentences.slice(splitIdx).join('');
+            if (remainder.trim()) {
+              overflowParas.push({ type: para.type, raw: remainder, tokens: tokenize(remainder) });
+            }
+            overflowParas.push(...remainingParas.slice(i + 1));
+          } else if (fittedParas.length === 0 && i > 0) {
+            overflowParas.push(...remainingParas.slice(i));
+          } else {
+            overflowParas.push(...remainingParas.slice(i));
+          }
+          canFit = false;
+          break;
+        }
+      }
+
+      if (canFit) { remainingParas = []; }
+      else { remainingParas = overflowParas; }
+
+      // Temporarily apply section override so rendering matches measurement
+      const origFS = FS_BODY, origLH = LH_BODY, origBodyY = INNER_BODY_Y;
+      if (ov && ov.fsBody !== undefined) FS_BODY = ov.fsBody;
+      if (ov && ov.lhBody !== undefined) LH_BODY = ov.lhBody;
+      if (heading) INNER_BODY_Y = secBodyY;
+      else INNER_BODY_Y = INNER_HEADING_Y;
+      drawInnerPage(innerCtx, tpl, heading, fittedParas);
+      FS_BODY = origFS; LH_BODY = origLH; INNER_BODY_Y = origBodyY;
+
+      pages.push({ type: 'inner', canvas: innerCanvas, heading, paragraphs: fittedParas, sectionIndex: si });
+      firstPageOfSection = false;
+    }
+  }
+
+  // If no inner pages and no sections, still show one blank inner page as preview
+  if (pages.length === 1 && sections.length === 0) {
+    const innerCanvas = document.createElement('canvas');
+    innerCanvas.width = CANVAS_W;
+    innerCanvas.height = CANVAS_H;
+    const innerCtx = innerCanvas.getContext('2d');
+    innerCtx.drawImage(innerImg, 0, 0, CANVAS_W, CANVAS_H);
+    pages.push({ type: 'inner', canvas: innerCanvas, heading: null, paragraphs: [], sectionIndex: 0 });
+  }
+
+  // Restore per-page overrides on newly built pages (match by heading or section index)
+  for (const p of pages) {
+    if (p.type !== 'inner') continue;
+    const key = p.heading || (p.sectionIndex !== undefined ? '__s' + p.sectionIndex + '__' : null);
+    if (key && overrides[key]) {
+      const o = overrides[key];
+      if (o.fsBody !== undefined) p.fsBody = o.fsBody;
+      if (o.lhBody !== undefined) p.lhBody = o.lhBody;
+    }
+  }
+
+  // Restore current page position (heading/section may have shifted index after reflow)
+  if (curPageKey) {
+    for (let i = 0; i < pages.length; i++) {
+      const pk = pages[i].heading || (pages[i].sectionIndex !== undefined ? '__s' + pages[i].sectionIndex + '__' : null);
+      if (pk === curPageKey) { currentPage = i; break; }
+    }
+  }
+  if (currentPage >= pages.length) currentPage = Math.max(0, pages.length - 1);
+  buildPageMaps();
+  updatePreview();
+}
+
+function buildPageMaps() {
+  headingPageMap = {};
+  imagePageMap = {};
+  for (let i = 1; i < pages.length; i++) {
+    const page = pages[i];
+    if (page.heading) headingPageMap[page.heading] = i;
+    if (page.paragraphs) {
+      for (const p of page.paragraphs) {
+        if (p.type === 'image' && p.src) {
+          if (!imagePageMap[p.src]) imagePageMap[p.src] = i;
+        }
+      }
+    }
+  }
+}
+
+function syncEditorToPage() {
+  if (pages.length === 0) return;
+  const editor = document.getElementById('editor');
+  const pos = editor.selectionStart;
+  const text = editor.value;
+  const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+  const lineEnd = text.indexOf('\n', pos);
+  const line = text.substring(lineStart, lineEnd === -1 ? text.length : lineEnd).trim();
+
+  // Check heading
+  const hMatch = line.match(/^###\s+(.+)/);
+  if (hMatch && headingPageMap[hMatch[1]] !== undefined) {
+    const idx = headingPageMap[hMatch[1]];
+    if (idx !== currentPage) { currentPage = idx; updatePreview(true); }
+    return;
+  }
+  // Check image (match anywhere on the line)
+  const imgMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+  if (imgMatch && imagePageMap[imgMatch[2]] !== undefined) {
+    const idx = imagePageMap[imgMatch[2]];
+    if (idx !== currentPage) { currentPage = idx; updatePreview(true); }
+  }
+}
+
+const debouncedSyncEditor = debounce(syncEditorToPage, 250);
+
+function scrollEditorToLine(lineNumber) {
+  const editor = document.getElementById('editor');
+  const lineHeight = parseInt(getComputedStyle(editor).lineHeight) || Math.round(parseFloat(getComputedStyle(editor).fontSize) * 1.8);
+  const targetScroll = lineNumber * lineHeight - editor.clientHeight / 3;
+  editor.scrollTop = Math.max(0, targetScroll);
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+// ===== Preview =====
+function refreshPreviewCanvas() {
+  // Update only the canvas + page info — does NOT touch slider values or editor scroll.
+  // Safe to call during slider drag without cancelling the drag interaction.
+  const canvas = document.getElementById('previewCanvas');
+  const info = document.getElementById('pageInfo');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+
+  if (pages.length === 0) {
+    canvas.style.display = 'none';
+    info.textContent = '—';
+    btnPrev.disabled = true; btnNext.disabled = true;
+    return;
+  }
+
+  canvas.style.display = '';
+  const page = pages[currentPage];
+  const srcCanvas = page.canvas;
+
+  const maxPreviewH = 500;
+  const scale = Math.min(1, maxPreviewH / CANVAS_H);
+  canvas.width = CANVAS_W * scale;
+  canvas.height = CANVAS_H * scale;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(srcCanvas, 0, 0, canvas.width, canvas.height);
+
+  const typeLabel = page.type === 'cover' ? '封面' : (page.heading ? `内页 · ${page.heading.slice(0, 12)}` : '内页(续)');
+  info.textContent = `${currentPage + 1} / ${pages.length}  ${typeLabel}`;
+  btnPrev.disabled = currentPage === 0;
+  btnNext.disabled = currentPage >= pages.length - 1;
+  const btnDl = document.getElementById('btnDownloadPage');
+  if (btnDl) btnDl.disabled = pages.length === 0;
+}
+
+function updatePreview(skipEditorScroll) {
+  refreshPreviewCanvas();
+  if (pages.length === 0) return;
+
+  const page = pages[currentPage];
+
+  // Per-page font controls in sidebar
+  const hint = document.getElementById('pageAdjustCoverHint');
+  const controls = document.getElementById('pageAdjustControls');
+  const btnReset = document.getElementById('btnResetPage');
+  if (page.type === 'inner' && pages.length > 0) {
+    if (hint) hint.style.display = 'none';
+    if (controls) controls.style.display = '';
+    const fs = getPageFS();
+    const lh = getPageLH();
+    document.getElementById('valPageFS').textContent = fs;
+    document.getElementById('valPageLH').textContent = lh.toFixed(2);
+    suppressSliderEvents = true;
+    document.getElementById('pageFS').value = fs;
+    document.getElementById('pageLH').value = lh;
+    suppressSliderEvents = false;
+    if (btnReset) btnReset.style.display = hasPageOverrides() ? '' : 'none';
+    // Scroll editor to this page's heading or first image (only on manual nav)
+    if (!skipEditorScroll) {
+      const editor = document.getElementById('editor');
+      const lines = editor.value.split('\n');
+      if (page.heading) {
+        for (let i = 0; i < lines.length; i++) {
+          if (lines[i].trim() === '### ' + page.heading) {
+            scrollEditorToLine(i); break;
+          }
+        }
+      } else if (page.paragraphs && page.paragraphs.length > 0) {
+        const firstImg = page.paragraphs.find(p => p.type === 'image' && p.src);
+        if (firstImg) {
+          for (let i = 0; i < lines.length; i++) {
+            if (lines[i].includes(firstImg.src)) {
+              scrollEditorToLine(i); break;
+            }
+          }
+        }
+      }
+    }
+  } else {
+    if (hint) hint.style.display = '';
+    if (controls) controls.style.display = 'none';
+    if (btnReset) btnReset.style.display = 'none';
+  }
+}
+
+function prevPage() { if (currentPage > 0) { currentPage--; updatePreview(); } }
+function nextPage() { if (currentPage < pages.length - 1) { currentPage++; updatePreview(); } }
+
+// ===== Per-page font overrides =====
+function renderPage(i) {
+  const page = pages[i];
+  if (!page) return;
+
+  if (page.type === 'cover') {
+    const canvas = document.createElement('canvas');
+    canvas.width = CANVAS_W; canvas.height = CANVAS_H;
+    const ctx = canvas.getContext('2d');
+    if (cachedCoverImg) ctx.drawImage(cachedCoverImg, 0, 0, CANVAS_W, CANVAS_H);
+    const { meta } = parseEditor(document.getElementById('editor').value);
+    drawCover(ctx, TEMPLATES[currentTemplate], meta);
+    page.canvas = canvas;
+    return;
+  }
+
+  const origFS = FS_BODY, origLH = LH_BODY, origFH = FS_HEADING, origBodyY = INNER_BODY_Y;
+  if (page.fsBody !== undefined) FS_BODY = page.fsBody;
+  if (page.lhBody !== undefined) LH_BODY = page.lhBody;
+  if (page.fsHeading !== undefined) FS_HEADING = page.fsHeading;
+  INNER_BODY_Y = page.heading ? INNER_HEADING_Y + FS_HEADING * 1.5 + FS_BODY * 0.8 : INNER_HEADING_Y;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = CANVAS_W; canvas.height = CANVAS_H;
+  const ctx = canvas.getContext('2d');
+  if (cachedInnerImg) ctx.drawImage(cachedInnerImg, 0, 0, CANVAS_W, CANVAS_H);
+  drawInnerPage(ctx, TEMPLATES[currentTemplate], page.heading, page.paragraphs);
+  page.canvas = canvas;
+
+  FS_BODY = origFS; LH_BODY = origLH; FS_HEADING = origFH; INNER_BODY_Y = origBodyY;
+}
+
+function getPageFS() {
+  const p = pages[currentPage];
+  return (p && p.fsBody !== undefined) ? p.fsBody : FS_BODY;
+}
+function getPageLH() {
+  const p = pages[currentPage];
+  return (p && p.lhBody !== undefined) ? p.lhBody : LH_BODY;
+}
+function hasPageOverrides() {
+  const p = pages[currentPage];
+  return p && (p.fsBody !== undefined || p.lhBody !== undefined || p.fsHeading !== undefined);
+}
+
+let suppressSliderEvents = false;
+
+function onPageFSSlider() {
+  if (suppressSliderEvents) return;
+  if (pages.length === 0 || pages[currentPage].type === 'cover') return;
+  const page = pages[currentPage];
+  const val = parseInt(document.getElementById('pageFS').value);
+  document.getElementById('valPageFS').textContent = val;
+  if (val === FS_BODY) { delete page.fsBody; }
+  else { page.fsBody = val; }
+  renderPage(currentPage);
+  refreshPreviewCanvas();
+  rebuildForSlider();
+}
+
+function onPageLHSlider() {
+  if (suppressSliderEvents) return;
+  if (pages.length === 0 || pages[currentPage].type === 'cover') return;
+  const page = pages[currentPage];
+  const val = parseFloat(document.getElementById('pageLH').value);
+  document.getElementById('valPageLH').textContent = val.toFixed(2);
+  if (Math.abs(val - LH_BODY) < 0.005) { delete page.lhBody; }
+  else { page.lhBody = val; }
+  renderPage(currentPage);
+  refreshPreviewCanvas();
+  rebuildForSlider();
+}
+
+function resetPageSettings() {
+  if (pages.length === 0) return;
+  const page = pages[currentPage];
+  delete page.fsBody;
+  delete page.lhBody;
+  delete page.fsHeading;
+  document.getElementById('pageFS').value = FS_BODY;
+  document.getElementById('pageLH').value = LH_BODY;
+  renderPage(currentPage);
+  refreshPreviewCanvas();
+  rebuildForSlider();
+}
+
+async function downloadCurrent() {
+  if (pages.length === 0) return;
+  const page = pages[currentPage];
+  const blob = await canvasToBlob(page.canvas);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const typeName = page.type === 'cover' ? '封面' : (page.heading ? page.heading.slice(0, 12) : '内页');
+  a.download = `小红书排版_${typeName}_${currentPage + 1}.png`;
+  a.href = url; a.click();
+  URL.revokeObjectURL(url);
+  showToast(`已下载第 ${currentPage + 1} 页`, 'success');
+}
+
+// ===== Export =====
+async function exportAll() {
+  if (pages.length === 0) { showToast('请先输入内容', ''); return; }
+  const btn = document.getElementById('btnExport');
+  const origText = btn.textContent;
+  btn.textContent = '导出中...';
+  btn.disabled = true;
+  showToast('正在生成图片...', '');
+
+  try {
+    if (typeof JSZip === 'undefined') {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
+        s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
+    const zip = new JSZip();
+    const tplName = currentTemplate;
+    for (let i = 0; i < pages.length; i++) {
+      const blob = await canvasToBlob(pages[i].canvas);
+      const typeName = pages[i].type === 'cover' ? '封面' : `内页${i}`;
+      const filename = `小红书_${TEMPLATES[tplName].name}_${String(i + 1).padStart(2, '0')}_${typeName}.png`;
+      zip.file(filename, blob);
+    }
+
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `小红书排版_${TEMPLATES[tplName].name}_${new Date().toISOString().slice(0, 10)}.zip`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast(`已导出 ${pages.length} 张图片`, 'success');
+  } catch (err) {
+    console.error('Export error:', err);
+    showToast('导出失败：' + (err.message || '未知错误'), '');
+  } finally {
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
+}
+
+function canvasToBlob(canvas) {
+  return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+}
+
+// ===== Debounced rebuild =====
+function debounce(fn, delay) {
+  let timer;
+  return function(...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), delay); };
+}
+
+const rebuildPages = debounce(async () => {
+  try { await buildPages(); } catch(e) { console.error('Build error:', e); }
+}, 400);
+
+const rebuildForSlider = debounce(async () => {
+  try { await buildPages(); } catch(e) { console.error('Slider rebuild error:', e); }
+}, 200);
+
+// ===== Event handlers =====
+document.getElementById('editor').addEventListener('input', rebuildPages);
+document.getElementById('editor').addEventListener('keyup', debouncedSyncEditor);
+document.getElementById('editor').addEventListener('mouseup', () => { syncEditorToPage(); });
+document.getElementById('templateSelect').addEventListener('change', function() {
+  currentTemplate = this.value;
+  currentPage = 0;
+  rebuildPages();
+});
+const COLOR_IDS = ['colorHeading','colorSubtitle','colorBody','colorBold','colorHighlight','colorUnderline'];
+const COLOR_DOT_MAP = { colorHeading:'dotHeading', colorSubtitle:'dotSubtitle', colorBody:'dotBody', colorBold:'dotBold', colorHighlight:'dotHighlight', colorUnderline:'dotUnderline' };
+COLOR_IDS.forEach(id => {
+  document.getElementById(id).addEventListener('input', function() {
+    const dot = document.getElementById(COLOR_DOT_MAP[id]);
+    if (dot) dot.style.background = this.value;
+    applyColors();
+    saveCustomSettings();
+    rebuildPages();
+  });
+});
+
+// ===== Toast =====
+function showToast(msg, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg; toast.className = 'toast ' + (type||'') + ' show';
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function resetAll() {
+  if (confirm('确定要清空所有内容吗？')) {
+    document.getElementById('editor').value = '';
+    pages = []; currentPage = 0;
+    updatePreview();
+    showToast('已清空', '');
+  }
+}
+
+// ===== Editor toolbar =====
+function applyFormat(type) {
+  const editor = document.getElementById('editor');
+  const inlineMap = {
+    bold: ['**', '**', '加粗文字'], italic: ['*', '*', '斜体文字'],
+    highlight: ['[高亮]', '[/高亮]', '重点文字']
+  };
+  const linePrefixes = { h3: '### ', quote: '> ' };
+
+  if (type === 'hilightLine') {
+    const text = editor.value;
+    const pos = editor.selectionStart;
+    const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    const lineEnd = text.indexOf('\n', pos);
+    const end = lineEnd === -1 ? text.length : lineEnd;
+    const currentLine = text.substring(lineStart, end);
+    if (/^!!!\s/.test(currentLine)) {
+      editor.value = text.substring(0, lineStart) + currentLine.replace(/^!!!\s/, '') + text.substring(end);
+      editor.setSelectionRange(pos, Math.max(lineStart, pos - 4));
+    } else {
+      editor.value = text.substring(0, lineStart) + '!!! ' + currentLine + text.substring(end);
+      editor.setSelectionRange(pos + 4, pos + 4);
+    }
+  } else if (type === 'imageCaption') {
+    const text = editor.value;
+    const pos = editor.selectionStart;
+    const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    const lineEnd = text.indexOf('\n', pos);
+    const end = lineEnd === -1 ? text.length : lineEnd;
+    const currentLine = text.substring(lineStart, end);
+    if (/^\^\^\s/.test(currentLine)) {
+      editor.value = text.substring(0, lineStart) + currentLine.replace(/^\^\^\s+/, '') + text.substring(end);
+      editor.setSelectionRange(pos, Math.max(lineStart, pos - 3));
+    } else {
+      editor.value = text.substring(0, lineStart) + '^^ ' + currentLine + text.substring(end);
+      editor.setSelectionRange(pos + 3, pos + 3);
+    }
+  } else if (type === 'ref') {
+    const text = editor.value;
+    const start = editor.selectionStart, end = editor.selectionEnd;
+    const lineStart = text.lastIndexOf('\n', start - 1) + 1;
+    const lineEnd2 = text.indexOf('\n', end);
+    const selEnd = lineEnd2 === -1 ? text.length : lineEnd2;
+    const sel = text.substring(lineStart, selEnd);
+    const lines = sel.split('\n');
+    const refRe = /^@@\s+/;
+    const allRef = lines.every(l => refRe.test(l));
+    const newLines = allRef
+      ? lines.map(l => l.replace(refRe, ''))
+      : lines.map(l => '@@ ' + l);
+    editor.value = text.substring(0, lineStart) + newLines.join('\n') + text.substring(selEnd);
+    editor.focus();
+  } else if (inlineMap[type]) {
+    const [before, after, placeholder] = inlineMap[type];
+    const start = editor.selectionStart, end = editor.selectionEnd;
+    const selected = editor.value.substring(start, end);
+    const insertion = selected ? before + selected + after : before + placeholder + after;
+    editor.value = editor.value.substring(0, start) + insertion + editor.value.substring(end);
+    editor.focus();
+    if (!selected) editor.setSelectionRange(start + before.length, start + before.length + placeholder.length);
+    else editor.setSelectionRange(start, start + insertion.length);
+  } else if (type === 'divider') {
+    const start = editor.selectionStart;
+    const ins = '\n---\n';
+    editor.value = editor.value.substring(0, start) + ins + editor.value.substring(editor.selectionEnd);
+    editor.focus(); editor.setSelectionRange(start + ins.length, start + ins.length);
+  } else if (type === 'image') {
+    const url = prompt('请输入图片 URL（或粘贴图片后手动替换）：');
+    if (!url) return;
+    const ins = `![image](${url})`;
+    const start = editor.selectionStart;
+    editor.value = editor.value.substring(0, start) + '\n' + ins + '\n' + editor.value.substring(editor.selectionEnd);
+    editor.focus(); editor.setSelectionRange(start + ins.length + 2, start + ins.length + 2);
+  } else if (type === 'ul' || type === 'ol') {
+    const text = editor.value;
+    const start = editor.selectionStart, end = editor.selectionEnd;
+    const lineStart = text.lastIndexOf('\n', start - 1) + 1;
+    const lineEnd2 = text.indexOf('\n', end);
+    const selEnd = lineEnd2 === -1 ? text.length : lineEnd2;
+    const sel = text.substring(lineStart, selEnd);
+    const lines = sel.split('\n');
+    const pref = type === 'ul' ? '- ' : '1. ';
+    const ulRe = /^[-*+]\s+/;
+    const olRe = /^\d+[.)]\s+/;
+    const isList = lines.every(l => type === 'ul' ? ulRe.test(l) : olRe.test(l));
+    const newLines = isList
+      ? lines.map(l => l.replace(type === 'ul' ? ulRe : olRe, ''))
+      : lines.map((l, i) => (type === 'ul' ? pref : (i + 1) + '. ') + l);
+    editor.value = text.substring(0, lineStart) + newLines.join('\n') + text.substring(selEnd);
+    editor.focus();
+  } else if (linePrefixes[type]) {
+    const prefix = linePrefixes[type];
+    const text = editor.value;
+    const pos = editor.selectionStart;
+    const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    const lineEnd = text.indexOf('\n', pos);
+    const end = lineEnd === -1 ? text.length : lineEnd;
+    const currentLine = text.substring(lineStart, end);
+    if (currentLine.startsWith(prefix)) {
+      editor.value = text.substring(0, lineStart) + currentLine.substring(prefix.length) + text.substring(end);
+      editor.setSelectionRange(pos, Math.max(lineStart, pos - prefix.length));
+    } else {
+      editor.value = text.substring(0, lineStart) + prefix + currentLine + text.substring(end);
+      editor.setSelectionRange(pos + prefix.length, pos + prefix.length);
+    }
+  }
+}
+
+// ===== Custom panel =====
+function toggleCustomPanel() {
+  document.getElementById('customPanel').classList.toggle('closed');
+}
+
+const SLIDER_IDS = ['titleSize','subtitleSize','metaSize','headingSize','bodySize','lineHeight'];
+const SLIDER_DEFAULTS = { titleSize:96, subtitleSize:48, metaSize:36, headingSize:60, bodySize:42, lineHeight:1.85 };
+
+function loadCustomSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('xhsTypesetCustom') || '{}');
+    for (const id of SLIDER_IDS) {
+      const val = saved[id] !== undefined ? saved[id] : SLIDER_DEFAULTS[id];
+      document.getElementById(id).value = val;
+      document.getElementById('val' + id.charAt(0).toUpperCase() + id.slice(1)).textContent = val;
+    }
+    if (saved.highlightStyle) {
+      highlightStyle = saved.highlightStyle;
+      document.getElementById('highlightStyle').value = highlightStyle;
+    }
+    if (saved.colorHeading) document.getElementById('colorHeading').value = saved.colorHeading;
+    if (saved.colorSubtitle) document.getElementById('colorSubtitle').value = saved.colorSubtitle;
+    if (saved.colorBody) document.getElementById('colorBody').value = saved.colorBody;
+    if (saved.colorBold) document.getElementById('colorBold').value = saved.colorBold;
+    if (saved.colorHighlight) document.getElementById('colorHighlight').value = saved.colorHighlight;
+    if (saved.colorUnderline) document.getElementById('colorUnderline').value = saved.colorUnderline;
+    applySliders();
+    applyColors();
+    // Update dot backgrounds
+    for (const [colorId, dotId] of Object.entries(COLOR_DOT_MAP)) {
+      const dot = document.getElementById(dotId);
+      if (dot) dot.style.background = document.getElementById(colorId).value;
+    }
+  } catch(e) {}
+}
+
+function saveCustomSettings() {
+  const obj = {};
+  for (const id of SLIDER_IDS) {
+    obj[id] = parseFloat(document.getElementById(id).value);
+  }
+  obj.highlightStyle = highlightStyle;
+  obj.colorHeading = document.getElementById('colorHeading').value;
+  obj.colorSubtitle = document.getElementById('colorSubtitle').value;
+  obj.colorBody = document.getElementById('colorBody').value;
+  obj.colorBold = document.getElementById('colorBold').value;
+  obj.colorHighlight = document.getElementById('colorHighlight').value;
+  obj.colorUnderline = document.getElementById('colorUnderline').value;
+  localStorage.setItem('xhsTypesetCustom', JSON.stringify(obj));
+}
+
+function applySliders() {
+  FS_TITLE = parseInt(document.getElementById('titleSize').value);
+  FS_SUBTITLE = parseInt(document.getElementById('subtitleSize').value);
+  FS_META = parseInt(document.getElementById('metaSize').value);
+  FS_HEADING = parseInt(document.getElementById('headingSize').value);
+  FS_BODY = parseInt(document.getElementById('bodySize').value);
+  LH_BODY = parseFloat(document.getElementById('lineHeight').value);
+  highlightStyle = document.getElementById('highlightStyle').value;
+  // Recalc Y positions based on font sizes
+  COVER_TITLE_Y = 470 + FS_TITLE * 0.8;
+  INNER_HEADING_Y = Math.round(FS_HEADING * 2.6);
+  INNER_BODY_Y = INNER_HEADING_Y + FS_HEADING * 1.5 + FS_BODY * 0.8;
+}
+
+function applyColors() {
+  colorHeading = document.getElementById('colorHeading').value;
+  colorSubtitle = document.getElementById('colorSubtitle').value;
+  colorBody = document.getElementById('colorBody').value;
+  colorBold = document.getElementById('colorBold').value;
+  colorHighlight = document.getElementById('colorHighlight').value;
+  colorUnderline = document.getElementById('colorUnderline').value;
+}
+
+for (const id of SLIDER_IDS) {
+  document.getElementById(id).addEventListener('input', function() {
+    document.getElementById('val' + id.charAt(0).toUpperCase() + id.slice(1)).textContent = this.value;
+    applySliders();
+    saveCustomSettings();
+    rebuildPages();
+  });
+}
+document.getElementById('highlightStyle').addEventListener('change', function() {
+  highlightStyle = this.value;
+  saveCustomSettings();
+  rebuildPages();
+});
+document.getElementById('pageFS').addEventListener('input', onPageFSSlider);
+document.getElementById('pageLH').addEventListener('input', onPageLHSlider);
+
+// ===== AI / API =====
+const API_PROVIDERS = {
+  deepseek:  { endpoint:'https://api.deepseek.com/v1/chat/completions', model:'deepseek-chat', format:'openai' },
+  openai:    { endpoint:'https://api.openai.com/v1/chat/completions',  model:'gpt-4o', format:'openai' },
+  anthropic: { endpoint:'https://api.anthropic.com/v1/messages',       model:'claude-sonnet-4-20250514', format:'anthropic' },
+  zhipu:     { endpoint:'https://open.bigmodel.cn/api/paas/v4/chat/completions', model:'glm-4', format:'openai' },
+  qwen:      { endpoint:'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', model:'qwen-plus', format:'openai' },
+  moonshot:  { endpoint:'https://api.moonshot.cn/v1/chat/completions', model:'moonshot-v1-8k', format:'openai' }
+};
+
+function onProviderChange() {
+  const prov = document.getElementById('apiProvider').value;
+  if (API_PROVIDERS[prov]) {
+    document.getElementById('apiEndpoint').value = API_PROVIDERS[prov].endpoint;
+    document.getElementById('apiModel').value = API_PROVIDERS[prov].model;
+    document.getElementById('apiFormat').value = API_PROVIDERS[prov].format;
+  }
+}
+
+function toggleApiPanel() {
+  document.getElementById('apiPanel').classList.toggle('show');
+  document.getElementById('btnApiToggle').classList.toggle('active');
+}
+
+function saveApiSettings() {
+  const s = {
+    provider: document.getElementById('apiProvider').value,
+    key: document.getElementById('apiKey').value,
+    endpoint: document.getElementById('apiEndpoint').value,
+    model: document.getElementById('apiModel').value,
+    format: document.getElementById('apiFormat').value,
+    maxTokens: document.getElementById('apiMaxTokens').value
+  };
+  localStorage.setItem('xhsTypesetApi', JSON.stringify(s));
+  showToast('API 设置已保存', 'success');
+}
+
+function loadApiSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem('xhsTypesetApi') || '{}');
+    if (s.provider) document.getElementById('apiProvider').value = s.provider;
+    if (s.key) document.getElementById('apiKey').value = s.key;
+    if (s.endpoint) document.getElementById('apiEndpoint').value = s.endpoint;
+    if (s.model) document.getElementById('apiModel').value = s.model;
+    if (s.format) document.getElementById('apiFormat').value = s.format;
+    if (s.maxTokens) document.getElementById('apiMaxTokens').value = s.maxTokens;
+  } catch(e) {}
+}
+
+async function aiFormat() {
+  const s = JSON.parse(localStorage.getItem('xhsTypesetApi') || '{}');
+  if (!s.key) { showToast('请先设置 API Key', ''); return; }
+  const editor = document.getElementById('editor');
+  const text = editor.value.trim();
+  if (!text) { showToast('请先输入内容', ''); return; }
+  // 剥离图片引用，避免 AI 修改 paste ID
+  const imageMap = new Map();
+  const strippedText = text.replace(/!\[([^\]]*)\]\((paste:\d+)\)/g, (match) => {
+    const id = '[IMG_' + imageMap.size + ']';
+    imageMap.set(id, match);
+    return id;
+  });
+
+  const btn = document.getElementById('btnAiBottom');
+  const origText = btn ? btn.textContent : 'AI 排版中...';
+  if (btn) { btn.textContent = 'AI 排版中...'; btn.disabled = true; }
+
+  const systemPrompt = `你是一个专业的小红书图文排版助手。请将用户提供的文本格式化为以下 Markdown 结构：
+
+# 标题（提炼简洁有力的标题，30字以内；如需手动换行，将第二行内容单独成行放在标题下方）
+## 副标题（可选，补充说明；如需手动换行，将第二行内容单独成行放在副标题下方）
+作者：XXX（保留原文作者信息）
+排版：XXX（保留原文排版信息）
+---
+导语/引言内容...（如有，保留原文放在此处）
+### 第一个小标题
+段落内容...
+
+### 第二个小标题
+段落内容...
+
+可用格式标记：
+- **粗体** 标记重要概念和关键词
+- *斜体* 标记强调或书名
+- [高亮]文字[/高亮] 标记核心观点
+- > 引用 标记引文或金句
+- - 项目 无序列表（多项并列内容，如特点、步骤清单）
+- 1. 项目 有序列表（有先后顺序的内容，如排名、流程）
+- ^^ 图注文字 紧跟在图片下方，小号居中灰色，用于图片说明（如"上图展示了..."、"图为..."、数据来源等）
+- @@ 参考文献 标记参考文献条目，小号灰色左对齐，多个条目可连续使用
+
+规则：
+1. 保留所有原始内容（含导语、引言、前言等），不要删减或总结
+2. 自动将长段落合理拆分为多个段落（每段3-5句话为宜）
+3. 为内容生成合适的 ### 小标题，一般3-6个
+4. **必须**标注重点：核心概念、专业术语、人名、数据用 **粗体** 标记
+5. **必须**标注金句：每个 section 至少 1 句核心观点用 [高亮]...[/高亮] 标记
+6. 引用、名言、他人观点用 > 引用格式
+7. 适合用列表呈现的内容（并列要点、操作步骤、排名等）主动使用无序列表（- ）或有序列表（1. ）
+8. 不要修改原文意思
+9. [IMG_N] 是图片占位标记，必须原样保留不修改不删除
+10. 图片标记下方的说明文字加上 ^^  前缀变为图注：^^  图注文字（^^ 后有一个空格）
+11. 图注必须紧跟在对应的图片行下方，中间不要插入空行
+12. 文末的参考文献、注释、出处等条目，每行加 @@  前缀：@@  参考文献文字（@@ 后有一个空格）
+13. 只输出格式化后的 Markdown，不要输出任何解释说明`;
+
+  try {
+    let result;
+    if (s.format === 'anthropic') {
+      result = await callAnthropicAPI(s, systemPrompt, strippedText);
+    } else {
+      result = await callOpenAIAPI(s, systemPrompt, strippedText);
+    }
+    for (const [id, original] of imageMap) {
+      result = result.replace(id, original);
+    }
+    editor.value = result;
+    pages = []; currentPage = 0;
+    showToast('AI 排版完成', 'success');
+    try { await buildPages(); } catch(e) { console.error('Build error:', e); }
+  } catch(err) {
+    console.error('AI error:', err);
+    showToast('AI 排版失败：' + (err.message || '未知错误'), '');
+  } finally {
+    if (btn) { btn.textContent = origText; btn.disabled = false; }
+  }
+}
+
+async function callOpenAIAPI(s, systemPrompt, userText) {
+  const resp = await fetch(s.endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json', 'Authorization':'Bearer ' + s.key },
+    body: JSON.stringify({
+      model: s.model,
+      messages: [{role:'system',content:systemPrompt},{role:'user',content:userText}],
+      temperature: 0.3,
+      max_tokens: parseInt(s.maxTokens) || 16384
+    })
+  });
+  if (!resp.ok) {
+    if (resp.status === 401 || resp.status === 403) throw new Error('API Key 无效或无权限');
+    if (resp.status === 404) throw new Error('Endpoint 或 Model 未找到');
+    throw new Error('HTTP ' + resp.status);
+  }
+  const data = await resp.json();
+  return data.choices[0].message.content;
+}
+
+async function callAnthropicAPI(s, systemPrompt, userText) {
+  const resp = await fetch(s.endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json', 'x-api-key':s.key, 'anthropic-version':'2023-06-01' },
+    body: JSON.stringify({
+      model: s.model,
+      max_tokens: parseInt(s.maxTokens) || 16384,
+      system: systemPrompt,
+      messages: [{role:'user',content:userText}]
+    })
+  });
+  if (!resp.ok) {
+    if (resp.status === 401 || resp.status === 403) throw new Error('API Key 无效或无权限');
+    if (resp.status === 404) throw new Error('Endpoint 或 Model 未找到');
+    throw new Error('HTTP ' + resp.status);
+  }
+  const data = await resp.json();
+  return data.content[0].text;
+}
+
+// ===== Image paste =====
+const pastedImages = {};
+let pasteImageId = 0;
+
+document.getElementById('editor').addEventListener('paste', (e) => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      e.preventDefault();
+      const blob = item.getAsFile();
+      const id = 'paste:' + (++pasteImageId);
+      pastedImages[id] = URL.createObjectURL(blob);
+      const md = `![image](${id})`;
+      const editor = document.getElementById('editor');
+      const start = editor.selectionStart;
+      editor.value = editor.value.substring(0, start) + '\n' + md + '\n' + editor.value.substring(editor.selectionEnd);
+      editor.focus(); editor.setSelectionRange(start + md.length + 2, start + md.length + 2);
+      rebuildPages();
+      return;
+    }
+  }
+});
+
+function resolveImageSrc(src) {
+  if (src.startsWith('paste:')) return pastedImages[src] || null;
+  return src;
+}
+
+// ===== File upload =====
+function stripMarkdownMeta(raw) {
+  let text = raw;
+  if (/^---\s*[\r\n]/.test(text)) {
+    const end = text.indexOf('\n---', 4);
+    if (end !== -1) text = text.slice(end + 5).trimStart();
+  }
+  return text.trim();
+}
+
+async function extractDocx(arrayBuffer) {
+  if (!window.mammoth) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js';
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const result = await mammoth.convertToMarkdown({ arrayBuffer });
+  let text = result.value;
+  // Convert base64 images to blob URLs (direct decode, no fetch for large data URIs)
+  const dataUriRegex = /!\[([^\]]*)\]\((data:image\/[^)]+)\)/g;
+  text = text.replace(dataUriRegex, (match, alt, dataUri) => {
+    const id = 'paste:' + (++pasteImageId);
+    try {
+      const parts = dataUri.split(',');
+      const mime = (parts[0].match(/:(.*?);/) || ['', 'image/png'])[1];
+      const binary = atob(parts[1]);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      URL.revokeObjectURL(pastedImages[id]);
+      pastedImages[id] = URL.createObjectURL(blob);
+    } catch(e) { pastedImages[id] = dataUri; }
+    return '![' + alt + '](' + id + ')';
+  });
+  return text;
+}
+
+async function extractPdf(arrayBuffer) {
+  if (!window.pdfjsLib) {
+    const urls = ['https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js', 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js'];
+    let loaded = false;
+    for (const url of urls) {
+      try {
+        await new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = url; s.onload = resolve; s.onerror = reject; document.head.appendChild(s); });
+        loaded = true; break;
+      } catch (e) {}
+    }
+    if (!loaded) throw new Error('PDF.js 库加载失败');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = urls[0].replace('pdf.min.js', 'pdf.worker.min.js');
+  }
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const pages = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    pages.push(content.items.map(it => it.str).join(' '));
+  }
+  return pages.join('\n\n');
+}
+
+async function handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const btn = document.getElementById('btnUpload2');
+  const origText = btn ? btn.textContent : '...';
+  if (btn) { btn.textContent = '上传中...'; btn.disabled = true; }
+  showToast('正在解析文件...', '');
+  try {
+    const ext = file.name.split('.').pop().toLowerCase();
+    const arrayBuffer = await file.arrayBuffer();
+    let text = '';
+    if (ext === 'md') text = stripMarkdownMeta(new TextDecoder().decode(arrayBuffer));
+    else if (ext === 'docx') text = stripMarkdownMeta(await extractDocx(arrayBuffer));
+    else if (ext === 'pdf') text = await extractPdf(arrayBuffer);
+    else { showToast('不支持的文件格式：.' + ext, ''); return; }
+    document.getElementById('editor').value = text;
+    pages = []; currentPage = 0; // clear old overrides from previous content
+    await buildPages();
+    showToast('已导入：' + file.name, 'success');
+  } catch (err) {
+    console.error('Upload error:', err);
+    showToast('文件解析失败：' + (err.message || '请检查文件是否损坏'), '');
+  } finally {
+    if (btn) { btn.textContent = origText; btn.disabled = false; }
+    event.target.value = '';
+  }
+}
+
+// ===== Sample text =====
+const sampleText = `# 小红书排版工具
+使用说明
+
+## 脑脑空间 · 一键图文排版
+
+作者：XyZ
+排版：脑脑空间
+---
+### 工具简介
+
+本工具为**小红书图文自动排版**工具，基于 Canvas 渲染，使用仓耳今楷字体，输出 3：4 竖版 PNG 图片。支持**多页自动分页**、**多页打包下载**为 ZIP 压缩包。
+
+编辑区使用 Markdown 语法。修改内容后右侧实时预览，切换底图模板即可更改配色风格。
+
+### 底图模板
+
+工具内置 [高亮]6 套配色底图[/高亮]，每套含封面和内页各一张。通过顶部下拉菜单可切换模板，预览即时生效。
+
+- 专业访谈 —— 深色底图，适合严肃访谈内容
+- 科普 —— 浅色底图，适合知识科普类内容
+- 翻译 —— 柔和底图，适合译文发布
+- 生活访谈 —— 暖色底图，适合生活类访谈
+- 绿色 —— 自然底色，通用型内容
+- 待定 —— 简约灰调，灵活适配
+
+### 排版格式
+
+封面由 **# 标题**（支持手动换行）、**## 副标题**、**作者**和**排版人**组成，所有文字居中对齐。
+
+内页由 **### 小标题** 引领各章节。正文段落自动分页，[高亮]同段内容不会跨页[/高亮]。超长段落从句子结尾处断页，保持阅读连贯。
+
+正文支持以下格式标记：
+
+1. **粗体**：强调关键词和重要概念
+2. *斜体*：标记特殊文本或书名
+3. [高亮]高亮标记[/高亮]：突出核心观点，可选 5 种样式（黄/绿/蓝底纹、细/粗下划线）
+4. > 引用格式：左侧竖线装饰的引文区块
+5. - 无序列表：并列要点
+6. 1. 有序列表：步骤流程
+7. ^^ 图注格式：紧跟在图片下方，小号居中灰色文字，用于图片说明
+8. @@ 参考文献：小号灰色左对齐，用于文末参考文献条目
+
+![image](paste:0)
+^^ 上图展示了小红书排版工具的编辑界面，左侧为 Markdown 编辑区，右侧为实时预览区
+
+### 自定义与 AI
+
+右侧自定义面板可调节标题字号、正文字号、行距，以及高亮样式（底纹/下划线）。
+
+点击 AI 排版按钮，可由大语言模型自动识别内容结构，生成标题、拆分段落、标注重点。支持 DeepSeek、OpenAI、Anthropic、智谱、通义千问、Kimi 等 API。
+
+### 导出
+
+点击 [高亮]导出全部 PNG[/高亮] 按钮，将所有页面打包为 ZIP 文件下载，每张图片尺寸为 1242 × 1660 像素。
+
+支持上传 MD / DOCX / PDF 文件直接导入内容，也可在编辑区粘贴图片。
+
+### 参考文献
+
+@@ [1] Walker, N. (2014). Neurodiversity: Some Basic Terms & Definitions. Neurocosmopolitanism.
+@@ [2] Singer, J. (1999). Why can't you be normal for once in your life? In M. Corker & S. French (Eds.), Disability Discourse.
+@@ [3] 脑脑空间 NeuroBridge. (2025). 神经多样性运动中文译名小考. 微信公众号.`;
+
+document.getElementById('editor').value = sampleText;
+
+// ===== Init =====
+async function init() {
+  loadApiSettings();
+  loadCustomSettings();
+  applySliders();
+  await loadFont();
+  await buildPages();
+  updatePreview();
+}
+init();
+</script>
+
+</body>
+</html>

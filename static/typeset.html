@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<script>(function(){var t=localStorage.getItem("wxTypesetTheme");if(t==="light"){document.documentElement.setAttribute("data-theme","light");}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="脑脑空间微信公众号一键排版工具 — 支持 Markdown 语法，实时预览，一键复制到公众号编辑器 | 脑脑空间 NeuroBridge" />
+<title>公众号一键排版 · 脑脑风格 — 脑脑空间 NeuroBridge</title>
+<link rel="canonical" href="https://neurobridge.cn/typeset.html" />
+<meta property="og:title" content="公众号一键排版 · 脑脑风格 — 脑脑空间 NeuroBridge" />
+<meta property="og:description" content="脑脑空间微信公众号一键排版工具，支持 Markdown 语法实时预览，一键复制到公众号编辑器" />
+<meta property="og:image" content="https://neurobridge.cn/images/qrcode.png" />
+<meta property="og:url" content="https://neurobridge.cn/typeset.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="脑脑空间 NeuroBridge" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<style>
+/* ===== Tool Layout ===== */
+:root {
+  --tool-bg: #f5f5f5;
+  --tool-panel-bg: #fff;
+  --tool-border: #e0e0e0;
+  --tool-text: #333;
+  --tool-text-secondary: #888;
+  --tool-primary: #4a7db5;
+  --tool-primary-hover: #3a6da5;
+  --tool-radius: 8px;
+  --tool-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  padding: 0; margin: 0; min-height: 100vh; overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--tool-bg); color: var(--tool-text);
+}
+
+.tool-app {
+  display: flex; flex-direction: column;
+  height: 100vh; overflow: hidden;
+}
+
+/* Header */
+.tool-header {
+  background: #fff;
+  border-bottom: 1px solid var(--tool-border);
+  padding: 12px 24px;
+  display: flex; align-items: center; gap: 16px;
+  flex-shrink: 0; z-index: 10;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.tool-header h1 {
+  font-size: 18px; font-weight: 700; color: #1a1a1a;
+  white-space: nowrap; letter-spacing: 0.5px;
+}
+.tool-header h1 span { color: var(--tool-primary); }
+
+/* Edge toggle */
+.edge-toggle {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: #888; cursor: pointer; user-select: none;
+}
+.edge-toggle input { display: none; }
+.edge-toggle .switch {
+  width: 32px; height: 18px; border-radius: 9px;
+  background: #ddd; position: relative; transition: background 0.2s;
+}
+.edge-toggle .switch::after {
+  content: ''; position: absolute; width: 14px; height: 14px;
+  border-radius: 50%; background: #fff; top: 2px; left: 2px;
+  transition: left 0.2s;
+}
+.edge-toggle input:checked + .switch { background: var(--tool-primary); }
+.edge-toggle input:checked + .switch::after { left: 16px; }
+
+.btn-api-toggle {
+  padding: 6px 14px; border: 1px solid #ddd; border-radius: 16px;
+  cursor: pointer; font-size: 12px; color: #888; background: transparent;
+  transition: all 0.2s; margin-left: auto;
+}
+.btn-api-toggle:hover { border-color: #aaa; color: #555; }
+.btn-api-toggle.active { background: #f0f2f5; color: var(--tool-primary); border-color: var(--tool-primary); }
+
+/* API Panel */
+.api-panel {
+  display: none; background: #fafbfc;
+  border-bottom: 1px solid var(--tool-border);
+  padding: 8px 24px; flex-shrink: 0;
+}
+.api-panel.show { display: block; }
+.api-row {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+}
+.api-row input {
+  padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px;
+  font-size: 13px; outline: none; min-width: 140px; flex: 1;
+}
+.api-row input:focus { border-color: var(--tool-primary); }
+.api-row select {
+  padding: 6px 10px; border: 1px solid #ddd; border-radius: 4px;
+  font-size: 13px; outline: none; background: #fff; cursor: pointer;
+}
+.btn-api-save {
+  padding: 6px 14px; border: none; border-radius: 4px;
+  cursor: pointer; font-size: 13px; background: var(--tool-primary);
+  color: #fff; white-space: nowrap;
+}
+.btn-api-save:hover { background: var(--tool-primary-hover); }
+.api-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
+.api-hint code { background: #f0f0f0; padding: 1px 5px; border-radius: 2px; font-size: 11px; }
+
+/* Main Layout */
+.tool-main {
+  display: flex; flex: 1; gap: 2px;
+  overflow: hidden; background: var(--tool-border);
+}
+.tool-panel {
+  background: var(--tool-panel-bg);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.panel-editor { flex: 0 0 50%; }
+.panel-preview { flex: 1 1 0; }
+
+.panel-header {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--tool-border);
+  font-size: 13px; color: var(--tool-text-secondary);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0; background: #fafbfc;
+}
+.panel-header .label { font-weight: 600; color: #555; letter-spacing: 0.5px; }
+.panel-header .hint { font-size: 12px; color: #bbb; }
+
+/* Editor */
+.editor-wrap { flex: 1; position: relative; overflow: hidden; }
+#editor {
+  width: 100%; height: 100%; border: none; outline: none; resize: none;
+  padding: 20px 24px; font-size: 15px; line-height: 1.8;
+  font-family: "SF Mono", "Fira Code", "Consolas", "Microsoft YaHei", monospace;
+  color: #333; background: #fff;
+}
+#editor::placeholder {
+  color: #ccc;
+  font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex; gap: 4px; padding: 8px 16px;
+  border-top: 1px solid var(--tool-border);
+  flex-shrink: 0; background: #fafbfc;
+}
+.toolbar button {
+  padding: 5px 10px; border: 1px solid #ddd; border-radius: 4px;
+  background: #fff; cursor: pointer; font-size: 12px; color: #666;
+  transition: all 0.15s; white-space: nowrap;
+}
+.toolbar button:hover { border-color: var(--tool-primary); color: var(--tool-primary); background: #f5f9ff; }
+.toolbar .separator { width: 1px; background: #ddd; margin: 0 4px; }
+
+/* Preview */
+.preview-wrap { flex: 1; overflow-y: auto; overflow-x: hidden; }
+#preview {
+  max-width: 420px; margin: 0 auto; padding: 24px 20px 60px;
+  outline: none; min-height: 200px; background: #fff;
+  box-shadow: 0 0 0 1px #eee;
+}
+#preview:focus { box-shadow: inset 0 0 0 2px rgba(74,125,181,0.15); border-radius: 2px; }
+
+/* Bottom action bar */
+.tool-actions {
+  padding: 10px 24px; border-top: 1px solid var(--tool-border);
+  display: flex; gap: 10px; justify-content: center;
+  flex-shrink: 0; background: #fff;
+}
+.btn {
+  padding: 10px 28px; border: none; border-radius: 6px;
+  cursor: pointer; font-size: 14px; font-weight: 600;
+  transition: all 0.2s; letter-spacing: 0.5px;
+}
+.btn-primary { background: var(--tool-primary); color: #fff; }
+.btn-primary:hover { background: var(--tool-primary-hover); }
+.btn-secondary { background: #f0f2f5; color: #555; }
+.btn-secondary:hover { background: #e4e6e9; }
+.btn-success { background: #27ae60; color: #fff; }
+.btn-success:hover { background: #219a52; }
+.btn-warning { background: #f39c12; color: #fff; }
+.btn-warning:hover { background: #e08e0b; }
+.btn-ai {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+}
+.btn-ai:hover { opacity: 0.9; }
+.btn-ai:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Toast */
+.toast {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  background: #333; color: #fff; padding: 10px 24px; border-radius: 20px;
+  font-size: 14px; z-index: 1000; opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; pointer-events: auto; }
+.toast.success { background: #27ae60; }
+
+/* Mobile hint */
+.mobile-hint {
+  display: none; background: #fff3cd; color: #856404;
+  padding: 8px 16px; text-align: center; font-size: 12px; flex-shrink: 0;
+}
+
+/* ===== Custom Sidebar ===== */
+.custom-sidebar {
+  width: 32px; min-width: 32px; flex-shrink: 0;
+  border-left: 1px solid var(--tool-border);
+  display: flex; flex-direction: column;
+  transition: width 0.25s ease; overflow: hidden; cursor: pointer;
+  background: #fafbfc;
+}
+.custom-sidebar.open { width: 220px; cursor: default; }
+.custom-sidebar .custom-panel-header {
+  padding: 10px 8px; font-size: 12px; flex-shrink: 0; white-space: nowrap;
+  display: flex; align-items: center; justify-content: space-between;
+  user-select: none;
+}
+.custom-sidebar .custom-panel-header span:first-child {
+  writing-mode: vertical-rl; letter-spacing: 3px; color: #555; font-weight: 600;
+}
+.custom-sidebar.open .custom-panel-header span:first-child {
+  writing-mode: horizontal-tb; letter-spacing: 0;
+}
+.custom-sidebar .custom-panel-header .arrow { font-size: 10px; color: #999; transition: transform 0.2s; }
+.custom-sidebar.open .custom-panel-header .arrow { transform: rotate(180deg); }
+.custom-sidebar .custom-panel-header:hover { background: #f0f2f5; }
+.custom-sidebar-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; display: none; }
+.custom-sidebar.open .custom-sidebar-scroll { display: block; }
+.custom-sidebar .custom-panel-body {
+  max-height: none; padding: 4px 12px;
+  display: flex; flex-direction: column; gap: 5px 0;
+}
+.custom-section { display: flex; align-items: center; gap: 4px; flex: 0 0 auto; width: 100%; justify-content: space-between; }
+.custom-section.full-width { flex-direction: column; align-items: flex-start; }
+.custom-label { font-size: 11px; color: #888; white-space: nowrap; flex-shrink: 0; min-width: 26px; }
+.custom-select {
+  padding: 2px 4px; border: 1px solid #ddd; border-radius: 3px;
+  font-size: 11px; color: #555; background: #fff;
+  cursor: pointer; outline: none; max-width: 130px;
+}
+.custom-select:focus { border-color: var(--tool-primary); }
+
+.palette-row { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.palette-dot {
+  width: 20px; height: 20px; border-radius: 50%; cursor: pointer;
+  border: 2px solid transparent; transition: all 0.15s; position: relative;
+}
+.palette-dot:hover { transform: scale(1.15); }
+.palette-dot.active { border-color: #333; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #333; }
+
+.color-input-row { display: flex; gap: 3px; align-items: center; flex-wrap: wrap; margin-left: 0; }
+.color-input-dot {
+  width: 18px; height: 18px; border-radius: 50%; cursor: pointer;
+  border: 1px solid #ddd; position: relative; overflow: hidden;
+  transition: transform 0.15s;
+}
+.color-input-dot:hover { transform: scale(1.2); }
+.color-input-dot input[type=color] {
+  position: absolute; top: -8px; left: -8px;
+  width: 34px; height: 34px; border: none; cursor: pointer; opacity: 0;
+}
+.color-input-label { font-size: 9px; color: #aaa; }
+
+@media (max-width: 768px) {
+  .mobile-hint { display: block; }
+  .tool-main { flex-direction: column; }
+  .panel-editor, .panel-preview { flex: none; height: 50%; }
+  .custom-sidebar { display: none !important; }
+  .tool-header { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
+  .tool-header h1 { font-size: 15px; }
+  .tool-actions { flex-wrap: wrap; }
+  .btn { padding: 8px 16px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<div class="tool-app">
+
+<div class="tool-header">
+  <h1>微信公众号<span>一键排版</span></h1>
+  <label class="edge-toggle" title="兼容微信 edge 内核">
+    <input type="checkbox" id="edgeMode">
+    <span class="switch"></span>
+    Edge兼容
+  </label>
+  <button class="btn-api-toggle" onclick="toggleApiPanel()" title="API 设置">&#x2699; API</button>
+</div>
+
+<div id="apiPanel" class="api-panel">
+  <div class="api-row">
+    <select id="apiProvider" onchange="onProviderChange()">
+      <option value="">自定义</option>
+      <option value="deepseek">DeepSeek</option>
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic</option>
+      <option value="zhipu">智谱 GLM</option>
+      <option value="qwen">通义千问</option>
+      <option value="moonshot">Kimi</option>
+    </select>
+    <input type="password" id="apiKey" placeholder="API Key" autocomplete="off">
+    <input type="text" id="apiEndpoint" placeholder="API 地址">
+    <input type="text" id="apiModel" placeholder="模型名">
+    <select id="apiFormat">
+      <option value="openai">OpenAI 兼容</option>
+      <option value="anthropic">Anthropic</option>
+    </select>
+    <input type="number" id="apiMaxTokens" placeholder="16384" style="min-width:80px;flex:0.5">
+    <button class="btn-api-save" onclick="saveApiSettings()">保存</button>
+  </div>
+  <div class="api-hint">选择提供商自动填入配置，或选"自定义"手动填写。CORS 错误请用 http://localhost 打开此页面。</div>
+</div>
+
+<div class="mobile-hint">推荐在电脑端使用以获得最佳体验</div>
+
+<div class="tool-main">
+  <div class="tool-panel panel-editor">
+    <div class="panel-header">
+      <span class="label">编辑区</span>
+      <span class="hint">支持 Markdown 语法 · 实时预览</span>
+    </div>
+    <div class="editor-wrap">
+      <textarea id="editor" placeholder="在此粘贴或输入文章内容...
+
+支持语法：
+# 总标题  ## 章节标题（自动生成目录）  ### 小节标题  #### 子小节
+**加粗**  *斜体*  ~~删除线~~  > 引用  `代码`
+- 无序  1. 有序  --- 分割线
+[高亮]重点[/高亮]  !!! 重点段落  @@@ 引言  ![图片](URL)"></textarea>
+    </div>
+    <div class="toolbar">
+      <button onclick="applyFormat('bold')" title="加粗">B</button>
+      <button onclick="applyFormat('italic')" title="斜体">I</button>
+      <button onclick="applyFormat('strike')" title="删除线">S&#x336;</button>
+      <span class="separator"></span>
+      <button onclick="applyFormat('h1')" title="一级标题">H1</button>
+      <button onclick="applyFormat('h2')" title="二级标题">H2</button>
+      <button onclick="applyFormat('h3')" title="三级标题">H3</button>
+      <span class="separator"></span>
+      <button onclick="applyFormat('quote')" title="引用">&#x275D;</button>
+      <button onclick="applyFormat('ref')" title="参考文献">&#xB6;</button>
+      <button onclick="applyFormat('ul')" title="无序列表">&#x2022;</button>
+      <button onclick="applyFormat('ol')" title="有序列表">1.</button>
+      <span class="separator"></span>
+      <button onclick="applyFormat('divider')" title="分割线">&mdash;</button>
+      <button onclick="applyFormat('image')" title="插入图片">&#x1F5BC;</button>
+      <button onclick="applyFormat('imageCaption')" title="图片说明">^^图注</button>
+      <button onclick="applyFormat('highlight')" title="高亮">&#x2605;</button>
+      <span class="separator"></span>
+      <button onclick="applyFormat('hilightLine')" title="重点行">&#x2726;行</button>
+      <button onclick="undo()" title="撤销 Ctrl+Z">&#x21A9;</button>
+      <button onclick="redo()" title="重做 Ctrl+Y">&#x21AA;</button>
+    </div>
+  </div>
+
+  <div class="tool-panel panel-preview">
+    <div class="panel-header">
+      <span class="label">预览区</span>
+      <span class="hint" id="styleName">脑脑风格</span>
+      <span class="hint" style="margin-left:8px;color:#7aa8d6">&#x270E; 可编辑</span>
+    </div>
+    <div class="preview-wrap">
+      <div id="preview" contenteditable="true"></div>
+    </div>
+  </div>
+
+  <div id="customPanel" class="custom-sidebar open">
+    <div class="custom-panel-header" onclick="toggleCustomPanel()">
+      <span>自定</span>
+      <span class="arrow">&#x25B2;</span>
+    </div>
+    <div class="custom-sidebar-scroll">
+      <div class="custom-panel-body">
+        <div class="custom-section full-width">
+          <span class="custom-label">色板</span>
+          <div class="palette-row" id="paletteRow"></div>
+          <div class="color-input-row" id="colorInputRow" style="display:none">
+            <span class="color-input-label">主</span><span class="color-input-dot" data-color="0"><input type="color"></span>
+            <span class="color-input-label">辅</span><span class="color-input-dot" data-color="1"><input type="color"></span>
+            <span class="color-input-label">强</span><span class="color-input-dot" data-color="2"><input type="color"></span>
+            <span class="color-input-label">浅</span><span class="color-input-dot" data-color="3"><input type="color"></span>
+            <span class="color-input-label">底</span><span class="color-input-dot" data-color="4"><input type="color"></span>
+          </div>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">字号</span>
+          <select class="custom-select" id="bodySizeSelect">
+            <option value="14">14px</option>
+            <option value="15">15px</option>
+            <option value="16">16px</option>
+            <option value="17">17px</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">行距</span>
+          <select class="custom-select" id="bodyLineSelect">
+            <option value="1.7">1.7</option>
+            <option value="1.85">1.85</option>
+            <option value="2.0">2.0</option>
+            <option value="2.2">2.2</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">大标题</span>
+          <select class="custom-select" id="h1Select">
+            <option value="gradient">渐变背景</option>
+            <option value="num-rule">数字+细线</option>
+            <option value="left-double">左对齐双线</option>
+            <option value="center-line">居中+横线框</option>
+            <option value="num-above">大号编号</option>
+            <option value="magazine">杂志标题</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">章节标题</span>
+          <select class="custom-select" id="h2Select">
+            <option value="underline">底部细线</option>
+            <option value="leftbar">左侧竖线</option>
+            <option value="plain">纯文字加粗</option>
+            <option value="bg-block">浅色背景块</option>
+            <option value="num-prefix">编号前缀</option>
+            <option value="num-rule">数字+细线</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">小节</span>
+          <select class="custom-select" id="h3Select">
+            <option value="dot">圆点前缀</option>
+            <option value="plain">纯文字加粗</option>
+            <option value="underline">下划线</option>
+            <option value="square">方形前缀</option>
+            <option value="num-dot">数字前缀</option>
+            <option value="bracket">【】括号包裹</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">加粗</span>
+          <select class="custom-select" id="boldColorSelect">
+            <option value="accent">主题色</option>
+            <option value="dark">深黑色</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">高亮</span>
+          <select class="custom-select" id="highlightSelect">
+            <option value="colorbg">彩色底</option>
+            <option value="graybg">灰色底</option>
+            <option value="underline">下划线</option>
+            <option value="boldline">粗下划线</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">引用</span>
+          <select class="custom-select" id="quoteSelect">
+            <option value="pinkbar">靛青左线</option>
+            <option value="bluebar">主色左线</option>
+            <option value="bgonly">纯底色</option>
+            <option value="bigquote">装饰引号</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">文本框</span>
+          <select class="custom-select" id="textboxSelect">
+            <option value="bluebg">浅底</option>
+            <option value="pinkbg">暖底</option>
+            <option value="rounded">圆角浅底</option>
+            <option value="leftbar">左侧强调线</option>
+            <option value="whiteborder">白底边框</option>
+            <option value="dashed">虚线边框</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">引言</span>
+          <select class="custom-select" id="introStyleSelect">
+            <option value="textbox">浅色底</option>
+            <option value="rounded">圆角浅底</option>
+            <option value="leftbar">左侧强调线</option>
+            <option value="bordered">细线边框</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">分割线</span>
+          <select class="custom-select" id="dividerSelect">
+            <option value="square">■ ■ ■</option>
+            <option value="diamond">◆ ◆ ◆</option>
+            <option value="dot">● ● ●</option>
+            <option value="line">── 直线</option>
+            <option value="wave">〰〰 波浪</option>
+            <option value="image">&#x1F5BC; 图片</option>
+          </select>
+        </div>
+        <div class="custom-section">
+          <span class="custom-label">表格</span>
+          <select class="custom-select" id="tableSelect">
+            <option value="blue">主色底</option>
+            <option value="pink">暖色底</option>
+            <option value="gray">灰色底</option>
+          </select>
+        </div>
+      </div>
+      <div class="custom-panel-header" style="border-top:1px solid #eee" onclick="toggleCustomPanel()">
+        <span>显示</span>
+        <span class="arrow">&#x25B2;</span>
+      </div>
+      <div class="custom-panel-body">
+        <div class="custom-section">
+          <label class="edge-toggle" style="cursor:pointer">
+            <input type="checkbox" id="showAccessibilityCb" checked onchange="onDisplayToggle()">
+            <span class="switch"></span>
+            <span class="custom-label">无障碍</span>
+          </label>
+        </div>
+        <div class="custom-section">
+          <label class="edge-toggle" style="cursor:pointer">
+            <input type="checkbox" id="showIntroCb" checked onchange="onDisplayToggle()">
+            <span class="switch"></span>
+            <span class="custom-label">引言</span>
+          </label>
+        </div>
+        <div class="custom-section">
+          <label class="edge-toggle" style="cursor:pointer">
+            <input type="checkbox" id="showTocCb" checked onchange="onDisplayToggle()">
+            <span class="switch"></span>
+            <span class="custom-label">目录</span>
+          </label>
+        </div>
+        <div class="custom-section">
+          <label class="edge-toggle" style="cursor:pointer">
+            <input type="checkbox" id="showTocH3Cb" onchange="onDisplayToggle()">
+            <span class="switch"></span>
+            <span class="custom-label">目录含H3</span>
+          </label>
+        </div>
+        <div class="custom-section">
+          <label class="edge-toggle" style="cursor:pointer">
+            <input type="checkbox" id="showIndentCb" onchange="onDisplayToggle()">
+            <span class="switch"></span>
+            <span class="custom-label">首行缩进</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tool-actions">
+  <button class="btn btn-ai" onclick="aiFormat()" id="btnAi">AI 智能排版</button>
+  <button class="btn btn-success" onclick="copyToClipboard()">一键复制到公众号</button>
+  <button class="btn btn-warning" onclick="exportImage()">导出图片</button>
+  <button class="btn btn-secondary" onclick="resetAll()">清空</button>
+  <button class="btn btn-secondary" id="btnUpload" onclick="document.getElementById('fileInput').click()" title="上传 MD / PDF / DOCX">&#x1F4C2; 上传</button>
+  <input type="file" id="fileInput" accept=".md,.pdf,.docx" style="display:none" onchange="handleFileUpload(event)">
+</div>
+
+<div class="toast" id="toast"></div>
+
+</div><!-- /.tool-app -->
+
+<script>
+// ===== STYLES (脑脑风格) =====
+const STYLES = {
+  nbnb: {
+    name: '脑脑风格',
+    article: { padding: '0', background: '#ffffff' },
+    h1_auto_number: true,
+    h1: { textAlign: 'center', padding: '4px 0', margin: '30px 0 18px' },
+    h1_label: { fontSize: '11px', color: '#4a7db5', letterSpacing: '4px', display: 'block', textAlign: 'center', lineHeight: '1.2', fontWeight: '500' },
+    h1_rule: { display: 'block', width: '70px', height: '2px', background: '#7aa8d6', margin: '8px auto 8px', fontSize: '0', lineHeight: '0', overflow: 'hidden' },
+    h1_inner: { fontSize: '22px', color: '#1a3a5c', fontWeight: 'bold', letterSpacing: '4px', display: 'block', lineHeight: '1.3' },
+    h2_auto_number: true,
+    h2: { padding: '4px 0 0', margin: '22px 0 14px' },
+    h2_num: { fontSize: '22px', color: '#7aa8d6', display: 'inline-block', width: '49%', textAlign: 'left', lineHeight: '1.2' },
+    h2_inner: { fontSize: '17px', color: '#1a3a5c', fontWeight: 'bold', letterSpacing: '1px', display: 'inline-block', width: '49%', textAlign: 'right', lineHeight: '1.2' },
+    h2_rule: { display: 'block', height: '2px', background: '#c5ddf5', margin: '6px 0 0', fontSize: '0', lineHeight: '0', overflow: 'hidden' },
+    h3_prefix: '● ',
+    h3_prefix_color: '#7aa8d6',
+    h3: { fontSize: '15px', color: '#1a3a5c', fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' },
+    h4_prefix: '· ',
+    h4_prefix_color: '#4a7db5',
+    h4: { fontSize: '14px', color: '#555', fontWeight: '600', margin: '12px 0 8px', padding: '2px 0', display: 'block', lineHeight: '1.6', letterSpacing: '0.5px' },
+    p: { fontSize: '15px', color: '#3a3a3a', lineHeight: '2.0', margin: '0 0 16px', letterSpacing: '0.5px', wordBreak: 'break-word' },
+    bold: { fontWeight: 'bold', color: '#1a3a5c' },
+    italic: { fontStyle: 'italic', color: '#4a7db5' },
+    del: { textDecoration: 'line-through', color: '#c0b8b8' },
+    code: { fontFamily: 'Consolas, "Courier New", monospace', backgroundColor: 'rgba(197,221,245,0.45)', color: '#1a3a5c', padding: '2px 8px', borderRadius: '0', fontSize: '13px', letterSpacing: '0' },
+    blockquote: { borderLeft: 'none', background: 'linear-gradient(to right, rgba(232,242,250,0.7) 0%, rgba(232,242,250,0.2) 100%)', padding: '20px 20px 0', margin: '20px 0', color: '#1a3a5c', fontSize: '14px', lineHeight: '1.9' },
+    textbox: { background: '#e8f2fa', padding: '18px 24px', margin: '20px 0', color: '#1a3a5c', fontSize: '14px', lineHeight: '1.9', textAlign: 'center', letterSpacing: '1.5px' },
+    intro: { textAlign: 'left', background: 'rgba(197,221,245,0.35)', padding: '16px 20px', margin: '0 0 18px', color: '#555', fontSize: '14px', lineHeight: '1.9', letterSpacing: '0.5px' },
+    ul: { paddingLeft: '20px', margin: '14px 0' },
+    ol: { paddingLeft: '20px', margin: '14px 0' },
+    li: { fontSize: '15px', color: '#3a3a3a', lineHeight: '1.9', margin: '5px 0' },
+    dividerText: '◆   ◆   ◆',
+    divider: { textAlign: 'center', margin: '36px 0', color: '#7aa8d6', fontSize: '14px', letterSpacing: '8px' },
+    dividerColor: '#7aa8d6',
+    table: { width: '100%', borderCollapse: 'collapse', margin: '16px 0', fontSize: '12px' },
+    th: { background: '#1a3a5c', color: '#ffffff', padding: '6px 8px', textAlign: 'center', fontWeight: 'bold', fontSize: '12px', letterSpacing: '0.5px' },
+    td: { background: '#e8f2fa', color: '#3a3a3a', padding: '5px 8px', textAlign: 'center', fontSize: '12px' },
+    ref: { fontSize: '13px', color: '#999999', lineHeight: '1.6', margin: '2px 0', padding: '0' },
+    highlight: { backgroundColor: 'rgba(197,221,245,0.5)', padding: '2px 6px', borderRadius: '0', fontWeight: '600', color: '#1a3a5c' },
+    image: { maxWidth: '100%', borderRadius: '0', display: 'block', marginLeft: 'auto', marginRight: 'auto' },
+    toc: { fontSize: '14px', color: '#555', lineHeight: '2.0', margin: '0 0 18px' },
+    tocItem: { fontSize: '14px', color: '#1a3a5c', textDecoration: 'none', borderBottom: '1px dotted #e8f2fa', padding: '3px 0' },
+    footer: '<img src="/images/nbend.png" style="display:block;width:100%;margin:40px auto 20px" alt="nbend" />'
+  }
+};
+
+// ===== PALETTES =====
+const PALETTES = {
+  nbnb:       { name: '脑脑靛青',   colors: ['#1a3a5c','#4a7db5','#7aa8d6','#c5ddf5','#e8f2fa'] },
+  forest:     { name: '森林绿',     colors: ['#1a4a3a','#4a9d7e','#7cc4a8','#b8e6d0','#e6f5ee'] },
+  purple:     { name: '紫罗兰',     colors: ['#3d2d5c','#7b5ea8','#a68dc8','#d4c5e8','#f0eaf5'] },
+  terracotta: { name: '暖陶土',     colors: ['#9b4a3a','#c08060','#d4a08a','#eacfc0','#faf0ea'] },
+  graphite:   { name: '石墨灰',     colors: ['#2d3436','#555d60','#889099','#c8cdd2','#eef0f2'] },
+  custom:     { name: '自定义色',   colors: ['#1a3a5c','#4a7db5','#7aa8d6','#c5ddf5','#e8f2fa'] }
+};
+
+// ===== Custom Settings (default: 脑脑风格) =====
+let customSettings = {
+  palette: 'nbnb',
+  bodySize: '15', bodyLine: '2.0',
+  h1: 'num-above', h2: 'underline', h3: 'dot',
+  boldColor: 'accent', highlight: 'boldline',
+  quote: 'bigquote', textbox: 'dashed', introStyle: 'rounded',
+  divider: 'diamond', table: 'blue',
+  showAccessibility: true, showIntro: true, showToc: true, showTocH3: false, showIndent: false,
+  cardCode: '',
+  customColors: ['#1a3a5c','#4a7db5','#7aa8d6','#c5ddf5','#e8f2fa']
+};
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `${r},${g},${b}`;
+}
+
+function buildCustomStyle() {
+  const pal = PALETTES[customSettings.palette] || PALETTES.nbnb;
+  const colors = customSettings.palette === 'custom'
+    ? (customSettings.customColors || pal.colors)
+    : pal.colors;
+  const [C1, C2, C3, C4, C5] = colors;
+  const s = { name: '脑脑风格' };
+
+  s.article = { padding: '0', background: '#ffffff' };
+
+  // H1 (大标题 / ## in markdown → h2 tag)
+  s.h1_auto_number = true;
+  switch (customSettings.h1) {
+    case 'gradient':
+      s.h1 = { textAlign: 'center', padding: '16px 0', margin: '40px 0 30px', display: 'block', background: `linear-gradient(to right, transparent 0%, ${C5} 20%, ${C5} 80%, transparent 100%)` };
+      s.h1_inner = { fontSize: '23px', color: C1, fontWeight: 'bold', letterSpacing: '5px', padding: '0', display: 'inline-block', lineHeight: '1.3' };
+      break;
+    case 'num-rule':
+      s.h1 = { padding: '6px 0 0', margin: '32px 0 22px' };
+      s.h1_inner = { fontSize: '20px', color: C1, fontWeight: 'bold', letterSpacing: '3px', display: 'inline-block', width: '49%', textAlign: 'left', lineHeight: '1.2' };
+      s.h1_num = { fontSize: '26px', color: C3, display: 'inline-block', width: '49%', textAlign: 'right', lineHeight: '1.2' };
+      s.h1_rule = { display: 'block', height: '2px', background: C5, margin: '8px 0 0', fontSize: '0', lineHeight: '0', overflow: 'hidden' };
+      break;
+    case 'left-double':
+      s.h1_auto_number = false;
+      s.h1 = { fontSize: '20px', color: C1, textAlign: 'left', fontWeight: 'bold', padding: '8px 0', margin: '28px 0 18px', borderBottom: `3px double ${C3}`, letterSpacing: '1.5px' };
+      break;
+    case 'center-line':
+      s.h1_auto_number = false;
+      s.h1 = { textAlign: 'center', padding: '12px 0', margin: '32px 0 22px', display: 'block', borderTop: `1px solid ${C5}`, borderBottom: `1px solid ${C5}` };
+      s.h1_inner = { fontSize: '21px', color: C1, fontWeight: 'bold', letterSpacing: '4px', padding: '8px 0', display: 'inline-block', lineHeight: '1.3' };
+      break;
+    case 'num-above':
+      s.h1 = { textAlign: 'center', padding: '8px 0', margin: '32px 0 20px' };
+      s.h1_num = { fontSize: '52px', color: C3, display: 'block', lineHeight: '0.85', letterSpacing: '0', opacity: '0.4' };
+      s.h1_inner = { fontSize: '20px', color: C1, fontWeight: 'bold', letterSpacing: '4px', display: 'inline-block', lineHeight: '1.3', padding: '0' };
+      break;
+    default: // magazine
+      s.h1 = { textAlign: 'center', padding: '4px 0', margin: '30px 0 18px' };
+      s.h1_label = { fontSize: '11px', color: C2, letterSpacing: '4px', display: 'block', textAlign: 'center', lineHeight: '1.2', fontWeight: '500' };
+      s.h1_rule = { display: 'block', width: '70px', height: '2px', background: C3, margin: '8px auto 8px', fontSize: '0', lineHeight: '0', overflow: 'hidden' };
+      s.h1_inner = { fontSize: '22px', color: C1, fontWeight: 'bold', letterSpacing: '4px', display: 'block', lineHeight: '1.3' };
+  }
+
+  // H2 (章节标题 / ### in markdown → h3 tag)
+  s.h2_auto_number = true;
+  switch (customSettings.h2) {
+    case 'underline':
+      s.h2_auto_number = false;
+      s.h2 = { fontSize: '17px', color: C1, fontWeight: 'bold', padding: '6px 0', margin: '20px 0 14px', borderBottom: `2px solid ${C3}`, letterSpacing: '1px' };
+      break;
+    case 'leftbar':
+      s.h2_auto_number = false;
+      s.h2 = { fontSize: '17px', color: C1, fontWeight: 'bold', padding: '6px 0 6px 12px', margin: '20px 0 14px', borderLeft: `3px solid ${C3}`, letterSpacing: '1px' };
+      break;
+    case 'plain':
+      s.h2_auto_number = false;
+      s.h2 = { fontSize: '17px', color: C1, fontWeight: 'bold', margin: '20px 0 14px', padding: '4px 0', letterSpacing: '1px' };
+      break;
+    case 'bg-block':
+      s.h2_auto_number = false;
+      s.h2 = { fontSize: '17px', color: C1, fontWeight: 'bold', padding: '10px 16px', margin: '20px 0 14px', background: C5, letterSpacing: '1px' };
+      break;
+    case 'num-prefix':
+      s.h2 = { padding: '4px 0 0', margin: '22px 0 14px' };
+      s.h2_prefix = true;
+      s.h2_prefix_color = C3;
+      s.h2_inner = { fontSize: '17px', color: C1, fontWeight: 'bold', letterSpacing: '1px' };
+      s.h2_rule = { display: 'block', height: '2px', background: C5, margin: '6px 0 0', fontSize: '0', lineHeight: '0', overflow: 'hidden' };
+      break;
+    default: // num-rule
+      s.h2 = { padding: '4px 0 0', margin: '22px 0 14px' };
+      s.h2_num = { fontSize: '22px', color: C3, display: 'inline-block', width: '49%', textAlign: 'left', lineHeight: '1.2' };
+      s.h2_inner = { fontSize: '17px', color: C1, fontWeight: 'bold', letterSpacing: '1px', display: 'inline-block', width: '49%', textAlign: 'right', lineHeight: '1.2' };
+      s.h2_rule = { display: 'block', height: '2px', background: C5, margin: '6px 0 0', fontSize: '0', lineHeight: '0', overflow: 'hidden' };
+  }
+
+  // H3 (小节 / #### in markdown)
+  switch (customSettings.h3) {
+    case 'plain':
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' };
+      break;
+    case 'underline':
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'inline-block', borderBottom: `1px solid ${C3}`, lineHeight: '1.5', letterSpacing: '1px' };
+      break;
+    case 'square':
+      s.h3_prefix = '■ ';
+      s.h3_prefix_color = C3;
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' };
+      break;
+    case 'num-dot':
+      s.h3_auto_number = true;
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' };
+      break;
+    case 'bracket':
+      s.h3_prefix = '【';
+      s.h3_suffix = '】';
+      s.h3_prefix_color = C3;
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' };
+      break;
+    default: // dot
+      s.h3_prefix = '● ';
+      s.h3_prefix_color = C3;
+      s.h3 = { fontSize: '15px', color: C1, fontWeight: 'bold', margin: '16px 0 10px', padding: '4px 0', display: 'block', lineHeight: '1.5', letterSpacing: '1px' };
+  }
+
+  s.h4_prefix = '· ';
+  s.h4_prefix_color = C2;
+  s.h4 = { fontSize: '14px', color: '#555', fontWeight: '600', margin: '12px 0 8px', padding: '2px 0', display: 'block', lineHeight: '1.6', letterSpacing: '0.5px' };
+
+  s.p = { fontSize: customSettings.bodySize + 'px', color: '#3a3a3a', lineHeight: customSettings.bodyLine, margin: '0 0 16px', letterSpacing: '0.5px', wordBreak: 'break-word' };
+  if (customSettings.showIndent) s.p.textIndent = '2em';
+
+  if (customSettings.boldColor === 'dark') { s.bold = { fontWeight: 'bold', color: '#1a1a1a' }; }
+  else { s.bold = { fontWeight: 'bold', color: C1 }; }
+
+  s.italic = { fontStyle: 'italic', color: C2 };
+  s.del = { textDecoration: 'line-through', color: '#c0b8b8' };
+  s.code = { fontFamily: 'Consolas, "Courier New", monospace', backgroundColor: `rgba(${hexToRgb(C4)},0.45)`, color: C1, padding: '2px 8px', borderRadius: '0', fontSize: '13px', letterSpacing: '0' };
+
+  // quote
+  s.blockquote = { borderLeft: 'none', background: `linear-gradient(to right, rgba(${hexToRgb(C5)},0.7) 0%, rgba(${hexToRgb(C5)},0.2) 100%)`, padding: '20px 20px 0', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9' };
+
+  // textbox
+  if (customSettings.textbox === 'pinkbg') {
+    s.textbox = { background: `rgba(${hexToRgb(C4)},0.5)`, padding: '18px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'center', letterSpacing: '1.5px' };
+  } else if (customSettings.textbox === 'whiteborder') {
+    s.textbox = { background: '#ffffff', border: `1px solid ${C5}`, padding: '18px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'center', letterSpacing: '1.5px' };
+  } else if (customSettings.textbox === 'rounded') {
+    s.textbox = { background: `rgba(${hexToRgb(C5)},0.6)`, padding: '18px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'center', letterSpacing: '1.5px', borderRadius: '12px' };
+  } else if (customSettings.textbox === 'leftbar') {
+    s.textbox = { borderLeft: `3px solid ${C3}`, background: `rgba(${hexToRgb(C5)},0.4)`, padding: '16px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'left', letterSpacing: '1px' };
+  } else if (customSettings.textbox === 'dashed') {
+    s.textbox = { background: `rgba(${hexToRgb(C4)},0.25)`, border: `1px dashed ${C3}`, padding: '18px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'left', letterSpacing: '0.5px' };
+  } else {
+    s.textbox = { background: C5, padding: '18px 24px', margin: '20px 0', color: C1, fontSize: '14px', lineHeight: '1.9', textAlign: 'center', letterSpacing: '1.5px' };
+  }
+
+  // intro
+  switch (customSettings.introStyle) {
+    case 'rounded':
+      s.intro = { textAlign: 'left', background: `rgba(${hexToRgb(C4)},0.35)`, padding: '16px 20px', margin: '0 0 18px', color: '#555', fontSize: '14px', lineHeight: '1.9', letterSpacing: '0.5px', borderRadius: '16px' };
+      break;
+    case 'leftbar':
+      s.intro = { textAlign: 'left', borderLeft: `3px solid ${C3}`, background: `rgba(${hexToRgb(C5)},0.4)`, padding: '14px 20px', margin: '0 0 18px', color: '#555', fontSize: '14px', lineHeight: '1.9', letterSpacing: '0.5px' };
+      break;
+    case 'bordered':
+      s.intro = { textAlign: 'left', border: `1px solid ${C5}`, background: '#ffffff', padding: '16px 20px', margin: '0 0 18px', color: '#555', fontSize: '14px', lineHeight: '1.9', letterSpacing: '0.5px' };
+      break;
+    default:
+      s.intro = { textAlign: 'left', background: `rgba(${hexToRgb(C4)},0.35)`, padding: '16px 20px', margin: '0 0 18px', color: '#555', fontSize: '14px', lineHeight: '1.9', letterSpacing: '0.5px' };
+  }
+
+  const dividers = { square: '■   ■   ■', diamond: '◆   ◆   ◆', dot: '●   ●   ●' };
+  s.dividerText = dividers[customSettings.divider] || '■   ■   ■';
+  s.divider = { textAlign: 'center', margin: '36px 0', color: C3, fontSize: '18px', letterSpacing: '8px' };
+  s.dividerColor = C3;
+
+  if (customSettings.table === 'pink') {
+    s.table = { width: '100%', borderCollapse: 'collapse', margin: '16px 0', fontSize: '12px' };
+    s.th = { background: C3, color: '#ffffff', padding: '6px 8px', textAlign: 'center', fontWeight: 'bold', fontSize: '12px', letterSpacing: '0.5px' };
+    s.td = { background: `rgba(${hexToRgb(C4)},0.3)`, color: '#3a3a3a', padding: '5px 8px', textAlign: 'center', fontSize: '12px' };
+  } else if (customSettings.table === 'gray') {
+    s.table = { width: '100%', borderCollapse: 'collapse', margin: '16px 0', fontSize: '12px' };
+    s.th = { background: '#555', color: '#ffffff', padding: '6px 8px', textAlign: 'center', fontWeight: 'bold', fontSize: '12px', letterSpacing: '0.5px' };
+    s.td = { background: '#f5f5f5', color: '#3a3a3a', padding: '5px 8px', textAlign: 'center', fontSize: '12px' };
+  } else {
+    s.table = { width: '100%', borderCollapse: 'collapse', margin: '16px 0', fontSize: '12px' };
+    s.th = { background: C1, color: '#ffffff', padding: '6px 8px', textAlign: 'center', fontWeight: 'bold', fontSize: '12px', letterSpacing: '0.5px' };
+    s.td = { background: C5, color: '#3a3a3a', padding: '5px 8px', textAlign: 'center', fontSize: '12px' };
+  }
+
+  s.ul = { paddingLeft: '20px', margin: '14px 0' };
+  s.ol = { paddingLeft: '20px', margin: '14px 0' };
+  s.li = { fontSize: customSettings.bodySize + 'px', color: '#3a3a3a', lineHeight: '1.9', margin: '5px 0' };
+  s.ref = { fontSize: '13px', color: '#999999', lineHeight: '1.6', margin: '2px 0', padding: '0' };
+
+  if (customSettings.highlight === 'graybg') {
+    s.highlight = { backgroundColor: '#f0f0f0', padding: '2px 6px', borderRadius: '0', fontWeight: '600', color: '#555' };
+  } else if (customSettings.highlight === 'underline') {
+    s.highlight = { textDecoration: 'underline', textUnderlineOffset: '4px', textDecorationColor: C3, fontWeight: '600', color: C1 };
+  } else if (customSettings.highlight === 'boldline') {
+    s.highlight = { textDecoration: 'underline', textUnderlineOffset: '-0.15em', textDecorationThickness: '0.5em', textDecorationColor: `rgba(${hexToRgb(C3)},0.22)`, fontWeight: '600', color: C1 };
+  } else {
+    s.highlight = { backgroundColor: `rgba(${hexToRgb(C4)},0.5)`, padding: '2px 6px', borderRadius: '0', fontWeight: '600', color: C1 };
+  }
+
+  s.image = { maxWidth: '100%', borderRadius: '0', display: 'block' };
+  s.toc = { fontSize: '14px', color: '#555', lineHeight: '2.0', margin: '0 0 18px' };
+  s.tocItem = { fontSize: '14px', color: C1, textDecoration: 'none', borderBottom: `1px dotted ${C5}`, padding: '3px 0' };
+
+  s.footer = '<img src="/images/nbend.png" style="display:block;width:100%;margin:40px auto 20px" alt="nbend" />';
+
+  return s;
+}
+
+let CUSTOM_STYLE = buildCustomStyle();
+
+function getActiveStyle() {
+  return CUSTOM_STYLE;
+}
+
+function saveCustomSettings() {
+  localStorage.setItem('wxTypesetNbnbCustom', JSON.stringify(customSettings));
+}
+
+function loadCustomSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('wxTypesetNbnbCustom'));
+    if (saved) {
+      customSettings = saved;
+      if (customSettings.palette === 'custom' && customSettings.customColors) {
+        PALETTES.custom.colors = [...customSettings.customColors];
+      }
+      CUSTOM_STYLE = buildCustomStyle();
+    }
+  } catch(e) {}
+}
+
+let edgeMode = false;
+
+document.getElementById('edgeMode').addEventListener('change', (e) => {
+  edgeMode = e.target.checked;
+  renderPreview();
+});
+
+// ===== Rendering Engine =====
+
+function fixBordersForWechat(style) {
+  const s = { ...style };
+  const shadows = [];
+  if (s.borderTop) {
+    const m = s.borderTop.match(/(\d+)px\s+solid\s+(.+)/);
+    if (m) shadows.push('inset 0 ' + m[1] + 'px 0 0 ' + m[2]);
+    delete s.borderTop;
+  }
+  if (s.borderBottom) {
+    const m = s.borderBottom.match(/(\d+)px\s+(solid|double)\s+(.+)/);
+    if (m) {
+      if (m[2] === 'double') {
+        shadows.push('inset 0 -1px 0 0 ' + m[3]);
+        shadows.push('inset 0 -' + m[1] + 'px 0 0 ' + m[3]);
+      } else {
+        shadows.push('inset 0 -' + m[1] + 'px 0 0 ' + m[3]);
+      }
+    }
+    delete s.borderBottom;
+  }
+  if (shadows.length > 0) {
+    s.boxShadow = s.boxShadow ? s.boxShadow + ', ' + shadows.join(', ') : shadows.join(', ');
+  }
+  return s;
+}
+
+function toInlineStyle(styleObj) {
+  const fixed = fixBordersForWechat(styleObj);
+  return Object.entries(fixed)
+    .map(([k, v]) => `${k.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${v}`)
+    .join('; ');
+}
+
+function processInline(text, style) {
+  if (!text) return '';
+  if (edgeMode) {
+    text = text.replace(/\*\*(.+?)\*\*/g, `<strong style="font-weight:bold">$1</strong>`);
+    text = text.replace(/\*(.+?)\*/g, `<em style="font-style:italic">$1</em>`);
+    text = text.replace(/~~(.+?)~~/g, `<span style="text-decoration:line-through;color:#aaa">$1</span>`);
+    text = text.replace(/`(.+?)`/g, `<code style="font-family:monospace;background:#f5f5f5;padding:2px 6px;border-radius:3px;font-size:13px">$1</code>`);
+    text = text.replace(/\[高亮\](.+?)\[\/高亮\]/g, `<span style="background-color:#fef9e7;padding:2px 4px;border-radius:2px;font-weight:500">$1</span>`);
+    text = text.replace(/!\[(.+?)\]\((.+?)\)/g, (_, alt, src) => {
+      const url = pastedImages[src] || src;
+      return `<img src="${url}" alt="${alt}" style="max-width:100%;border-radius:0;margin:18px auto;display:block">`;
+    });
+    return text;
+  }
+  text = text.replace(/\*\*(.+?)\*\*/g, `<strong style="${toInlineStyle(style.bold)}">$1</strong>`);
+  text = text.replace(/\*(.+?)\*/g, `<em style="${toInlineStyle(style.italic)}">$1</em>`);
+  text = text.replace(/~~(.+?)~~/g, `<span style="${toInlineStyle(style.del)}">$1</span>`);
+  text = text.replace(/`(.+?)`/g, `<code style="${toInlineStyle(style.code)}">$1</code>`);
+  text = text.replace(/\[高亮\](.+?)\[\/高亮\]/g, `<span style="${toInlineStyle(style.highlight)}">$1</span>`);
+  text = text.replace(/!\[(.+?)\]\((.+?)\)/g, (_, alt, src) => {
+    const url = pastedImages[src] || src;
+    return `<img src="${url}" alt="${alt}" style="${toInlineStyle(style.image)};margin:12px auto;display:block">`;
+  });
+  return text;
+}
+
+function countWords(text) {
+  let count = 0;
+  for (const ch of text) {
+    if (ch !== ' ' && ch !== '\n' && ch !== '\r' && ch !== '\t') count++;
+  }
+  return count;
+}
+
+function generateTable(lines, style, startLine) {
+  const headers = lines[0].split('|').filter(c => c.trim() !== '');
+  const rows = lines.slice(2);
+  const tblDef = style.table || { width: '100%', borderCollapse: 'collapse', margin: '16px 0', fontSize: '12px' };
+  const thDef = style.th || { background: '#1a3a5c', color: '#fff', padding: '6px 8px', textAlign: 'center', fontWeight: 'bold', fontSize: '12px' };
+  const tdDef = style.td || { background: '#e8f2fa', color: '#3a3a3a', padding: '5px 8px', textAlign: 'center', fontSize: '12px' };
+  const dl = startLine != null ? `data-line="${startLine}"` : '';
+  let tbl = `<table ${dl} style="${toInlineStyle(tblDef)}"><thead><tr>`;
+  headers.forEach(h => {
+    tbl += `<th style="${toInlineStyle(thDef)}">${processInline(h.trim(), style)}</th>`;
+  });
+  tbl += '</tr></thead><tbody>';
+  rows.forEach(row => {
+    const cells = row.split('|').filter(c => c.trim() !== '');
+    tbl += '<tr>';
+    cells.forEach(cell => {
+      tbl += `<td style="${toInlineStyle(tdDef)}">${processInline(cell.trim(), style)}</td>`;
+    });
+    tbl += '</tr>';
+  });
+  tbl += '</tbody></table>';
+  return tbl;
+}
+
+const CN_NUM = ['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十'];
+
+function parseText(text) {
+  const style = getActiveStyle();
+  const lines = text.split('\n');
+  let html = '';
+  let inList = null;
+  let h1Counter = 0;
+  let h2Counter = 0;
+  let h3Counter = 0;
+  let pendingAccessibility = false;
+  let accessibilityFlushed = false;
+  let tocGenerated = false;
+  let headerHasContent = false;
+  let headerDividerRendered = false;
+
+  function closeList() {
+    if (inList === 'ul') { html += '</ul>'; }
+    if (inList === 'ol') { html += '</ol>'; }
+    inList = null;
+  }
+
+  function dl(i) { return `data-line="${i}"`; }
+
+  function renderDivider() {
+    const dtype = customSettings.divider;
+    if (dtype === 'image') {
+      html += '<p style="text-align:center;margin:32px 0"><img src="/images/nbline.png" style="display:block;width:100%;margin:0 auto" alt="divider" /></p>';
+      return;
+    }
+    const color = style.dividerColor || '#7aa8d6';
+    if (dtype === 'line') {
+      html += `<div style="height:1px;background:${color};margin:36px 0;font-size:0;line-height:0;overflow:hidden"></div>`;
+    } else if (dtype === 'wave') {
+      html += `<p style="text-align:center;margin:36px 0;color:${color};font-size:14px;letter-spacing:-5px;user-select:none">${'~'.repeat(60)}</p>`;
+    } else {
+      html += `<p style="${toInlineStyle(style.divider)}">${style.dividerText || '◆   ◆   ◆'}</p>`;
+    }
+  }
+
+  function renderSectionDivider() {
+    html += '<p style="text-align:center;margin:32px 0"><img src="/images/nbline.png" style="display:block;width:100%;margin:0 auto" alt="divider" /></p>';
+  }
+
+  function flushAccessibility() {
+    if (accessibilityFlushed) return;
+    if (!pendingAccessibility) return;
+    pendingAccessibility = false;
+    accessibilityFlushed = true;
+    if (customSettings.showAccessibility === false) return;
+    const fullText = document.getElementById('editor').value;
+    const wc = Math.max(100, Math.round(countWords(fullText) / 100) * 100);
+    const readMin = Math.max(1, Math.round(wc / 500));
+    const screenMin = Math.max(1, Math.round(wc / 300));
+    html += `<p style="text-align:center;font-size:12px;color:#bbb;margin:16px 0 4px;letter-spacing:0.5px">全文约 ${wc} 字，阅读约需 ${readMin} 分钟，读屏软件约需 ${screenMin} 分钟</p>`;
+    headerHasContent = true;
+  }
+
+  function generateTOC(startIdx) {
+    if (tocGenerated) return;
+    if (customSettings.showToc === false) return;
+    tocGenerated = true;
+    const items = [];
+    for (let j = startIdx; j < lines.length; j++) {
+      const l = lines[j];
+      const h2m = l.match(/^##\s+(.+)/);
+      if (h2m) items.push({ text: h2m[1].trim(), level: 2 });
+      if (customSettings.showTocH3) {
+        const h3m = l.match(/^###\s+(.+)/);
+        if (h3m) items.push({ text: h3m[1].trim(), level: 3 });
+      }
+    }
+    if (items.length === 0) return;
+    headerHasContent = true;
+    let idx = 0;
+    html += `<div style="${toInlineStyle(style.toc)}">`;
+    html += `<p style="font-size:14px;font-weight:bold;color:${style.h1_inner?.color || '#1a3a5c'};margin:0 0 6px;letter-spacing:1px;padding-top:10px;padding-left:2em;padding-right:8px">文章目录</p>`;
+    for (const item of items) {
+      if (item.level === 2) {
+        idx++;
+        const hasDigit = /^\d/.test(item.text) || /^[一二三四五六七八九十]+[、.]/.test(item.text);
+        const num = idx <= CN_NUM.length ? CN_NUM[idx - 1] : String(idx);
+        const prefix = hasDigit ? '' : num + '、';
+        html += `<p style="${toInlineStyle(style.tocItem)};margin:0;padding-left:2em;padding-right:8px">${prefix}${item.text}</p>`;
+      } else {
+        html += `<p style="${toInlineStyle(style.tocItem)};margin:0;padding-left:3.2em;padding-right:8px;font-size:13px">· ${item.text}</p>`;
+      }
+    }
+    html += `</div>`;
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (pendingAccessibility && line.trim() !== '' && !/^#\s/.test(line) && !/^@@@\s/.test(line)) {
+      generateTOC(i);
+      flushAccessibility();
+      if (headerHasContent && !headerDividerRendered) { renderSectionDivider(); headerDividerRendered = true; }
+    }
+
+    if (/^-{3,}\s*$/.test(line.trim())) {
+      closeList();
+      renderDivider();
+      continue;
+    }
+
+    // Image: ![alt](url) or HTML <img>
+    const lineTrimmed = line.trim();
+    if (/^!\[([^\]]*)\]\(([^)]+)\)\s*$/.test(lineTrimmed)) {
+      closeList();
+      const m = lineTrimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)/);
+      if (!m) continue;
+      const imgSrc = pastedImages[m[2]] || m[2];
+      html += `<p ${dl(i)} style="text-align:center;margin:14px 0 0"><img src="${imgSrc}" alt="${m[1] || ''}" style="${toInlineStyle(style.image)}" /></p>`;
+      if (i + 1 < lines.length && /^\^\^\s+(.+)/.test(lines[i + 1])) {
+        i++;
+        const capText = lines[i].match(/^\^\^\s+(.+)/)[1];
+        html += `<p ${dl(i)} style="text-align:center;font-size:12px;color:#999;margin:0 0 18px;letter-spacing:0.5px">${processInline(capText, style)}</p>`;
+      }
+      continue;
+    }
+    // HTML <img> tag (mammoth may output HTML for some images)
+    if (/<img\s[^>]*src\s*=\s*"([^"]*)"[^>]*>/i.test(lineTrimmed)) {
+      closeList();
+      const imgMatch = lineTrimmed.match(/<img\s[^>]*src\s*=\s*"([^"]*)"[^>]*>/i);
+      if (!imgMatch) continue;
+      const altMatch = lineTrimmed.match(/alt\s*=\s*"([^"]*)"/i);
+      const imgSrc = pastedImages[imgMatch[1]] || imgMatch[1];
+      html += `<p ${dl(i)} style="text-align:center;margin:14px 0 0"><img src="${imgSrc}" alt="${altMatch ? altMatch[1] : ''}" style="${toInlineStyle(style.image)}" /></p>`;
+      continue;
+    }
+
+    // #### heading (H3 style)
+    if (/^####\s+(.+)/.test(line)) {
+      closeList();
+      const text = line.match(/^####\s+(.+)/)[1];
+      if (style.h3_auto_number) {
+        h3Counter++;
+        const num = String(h3Counter).padStart(2, '0');
+        const prefix = num + '. ';
+        const prefixHtml = style.h3_prefix_color ? `<span style="color:${style.h3_prefix_color}">${prefix}</span>` : prefix;
+        html += `<h4 ${dl(i)} style="${toInlineStyle(style.h3)}">${prefixHtml}${processInline(text, style)}</h4>`;
+      } else if (style.h3_suffix) {
+        const prefixHtml = style.h3_prefix_color ? `<span style="color:${style.h3_prefix_color}">${style.h3_prefix}</span>` : style.h3_prefix;
+        const suffixHtml = style.h3_prefix_color ? `<span style="color:${style.h3_prefix_color}">${style.h3_suffix}</span>` : style.h3_suffix;
+        html += `<h4 ${dl(i)} style="${toInlineStyle(style.h3)}">${prefixHtml}${processInline(text, style)}${suffixHtml}</h4>`;
+      } else if (style.h3_prefix) {
+        const prefixHtml = style.h3_prefix_color ? `<span style="color:${style.h3_prefix_color}">${style.h3_prefix}</span>` : style.h3_prefix;
+        html += `<h4 ${dl(i)} style="${toInlineStyle(style.h3)}">${prefixHtml}${processInline(text, style)}</h4>`;
+      } else {
+        html += `<h4 ${dl(i)} style="${toInlineStyle(style.h3)}">${processInline(text, style)}</h4>`;
+      }
+      continue;
+    }
+
+    // ### heading (H2 style)
+    if (/^###\s+(.+)/.test(line)) {
+      closeList();
+      const text = line.match(/^###\s+(.+)/)[1];
+      if (style.h2_auto_number) {
+        h2Counter++;
+        const num = String(h2Counter).padStart(2, '0');
+        if (style.h2_num) {
+          const ruleHtml = style.h2_rule ? `<span style="${toInlineStyle(style.h2_rule)}">&nbsp;</span>` : '';
+          html += `<h3 ${dl(i)} style="${toInlineStyle(style.h2)}"><span style="${toInlineStyle(style.h2_num)}">${num}</span><span style="${toInlineStyle(style.h2_inner)}">${processInline(text, style)}</span>${ruleHtml}</h3>`;
+        } else if (style.h2_prefix) {
+          const prefix = num + '. ';
+          const prefixHtml = style.h2_prefix_color ? `<span style="color:${style.h2_prefix_color}">${prefix}</span>` : prefix;
+          html += `<h3 ${dl(i)} style="${toInlineStyle(style.h2)}">${prefixHtml}${processInline(text, style)}</h3>`;
+        }
+      } else {
+        html += `<h3 ${dl(i)} style="${toInlineStyle(style.h2)}">${processInline(text, style)}</h3>`;
+      }
+      continue;
+    }
+
+    // ## heading (H1 style — most prominent)
+    if (/^##\s+(.+)/.test(line)) {
+      closeList();
+      const text = line.match(/^##\s+(.+)/)[1];
+      if (style.h1_auto_number) {
+        h1Counter++;
+        const num = String(h1Counter).padStart(2, '0');
+        if (style.h1_num) {
+          const ruleHtml = style.h1_rule ? `<span style="${toInlineStyle(style.h1_rule)}">&nbsp;</span>` : '';
+          if (style.h1_rule) {
+            html += `<h2 ${dl(i)} style="${toInlineStyle(style.h1)}"><span style="${toInlineStyle(style.h1_inner)}">${processInline(text, style)}</span><span style="${toInlineStyle(style.h1_num)}">${num}</span>${ruleHtml}</h2>`;
+          } else {
+            html += `<h2 ${dl(i)} style="${toInlineStyle(style.h1)}"><span style="${toInlineStyle(style.h1_num)}">${num}</span><span style="${toInlineStyle(style.h1_inner)}">${processInline(text, style)}</span></h2>`;
+          }
+        } else if (style.h1_label) {
+          const ruleHtml = style.h1_rule ? `<span style="${toInlineStyle(style.h1_rule)}">&nbsp;</span>` : '';
+          html += `<h2 ${dl(i)} style="${toInlineStyle(style.h1)}"><span style="${toInlineStyle(style.h1_label)}">· PART ${num} ·</span>${ruleHtml}<span style="${toInlineStyle(style.h1_inner)}">${processInline(text, style)}</span></h2>`;
+        }
+      } else if (style.h1_inner) {
+        html += `<h2 ${dl(i)} style="${toInlineStyle(style.h1)}"><span style="${toInlineStyle(style.h1_inner)}">${processInline(text, style)}</span></h2>`;
+      } else {
+        html += `<h2 ${dl(i)} style="${toInlineStyle(style.h1)}">${processInline(text, style)}</h2>`;
+      }
+      continue;
+    }
+
+    // # heading (simple, for WeChat title bar)
+    if (/^#\s+(.+)/.test(line)) {
+      closeList();
+      const text = line.match(/^#\s+(.+)/)[1];
+      html += `<h1 ${dl(i)} style="font-size:18px;color:#1a3a5c;font-weight:bold;text-align:center;padding:8px 0;margin:20px 0 4px;letter-spacing:1px">${processInline(text, style)}</h1>`;
+      pendingAccessibility = true;
+      continue;
+    }
+
+    // @@@ intro block
+    if (/^@@@\s+(.+)/.test(line)) {
+      closeList();
+      const introLines = [];
+      while (i < lines.length && /^@@@\s+(.+)/.test(lines[i])) {
+        introLines.push(lines[i].match(/^@@@\s+(.+)/)[1]);
+        i++;
+      }
+      i--;
+      if (customSettings.showIntro !== false) {
+        const introHtml = introLines.map(l => processInline(l, style)).join('<br>');
+        html += `<p ${dl(i - introLines.length + 1)} style="${toInlineStyle(style.intro)}">${introHtml}</p>`;
+        headerHasContent = true;
+      }
+      generateTOC(i + 1);
+      flushAccessibility();
+      if (headerHasContent && !headerDividerRendered) { renderSectionDivider(); headerDividerRendered = true; }
+      continue;
+    }
+
+    // > blockquote
+    if (/^>\s*(.*)/.test(line)) {
+      closeList();
+      const quoteLines = [];
+      while (i < lines.length && /^>\s*(.*)/.test(lines[i])) {
+        quoteLines.push(lines[i].match(/^>\s*(.*)/)[1]);
+        i++;
+      }
+      i--;
+      const quoteContent = quoteLines.map(l => processInline(l, style)).join('<br>');
+      if (customSettings.quote === 'bigquote') {
+        const qColor = style.dividerColor || '#7aa8d6';
+        html += `<blockquote ${dl(i - quoteLines.length + 1)} style="${toInlineStyle(style.blockquote)}">${quoteContent}<p style="text-align:right;margin:0;font-size:0;line-height:0"><span style="font-size:96px;line-height:0.3;color:${qColor};opacity:0.35;font-family:Georgia,'Times New Roman',serif">&rdquo;</span></p></blockquote>`;
+      } else {
+        html += `<blockquote ${dl(i - quoteLines.length + 1)} style="${toInlineStyle(style.blockquote)}">${quoteContent}</blockquote>`;
+      }
+      continue;
+    }
+
+    // - unordered list
+    if (/^[-*]\s+(.+)/.test(line)) {
+      if (inList !== 'ul') { closeList(); html += `<ul ${dl(i)} style="${toInlineStyle(style.ul)}">`; inList = 'ul'; }
+      const text = line.match(/^[-*]\s+(.+)/)[1];
+      html += `<li style="${toInlineStyle(style.li)}">${processInline(text, style)}</li>`;
+      continue;
+    }
+
+    // 1. ordered list
+    if (/^\d+\.\s+(.+)/.test(line)) {
+      if (inList !== 'ol') { closeList(); html += `<ol ${dl(i)} style="${toInlineStyle(style.ol)}">`; inList = 'ol'; }
+      const text = line.match(/^\d+\.\s+(.+)/)[1];
+      html += `<li style="${toInlineStyle(style.li)}">${processInline(text, style)}</li>`;
+      continue;
+    }
+
+    // blank line
+    if (line.trim() === '') {
+      closeList();
+      continue;
+    }
+
+    // @@ reference
+    if (/^@@\s+(.+)/.test(line)) {
+      closeList();
+      const refLines = [];
+      while (i < lines.length && /^@@\s+(.+)/.test(lines[i])) {
+        refLines.push(lines[i].match(/^@@\s+(.+)/)[1]);
+        i++;
+      }
+      i--;
+      const refDef = style.ref || { fontSize: '13px', color: '#999999', lineHeight: '1.6', margin: '2px 0', padding: '0' };
+      const refHtml = refLines.map(l => processInline(l, style)).join('<br>');
+      html += `<p ${dl(i - refLines.length + 1)} style="${toInlineStyle(refDef)}">${refHtml}</p>`;
+      continue;
+    }
+
+    // !!! textbox
+    if (/^!!!\s+(.+)/.test(line)) {
+      closeList();
+      const boxLines = [];
+      while (i < lines.length && /^!!!\s+(.+)/.test(lines[i])) {
+        boxLines.push(lines[i].match(/^!!!\s+(.+)/)[1]);
+        i++;
+      }
+      i--;
+      const boxDef = style.textbox || { background: '#e8f2fa', padding: '18px 24px', margin: '20px 0', fontSize: '14px', lineHeight: '1.9' };
+      const boxHtml = boxLines.map(l => processInline(l, style)).join('<br>');
+      html += `<p ${dl(i - boxLines.length + 1)} style="${toInlineStyle(boxDef)}">${boxHtml}</p>`;
+      continue;
+    }
+
+    // | table |
+    if (/^\|.+\|/.test(line.trim())) {
+      closeList();
+      const tableLines = [];
+      while (i < lines.length && /^\|.+\|/.test(lines[i].trim())) {
+        tableLines.push(lines[i].trim());
+        i++;
+      }
+      i--;
+      if (tableLines.length >= 2 && /^\|[\s\-:]+\|/.test(tableLines[1])) {
+        html += generateTable(tableLines, style, i - tableLines.length + 1);
+        continue;
+      }
+      html += `<p ${dl(i)} style="${toInlineStyle(style.p)}">${processInline(line, style)}</p>`;
+      continue;
+    }
+
+    // normal paragraph
+    closeList();
+    html += `<p ${dl(i)} style="${toInlineStyle(style.p)}">${processInline(line, style)}</p>`;
+  }
+
+  closeList();
+  renderSectionDivider();
+  const fc = style.dividerColor || '#7aa8d6';
+  html += '<p style="color:' + fc + ';font-size:13px;margin:16px 0 4px;font-weight:bold">我们的公众号：脑脑空间NeuroBridge</p>';
+  html += '<p style="color:' + fc + ';font-size:13px;margin:4px 0;font-weight:bold">我们的小红书：脑脑空间NeuroBridge（下图扫码）</p>';
+  html += '<p style="color:' + fc + ';font-size:13px;margin:4px 0 16px;font-weight:bold">点击"阅读原文"跳转脑脑客厅网站。</p>';
+  if (style.footer) html += style.footer;
+  html += '<p style="color:#999;font-size:12px;margin:20px 0 4px">作者：</p>';
+  html += '<p style="color:#999;font-size:12px;margin:4px 0">题图：</p>';
+  html += '<p style="color:#999;font-size:12px;margin:4px 0">排版：</p>';
+
+  return html;
+}
+
+// ===== Render =====
+function renderPreview() {
+  const text = document.getElementById('editor').value;
+  const html = parseText(text);
+  const preview = document.getElementById('preview');
+  preview.innerHTML = html || '<p style="color:#ccc;text-align:center;padding:60px 0;font-size:14px">预览区域</p>';
+}
+
+// ===== Custom Panel =====
+function toggleCustomPanel() {
+  document.getElementById('customPanel').classList.toggle('open');
+}
+
+const SELECT_IDS = ['bodySizeSelect','bodyLineSelect','h1Select','h2Select','h3Select','boldColorSelect','highlightSelect','quoteSelect','textboxSelect','introStyleSelect','dividerSelect','tableSelect'];
+SELECT_IDS.forEach(id => {
+  document.getElementById(id).addEventListener('change', function() {
+    const key = id.replace('Select','');
+    customSettings[key] = this.value;
+    CUSTOM_STYLE = buildCustomStyle();
+    saveCustomSettings();
+    renderPreview();
+  });
+});
+
+function onDisplayToggle() {
+  customSettings.showAccessibility = document.getElementById('showAccessibilityCb').checked;
+  customSettings.showIntro = document.getElementById('showIntroCb').checked;
+  customSettings.showToc = document.getElementById('showTocCb').checked;
+  customSettings.showTocH3 = document.getElementById('showTocH3Cb').checked;
+  customSettings.showIndent = document.getElementById('showIndentCb').checked;
+  CUSTOM_STYLE = buildCustomStyle();
+  saveCustomSettings();
+  renderPreview();
+}
+
+document.getElementById('paletteRow').addEventListener('click', (e) => {
+  const dot = e.target.closest('.palette-dot');
+  if (!dot) return;
+  document.querySelectorAll('.palette-dot').forEach(d => d.classList.remove('active'));
+  dot.classList.add('active');
+  customSettings.palette = dot.dataset.palette;
+  if (dot.dataset.palette === 'custom') {
+    if (!customSettings.customColors) customSettings.customColors = [...PALETTES.custom.colors];
+    PALETTES.custom.colors = [...customSettings.customColors];
+  }
+  CUSTOM_STYLE = buildCustomStyle();
+  saveCustomSettings();
+  refreshCustomPanel();
+  renderPreview();
+});
+
+document.getElementById('colorInputRow').addEventListener('input', (e) => {
+  if (e.target.type !== 'color') return;
+  const dot = e.target.closest('.color-input-dot');
+  if (!dot) return;
+  const idx = parseInt(dot.dataset.color);
+  if (isNaN(idx)) return;
+  if (!customSettings.customColors) customSettings.customColors = [...PALETTES.custom.colors];
+  customSettings.customColors[idx] = e.target.value;
+  dot.style.background = e.target.value;
+  PALETTES.custom.colors = [...customSettings.customColors];
+  CUSTOM_STYLE = buildCustomStyle();
+  saveCustomSettings();
+  renderPreview();
+});
+
+function refreshCustomPanel() {
+  const row = document.getElementById('paletteRow');
+  row.innerHTML = '';
+  for (const [key, pal] of Object.entries(PALETTES)) {
+    const dot = document.createElement('span');
+    dot.className = 'palette-dot' + (customSettings.palette === key ? ' active' : '');
+    dot.title = pal.name;
+    dot.dataset.palette = key;
+    dot.style.background = `linear-gradient(135deg, ${pal.colors[0]} 30%, ${pal.colors[2]} 70%)`;
+    row.appendChild(dot);
+  }
+  const colorRow = document.getElementById('colorInputRow');
+  colorRow.style.display = customSettings.palette === 'custom' ? 'flex' : 'none';
+  if (customSettings.palette === 'custom') {
+    const colors = customSettings.customColors || PALETTES.custom.colors;
+    colorRow.querySelectorAll('.color-input-dot').forEach((dot, i) => {
+      dot.style.background = colors[i] || '#ccc';
+      const input = dot.querySelector('input[type=color]');
+      if (input) input.value = colors[i] || '#cccccc';
+    });
+  }
+  for (const [k, v] of Object.entries(customSettings)) {
+    if (k === 'customColors') continue;
+    const sel = document.getElementById(k + 'Select');
+    if (sel) sel.value = v;
+  }
+  const accCb = document.getElementById('showAccessibilityCb');
+  if (accCb) accCb.checked = customSettings.showAccessibility !== false;
+  const introCb = document.getElementById('showIntroCb');
+  if (introCb) introCb.checked = customSettings.showIntro !== false;
+  const tocCb = document.getElementById('showTocCb');
+  if (tocCb) tocCb.checked = customSettings.showToc !== false;
+  const tocH3Cb = document.getElementById('showTocH3Cb');
+  if (tocH3Cb) tocH3Cb.checked = customSettings.showTocH3 === true;
+  const indentCb = document.getElementById('showIndentCb');
+  if (indentCb) indentCb.checked = customSettings.showIndent === true;
+}
+
+// ===== Clipboard =====
+async function copyToClipboard() {
+  showToast('正在处理图片...', '');
+  const preview = document.getElementById('preview');
+  const clone = preview.cloneNode(true);
+  const imgs = clone.querySelectorAll('img');
+  const conversions = Array.from(imgs).map(async (img) => {
+    try { img.src = await imgSrcToBase64(img.src); } catch(e) {}
+  });
+  await Promise.all(conversions);
+  const contentHtml = clone.innerHTML;
+  const cleanHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>公众号排版</title></head><body style="background:#fff;max-width:600px;margin:0 auto;padding:20px 20px 40px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;">${contentHtml}</body></html>`;
+  const htmlBlob = new Blob([cleanHtml], { type: 'text/html' });
+  const clipboardItem = new ClipboardItem({
+    'text/html': htmlBlob,
+    'text/plain': new Blob([preview.innerText], { type: 'text/plain' })
+  });
+  navigator.clipboard.write([clipboardItem]).then(() => {
+    showToast('已复制！可直接粘贴到微信公众号编辑器', 'success');
+  }).catch(() => {
+    navigator.clipboard.writeText(preview.innerText).then(() => {
+      showToast('已复制纯文本内容（HTML复制失败，请重试）', 'success');
+    }).catch(() => { showToast('复制失败，请检查浏览器权限', ''); });
+  });
+}
+
+async function imgSrcToBase64(src) {
+  if (src.startsWith('data:')) return src;
+  try {
+    const resp = await fetch(src);
+    const blob = await resp.blob();
+    return await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  } catch(e) {}
+  if (src.startsWith('blob:')) {
+    return await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png'));
+      };
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+  return src;
+}
+
+// ===== Export Image =====
+function exportImage() {
+  showToast('正在生成图片，请稍候...', '');
+  if (window.html2canvas) { doExportImage(); }
+  else {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+    script.onload = doExportImage;
+    script.onerror = () => showToast('图片导出依赖加载失败，请检查网络', '');
+    document.head.appendChild(script);
+  }
+}
+
+function doExportImage() {
+  const preview = document.getElementById('preview');
+  const clone = preview.cloneNode(true);
+  clone.style.width = '600px'; clone.style.padding = '30px 20px 60px';
+  clone.style.background = '#fff'; clone.style.position = 'absolute';
+  clone.style.left = '-9999px'; clone.style.top = '0';
+  document.body.appendChild(clone);
+  html2canvas(clone, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false }).then(canvas => {
+    document.body.removeChild(clone);
+    const link = document.createElement('a');
+    link.download = '公众号排版_' + new Date().toISOString().slice(0, 10) + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('图片已导出', 'success');
+  }).catch(() => { document.body.removeChild(clone); showToast('导出失败，请重试', ''); });
+}
+
+// ===== Toast =====
+function showToast(msg, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg; toast.className = 'toast ' + type + ' show';
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 2000);
+}
+
+// ===== Undo/Redo =====
+let undoStack = [], undoIdx = -1;
+const UNDO_MAX = 200;
+function pushUndo(value) {
+  undoStack = undoStack.slice(0, undoIdx + 1);
+  undoStack.push(value);
+  if (undoStack.length > UNDO_MAX) undoStack.shift();
+  undoIdx = undoStack.length - 1;
+}
+let inputBurstTimer = null;
+document.getElementById('editor').addEventListener('beforeinput', () => {
+  const editor = document.getElementById('editor');
+  if (inputBurstTimer === null) pushUndo(editor.value);
+  clearTimeout(inputBurstTimer);
+  inputBurstTimer = setTimeout(() => { inputBurstTimer = null; }, 500);
+});
+
+function undo() {
+  if (isPreviewFocused()) { document.getElementById('preview').focus(); document.execCommand('undo'); }
+  else if (undoIdx >= 0) {
+    const editor = document.getElementById('editor');
+    if (undoIdx === undoStack.length - 1) undoStack[undoIdx] = editor.value;
+    undoIdx--;
+    editor.value = undoStack[undoIdx]; editor.focus(); renderPreview();
+  }
+}
+function redo() {
+  if (isPreviewFocused()) { document.getElementById('preview').focus(); document.execCommand('redo'); }
+  else if (undoIdx < undoStack.length - 1) {
+    undoIdx++;
+    const editor = document.getElementById('editor');
+    editor.value = undoStack[undoIdx]; editor.focus(); renderPreview();
+  }
+}
+
+// ===== Editor Formatting =====
+const stripRe = /^(#{1,6}\s+|>\s*|@@\s+|[-*]\s+|\d+\.\s+)/;
+
+function applyEditorFormat(type) {
+  const editor = document.getElementById('editor');
+  const scrollTop = editor.scrollTop;
+  pushUndo(editor.value);
+  const inlineMap = {
+    bold: ['**', '**', '加粗文字'], italic: ['*', '*', '斜体文字'],
+    strike: ['~~', '~~', '删除线'], highlight: ['[高亮]', '[/高亮]', '重点文字']
+  };
+  const linePrefixes = { h1: '# ', h2: '## ', h3: '### ', h4: '#### ', quote: '> ', ref: '@@ ', ul: '- ', ol: '1. ' };
+
+  if (type === 'hilightLine') {
+    const text = editor.value;
+    const pos = editor.selectionStart;
+    const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    const lineEnd = text.indexOf('\n', pos);
+    const end = lineEnd === -1 ? text.length : lineEnd;
+    const currentLine = text.substring(lineStart, end);
+    if (/^!!!\s/.test(currentLine)) {
+      editor.value = text.substring(0, lineStart) + currentLine.replace(/^!!!\s/, '') + text.substring(end);
+      editor.setSelectionRange(pos, Math.max(lineStart, pos - 5));
+    } else {
+      editor.value = text.substring(0, lineStart) + '!!! ' + currentLine + text.substring(end);
+      editor.setSelectionRange(pos + 4, pos + 4);
+    }
+  } else if (inlineMap[type]) {
+    const [before, after, placeholder] = inlineMap[type];
+    const start = editor.selectionStart, end = editor.selectionEnd;
+    const selected = editor.value.substring(start, end);
+    const insertion = selected ? before + selected + after : before + placeholder + after;
+    editor.value = editor.value.substring(0, start) + insertion + editor.value.substring(end);
+    editor.focus();
+    if (!selected) editor.setSelectionRange(start + before.length, start + before.length + placeholder.length);
+    else editor.setSelectionRange(start, start + insertion.length);
+  } else if (type === 'divider') {
+    const start = editor.selectionStart;
+    const ins = '\n---\n';
+    editor.value = editor.value.substring(0, start) + ins + editor.value.substring(editor.selectionEnd);
+    editor.focus(); editor.setSelectionRange(start + ins.length, start + ins.length);
+  } else if (type === 'imageCaption') {
+    const text = editor.value;
+    const pos = editor.selectionStart;
+    const lineStart = text.lastIndexOf('\n', pos - 1) + 1;
+    const lineEnd = text.indexOf('\n', pos);
+    const end = lineEnd === -1 ? text.length : lineEnd;
+    const currentLine = text.substring(lineStart, end);
+    if (/^\^\^\s/.test(currentLine)) {
+      editor.value = text.substring(0, lineStart) + currentLine.replace(/^\^\^\s/, '') + text.substring(end);
+      editor.setSelectionRange(pos, Math.max(lineStart, pos - 3));
+    } else {
+      editor.value = text.substring(0, lineStart) + '^^ ' + currentLine + text.substring(end);
+      editor.setSelectionRange(pos + 3, pos + 3);
+    }
+  } else if (type === 'image') {
+    const url = prompt('请输入图片 URL：');
+    if (!url) return;
+    const ins = `![image](${url})`;
+    const start = editor.selectionStart;
+    editor.value = editor.value.substring(0, start) + ins + editor.value.substring(editor.selectionEnd);
+    editor.focus(); editor.setSelectionRange(start + ins.length, start + ins.length);
+  } else if (linePrefixes[type]) {
+    const prefix = linePrefixes[type];
+    const text = editor.value;
+    const selStart = editor.selectionStart, selEnd = editor.selectionEnd;
+    const blockStart = text.lastIndexOf('\n', selStart - 1) + 1;
+    let blockEnd = text.indexOf('\n', selEnd - 1);
+    if (blockEnd === -1) blockEnd = text.length;
+    if (selStart === selEnd) {
+      const curLine = text.substring(blockStart, blockEnd);
+      const stripped = curLine.replace(stripRe, '');
+      const newLine = prefix + stripped;
+      editor.value = text.substring(0, blockStart) + newLine + text.substring(blockEnd);
+      editor.focus(); editor.setSelectionRange(blockStart + prefix.length, blockStart + newLine.length);
+    } else {
+      const before = text.substring(0, blockStart);
+      const selectedBlock = text.substring(blockStart, blockEnd);
+      const after = text.substring(blockEnd);
+      const newLines = selectedBlock.split('\n').map(line => line.trim() === '' ? line : prefix + line.replace(stripRe, '')).join('\n');
+      editor.value = before + newLines + after;
+      editor.focus(); editor.setSelectionRange(blockStart, blockStart + newLines.length);
+    }
+  }
+  editor.focus(); renderPreview(); editor.scrollTop = scrollTop;
+}
+
+// ===== Preview Formatting =====
+function applyPreviewFormat(type) {
+  const preview = document.getElementById('preview');
+  const sel = window.getSelection();
+  let savedRange = null;
+  if (sel.rangeCount && preview.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
+  preview.focus();
+  if (savedRange) { sel.removeAllRanges(); sel.addRange(savedRange); }
+  const style = getActiveStyle();
+  switch (type) {
+    case 'bold': document.execCommand('bold'); break;
+    case 'italic': document.execCommand('italic'); break;
+    case 'strike': document.execCommand('strikeThrough'); break;
+    case 'h1': document.execCommand('formatBlock', false, 'h1'); break;
+    case 'h2': document.execCommand('formatBlock', false, 'h2'); break;
+    case 'h3': document.execCommand('formatBlock', false, 'h3'); break;
+    case 'quote': document.execCommand('formatBlock', false, 'blockquote'); break;
+    case 'ref': {
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        const block = range.startContainer.nodeType === 3 ? range.startContainer.parentElement.closest('p,div,h1,h2,h3,h4,blockquote,li,span') : range.startContainer.closest('p,div,h1,h2,h3,h4,blockquote,li,span');
+        if (block && block.closest('#preview')) {
+          const p = document.createElement('p');
+          p.style.cssText = toInlineStyle(style.ref || { fontSize: '13px', color: '#999999', lineHeight: '1.6', margin: '2px 0', padding: '0' });
+          p.innerHTML = block.innerHTML;
+          block.replaceWith(p);
+        }
+      }
+      break;
+    }
+    case 'ul': document.execCommand('insertUnorderedList'); break;
+    case 'ol': document.execCommand('insertOrderedList'); break;
+    case 'divider': {
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const dtype = customSettings.divider;
+        const color = style.dividerColor || '#7aa8d6';
+        let el;
+        if (dtype === 'line') { el = document.createElement('div'); el.style.cssText = `height:1px;background:${color};margin:36px 0;font-size:0;line-height:0;overflow:hidden`; }
+        else if (dtype === 'wave') { el = document.createElement('p'); el.style.cssText = `text-align:center;margin:36px 0;color:${color};font-size:14px;letter-spacing:-5px`; el.textContent = '~'.repeat(60); }
+        else { el = document.createElement('p'); el.style.cssText = toInlineStyle(style.divider); el.textContent = style.dividerText || '◆ ◆ ◆'; }
+        const range = sel.getRangeAt(0);
+        range.insertNode(el); range.setStartAfter(el); range.setEndAfter(el);
+        sel.removeAllRanges(); sel.addRange(range);
+      }
+      break;
+    }
+    case 'highlight': {
+      const sel = window.getSelection();
+      if (sel.rangeCount && !sel.isCollapsed) {
+        const span = document.createElement('span');
+        span.style.cssText = toInlineStyle(style.highlight);
+        sel.getRangeAt(0).surroundContents(span);
+      }
+      break;
+    }
+    case 'image': {
+      const url = prompt('请输入图片 URL：');
+      if (!url) break;
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const img = document.createElement('img'); img.src = url; img.alt = 'image';
+        img.style.cssText = toInlineStyle(style.image);
+        const p = document.createElement('p'); p.style.textAlign = 'center'; p.style.margin = '18px 0'; p.appendChild(img);
+        const range = sel.getRangeAt(0);
+        range.insertNode(p); range.setStartAfter(p); range.setEndAfter(p);
+        sel.removeAllRanges(); sel.addRange(range);
+      }
+      break;
+    }
+    case 'imageCaption': {
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        const block = range.startContainer.nodeType === 3 ? range.startContainer.parentElement.closest('p,div') : range.startContainer.closest('p,div');
+        if (block && block.closest('#preview')) {
+          const isCaption = block.style.fontSize === '12px' && block.style.textAlign === 'center';
+          if (isCaption) {
+            block.style.cssText = toInlineStyle(style.p);
+          } else {
+            block.style.cssText = 'text-align:center;font-size:12px;color:#999;margin:0 0 18px;letter-spacing:0.5px';
+          }
+        }
+      }
+      break;
+    }
+    case 'hilightLine': {
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        const block = range.startContainer.nodeType === 3 ? range.startContainer.parentElement.closest('p,div,h1,h2,h3,h4,blockquote,li') : range.startContainer.closest('p,div,h1,h2,h3,h4,blockquote,li');
+        if (block && block.closest('#preview')) {
+          const p = document.createElement('p');
+          p.style.cssText = toInlineStyle(style.textbox || { background: '#e8f2fa', padding: '18px 24px', margin: '20px 0', fontSize: '14px', lineHeight: '1.9' });
+          p.innerHTML = block.innerHTML;
+          block.replaceWith(p);
+        }
+      }
+      break;
+    }
+  }
+}
+
+let lastFocused = 'editor';
+document.getElementById('editor').addEventListener('focus', () => { lastFocused = 'editor'; });
+document.getElementById('preview').addEventListener('focus', () => { lastFocused = 'preview'; });
+function isPreviewFocused() { return lastFocused === 'preview'; }
+function applyFormat(type) { if (isPreviewFocused()) applyPreviewFormat(type); else applyEditorFormat(type); }
+
+// ===== Editor <-> Preview Sync =====
+document.getElementById('editor').addEventListener('input', debounce(renderPreview, 200));
+document.getElementById('editor').addEventListener('keyup', scrollPreviewToCursor);
+document.getElementById('editor').addEventListener('click', scrollPreviewToCursor);
+
+function scrollPreviewToCursor() {
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
+  const cursorPos = editor.selectionStart;
+  const textBefore = editor.value.substring(0, cursorPos);
+  const lineNum = textBefore.split('\n').length - 1;
+  const all = preview.querySelectorAll('[data-line]');
+  let best = null;
+  for (const el of all) {
+    const dl = parseInt(el.getAttribute('data-line'));
+    if (dl <= lineNum && (best === null || dl > best.dl)) best = { el, dl };
+  }
+  if (best) best.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+document.getElementById('preview').addEventListener('keyup', scrollEditorToPreview);
+document.getElementById('preview').addEventListener('click', scrollEditorToPreview);
+
+function scrollEditorToPreview() {
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+  let node = sel.anchorNode;
+  while (node && node !== document.getElementById('preview')) {
+    if (node.nodeType === 1 && node.hasAttribute && node.hasAttribute('data-line')) {
+      const editor = document.getElementById('editor');
+      const preview = document.getElementById('preview');
+      const rect = node.getBoundingClientRect();
+      const previewRect = preview.getBoundingClientRect();
+      const ratio = Math.max(0, (rect.top - previewRect.top) / previewRect.height);
+      editor.scrollTop = Math.max(0, ratio * (editor.scrollHeight - editor.clientHeight));
+      return;
+    }
+    node = node.parentNode;
+  }
+}
+
+document.getElementById('preview').addEventListener('dblclick', function(e) {
+  let el = e.target.closest('[data-line]');
+  if (!el) return;
+  const lineNum = parseInt(el.getAttribute('data-line'));
+  if (isNaN(lineNum)) return;
+  const editor = document.getElementById('editor');
+  const lines = editor.value.split('\n');
+  let charPos = 0;
+  for (let i = 0; i < Math.min(lineNum, lines.length); i++) charPos += lines[i].length + 1;
+  editor.focus(); editor.setSelectionRange(charPos, charPos);
+  const lineHeight = editor.scrollHeight / Math.max(lines.length, 1);
+  editor.scrollTop = Math.max(0, lineNum * lineHeight - editor.clientHeight / 3);
+  showToast('已跳转到编辑区第 ' + (lineNum + 1) + ' 行', '');
+});
+
+// ===== Image Paste =====
+const pastedImages = {};
+let pasteImageId = 0;
+document.getElementById('editor').addEventListener('paste', (e) => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      e.preventDefault();
+      const blob = item.getAsFile();
+      const id = 'paste:' + (++pasteImageId);
+      pastedImages[id] = URL.createObjectURL(blob);
+      const md = `![image](${id})`;
+      const editor = document.getElementById('editor');
+      const start = editor.selectionStart;
+      pushUndo(editor.value);
+      editor.value = editor.value.substring(0, start) + md + editor.value.substring(editor.selectionEnd);
+      editor.focus(); editor.setSelectionRange(start + md.length, start + md.length);
+      renderPreview();
+      return;
+    }
+  }
+});
+
+document.getElementById('preview').addEventListener('paste', (e) => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.type.startsWith('image/')) {
+      e.preventDefault();
+      const blob = item.getAsFile();
+      const url = URL.createObjectURL(blob);
+      const style = getActiveStyle();
+      const img = document.createElement('img'); img.src = url; img.alt = 'image';
+      img.style.cssText = toInlineStyle(style.image);
+      const p = document.createElement('p'); p.style.textAlign = 'center'; p.style.margin = '18px 0'; p.appendChild(img);
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.insertNode(p); range.setStartAfter(p); range.setEndAfter(p);
+        sel.removeAllRanges(); sel.addRange(range);
+      }
+      return;
+    }
+  }
+});
+
+// ===== Keyboard Shortcuts =====
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); copyToClipboard(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'b') { e.preventDefault(); applyFormat('bold'); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
+  if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); redo(); }
+});
+
+// ===== Reset =====
+function resetAll() {
+  if (confirm('确定要清空所有内容吗？')) {
+    document.getElementById('editor').value = '';
+    document.getElementById('preview').innerHTML = '<p style="color:#ccc;text-align:center;padding:60px 0;font-size:14px">预览区域</p>';
+    showToast('已清空', '');
+  }
+}
+
+// ===== File Upload =====
+async function handleFileUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const btn = document.getElementById('btnUpload');
+  const origText = btn.textContent;
+  btn.textContent = '⏳ 上传中...';
+  btn.disabled = true;
+  showToast('正在解析文件...', '');
+  try {
+    const ext = file.name.split('.').pop().toLowerCase();
+    const arrayBuffer = await file.arrayBuffer();
+    let text = '';
+    if (ext === 'md') text = stripMarkdownMeta(new TextDecoder().decode(arrayBuffer));
+    else if (ext === 'docx') text = stripMarkdownMeta(await extractDocx(arrayBuffer));
+    else if (ext === 'pdf') text = await extractPdf(arrayBuffer);
+    else { showToast('不支持的文件格式：.' + ext, ''); return; }
+    document.getElementById('editor').value = text;
+    renderPreview();
+    showToast('已导入：' + file.name, 'success');
+  } catch (err) { showToast('文件解析失败：' + (err.message || '请检查文件是否损坏'), ''); }
+  finally {
+    btn.textContent = origText;
+    btn.disabled = false;
+    event.target.value = '';
+  }
+}
+
+function stripMarkdownMeta(raw) {
+  let text = raw;
+  if (/^---\s*[\r\n]/.test(text)) {
+    const end = text.indexOf('\n---', 4);
+    if (end !== -1) text = text.slice(end + 5).trimStart();
+  }
+  return text.trim();
+}
+
+async function extractDocx(arrayBuffer) {
+  if (!window.mammoth) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js';
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const result = await mammoth.convertToMarkdown({ arrayBuffer });
+  let text = result.value;
+  // 将 base64 图片转为 blob URL，直接解码避免 fetch 对长 data URI 的限制
+  const dataUriRegex = /!\[([^\]]*)\]\((data:image\/[^)]+)\)/g;
+  text = text.replace(dataUriRegex, (match, alt, dataUri) => {
+    const id = 'paste:' + (++pasteImageId);
+    try {
+      const parts = dataUri.split(',');
+      const mime = (parts[0].match(/:(.*?);/) || ['', 'image/png'])[1];
+      const binary = atob(parts[1]);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const blob = new Blob([bytes], { type: mime });
+      URL.revokeObjectURL(pastedImages[id]);
+      pastedImages[id] = URL.createObjectURL(blob);
+    } catch(e) { pastedImages[id] = dataUri; }
+    return '![' + alt + '](' + id + ')';
+  });
+  return text;
+}
+
+async function extractPdf(arrayBuffer) {
+  if (!window.pdfjsLib) {
+    const urls = ['https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js', 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js'];
+    let loaded = false;
+    for (const url of urls) {
+      try {
+        await new Promise((resolve, reject) => { const s = document.createElement('script'); s.src = url; s.onload = resolve; s.onerror = reject; document.head.appendChild(s); });
+        loaded = true; break;
+      } catch (e) {}
+    }
+    if (!loaded) throw new Error('PDF.js 库加载失败，请检查网络连接');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = urls[0].replace('pdf.min.js', 'pdf.worker.min.js');
+  }
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const pages = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    pages.push(content.items.map(it => it.str).join(' '));
+  }
+  return pages.join('\n\n');
+}
+
+function debounce(fn, delay) {
+  let timer;
+  return function(...args) { clearTimeout(timer); timer = setTimeout(() => fn.apply(this, args), delay); };
+}
+
+// ===== API / AI =====
+const API_PROVIDERS = {
+  deepseek:  { endpoint: 'https://api.deepseek.com/chat/completions',  model: 'deepseek-chat',       format: 'openai' },
+  openai:    { endpoint: 'https://api.openai.com/v1/chat/completions',    model: 'gpt-4o',              format: 'openai' },
+  anthropic: { endpoint: 'https://api.anthropic.com/v1/messages',         model: 'claude-sonnet-4-6',    format: 'anthropic' },
+  zhipu:     { endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions', model: 'glm-4',       format: 'openai' },
+  qwen:      { endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', model: 'qwen-plus', format: 'openai' },
+  moonshot:  { endpoint: 'https://api.moonshot.cn/v1/chat/completions',  model: 'moonshot-v1-8k',      format: 'openai' }
+};
+
+function onProviderChange() {
+  const prov = document.getElementById('apiProvider').value;
+  if (!prov) return;
+  const cfg = API_PROVIDERS[prov];
+  document.getElementById('apiEndpoint').value = cfg.endpoint;
+  document.getElementById('apiModel').value = cfg.model;
+  document.getElementById('apiFormat').value = cfg.format;
+}
+
+function toggleApiPanel() {
+  const panel = document.getElementById('apiPanel');
+  const btn = document.querySelector('.btn-api-toggle');
+  panel.classList.toggle('show');
+  btn.classList.toggle('active');
+}
+
+function saveApiSettings() {
+  const settings = {
+    provider: document.getElementById('apiProvider').value,
+    key: document.getElementById('apiKey').value.trim(),
+    endpoint: document.getElementById('apiEndpoint').value.trim(),
+    model: document.getElementById('apiModel').value.trim(),
+    format: document.getElementById('apiFormat').value,
+    maxTokens: parseInt(document.getElementById('apiMaxTokens').value) || 16384
+  };
+  localStorage.setItem('wxTypesetApi', JSON.stringify(settings));
+  showToast('API 设置已保存', 'success');
+}
+
+function loadApiSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('wxTypesetApi'));
+    if (saved) {
+      document.getElementById('apiKey').value = saved.key || '';
+      document.getElementById('apiEndpoint').value = saved.endpoint || '';
+      document.getElementById('apiModel').value = saved.model || '';
+      document.getElementById('apiFormat').value = saved.format || 'openai';
+      document.getElementById('apiProvider').value = saved.provider || '';
+      document.getElementById('apiMaxTokens').value = saved.maxTokens || 16384;
+    }
+  } catch(e) {}
+}
+
+async function aiFormat() {
+  const settings = JSON.parse(localStorage.getItem('wxTypesetApi') || '{}');
+  if (!settings.key) { showToast('请先配置 API 设置（点击 ⚙ API）', ''); toggleApiPanel(); return; }
+  const rawText = document.getElementById('editor').value.trim();
+  if (!rawText) { showToast('请先输入文章内容', ''); return; }
+  // 将图片引用替换为占位符，避免 AI 修改 paste ID
+  const imageMap = new Map();
+  const strippedText = rawText.replace(/!\[([^\]]*)\]\((paste:\d+)\)/g, (match) => {
+    const id = '[IMG_' + imageMap.size + ']';
+    imageMap.set(id, match);
+    return id;
+  });
+  if (imageMap.size > 0) showToast('已剥离 ' + imageMap.size + ' 张图片后发送 AI…', '');
+  const btn = document.getElementById('btnAi');
+  btn.disabled = true; btn.textContent = 'AI 排版中...';
+
+  const systemPrompt = `你是一位资深微信公众号编辑。请对用户提供的文本进行排版加工。
+
+## 核心原则
+- 严禁删除任何内容！原文中的按语、推文简介、前言、后记、免责声明、作者署名等全部保留，不得以任何理由删减或概括
+- 只在原文基础上添加 markdown 排版标记和标题，不改变原文措辞
+- 文中 [IMG_N] 是图片占位标记，必须原样保留不修改不删除（N 为数字）
+- 原文中的【】〖〗「」等中文括号标题（如【推文简介】【按语】【题目】），不要对其加粗、加 ** 或 __ 等强调标记，它们本身已经足够醒目
+- YAML frontmatter 会被自动剥离。# 总标题保留在正文顶部、简洁渲染，方便剪切到公众号标题栏；排版重点从 ## 开始（## 使用最突出的样式）
+
+## 任务
+
+### 1. 引言生成
+- 如果原文已有按语、推文简介等前置说明文字，直接保留原样，不要重复生成引言
+- 如果原文没有引言，基于全文内容生成一段 100 字以内的 @@@ 引言放在 # 标题下方
+- @@@ 标记：@@@ 引言文字（每行以 @@@ 开头，可多行）
+
+### 2. 关键词加粗与斜体强调
+- 识别核心概念、专业术语、关键数据、人名、产品名、重要动词
+- 首次出现时加 **加粗**，每段 3-6 个，大胆使用
+- 次要但值得注意的术语、对比概念、修饰性限定词使用 *斜体* 强调
+
+### 3. 重点短语高亮
+- 识别需要特别引起读者注意的关键短语、数字结论、核心判断
+- 用 [高亮]短语[/高亮] 包裹，会被渲染为蓝色底
+- 每段 1-3 处，不要与 **加粗** 重复标记同一内容
+
+### 4. 关键句标记
+- 每个章节至少找出 1-2 个值得突出的完整句子
+- 在句子前面加 !!! 和一个空格
+- 全文总共至少 4-6 处 !!! 标记
+
+### 5. 标题层级
+- 分析逻辑结构，自动添加章节标题
+- # 文章总标题：保留在正文最顶部，全文仅 1 个
+- ## 章节标题：排版后视觉效果最突出的层级，对应正文的一级章节
+- ### 小节标题：二级层级，对应章节内的细分
+
+### 6. 表格转换 — 数据对比、参数罗列等内容转为 | 列 | 列 | 表格
+
+### 7. 列表结构化 — "首先/其次/最后"等叙述转为 1. 有序列表，并列特征转为 - 无序列表
+
+### 8. 案例引用 — 将具体案例、场景描述、用户故事等独立段落转为 > 引用格式
+
+### 9. 长文分割线 — 如果文章较长（超过 3 个 ## 章节），在第二个及之后的 ## 章节标题前添加 --- 分割线。注意：第一个 ## 章节标题前不要加分割线，# 总标题后也不要加分割线，@@@ 引言前后也不要加
+
+### 10. 段落整理 — 过长的段落适当拆分，过短的合并，段落间空一行
+
+### 11. 参考文献 — 文末的参考文献、注释、引用来源等使用 @@ 标记
+
+### 12. 图片说明（图注）识别
+- 识别 [IMG_N] 占位标记下方的文字是否为图片说明/图注（如"上图展示了..."、"图为..."、数据来源标注、图表标题等）
+- 图注特征：简短（1-2句话）、紧跟在图片标记下方、解释或描述图片内容
+- 将识别到的图注行加上 ^^  前缀：^^  图注文字（^^ 后有一个空格）
+- 图注行必须紧跟在对应的 [IMG_N] 行下方，中间不要插入空行
+- 不确定是否为图注时，宁可保留原文不加标记
+
+## 输出
+- 直接输出排版结果，无解释、无代码块
+- 中文全角标点`;
+
+  try {
+    const endpoint = settings.endpoint || 'https://api.openai.com/v1/chat/completions';
+    const model = settings.model || 'gpt-4o';
+    const format = settings.format || 'openai';
+    const maxTokens = settings.maxTokens || 16384;
+
+    let content;
+    if (format === 'anthropic') content = await callAnthropicAPI(settings.key, endpoint, model, systemPrompt, strippedText, maxTokens);
+    else content = await callOpenAIAPI(settings.key, endpoint, model, systemPrompt, strippedText, maxTokens);
+
+    // 将占位符替换回原始图片 markdown
+    for (const [id, original] of imageMap) {
+      content = content.replace(id, original);
+    }
+
+    document.getElementById('editor').value = content;
+    renderPreview();
+    showToast('AI 排版完成', 'success');
+  } catch (err) {
+    console.error('AI format error:', err);
+    const msg = err.message.length > 80 ? err.message.slice(0, 80) + '…' : err.message;
+    showToast('AI 排版失败: ' + msg, '');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'AI 智能排版';
+  }
+}
+
+async function callOpenAIAPI(key, endpoint, model, systemPrompt, userText, maxTokens) {
+  let resp;
+  try {
+    resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      body: JSON.stringify({ model, messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: userText }], temperature: 0.3, max_tokens: maxTokens })
+    });
+  } catch (e) { throw new Error('网络请求失败，可能是 CORS 限制或无法访问 API 地址'); }
+  if (!resp.ok) {
+    const err = await resp.text().catch(() => '');
+    if (resp.status === 401 || resp.status === 403) throw new Error('API Key 无效或无权限');
+    if (resp.status === 404) throw new Error('API 地址或模型不存在 (404)');
+    throw new Error('API 错误 ' + resp.status + ': ' + err.slice(0, 150));
+  }
+  const data = await resp.json();
+  if (!data.choices || !data.choices[0] || !data.choices[0].message) throw new Error('API 返回格式异常');
+  return data.choices[0].message.content;
+}
+
+async function callAnthropicAPI(key, endpoint, model, systemPrompt, userText, maxTokens) {
+  let resp;
+  try {
+    resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: model || 'claude-sonnet-4-6', max_tokens: maxTokens, system: systemPrompt, messages: [{ role: 'user', content: userText }] })
+    });
+  } catch (e) { throw new Error('网络请求失败，可能是 CORS 限制或无法访问 API 地址'); }
+  if (!resp.ok) {
+    const err = await resp.text().catch(() => '');
+    if (resp.status === 401 || resp.status === 403) throw new Error('API Key 无效或无权限');
+    if (resp.status === 404) throw new Error('API 地址或模型不存在 (404)');
+    throw new Error('API 错误 ' + resp.status + ': ' + err.slice(0, 150));
+  }
+  const data = await resp.json();
+  if (!data.content || !data.content[0] || !data.content[0].text) throw new Error('API 返回格式异常');
+  return data.content[0].text;
+}
+
+// ===== Sample Text =====
+const sampleText = `# 这篇文章的标题（可剪切到公众号标题栏）
+
+@@@ 这是AI生成的引言，约100字以内，概括全文核心观点。
+@@@ 读者可在3秒内判断是否继续阅读。可在自定义面板中关闭此区域。
+
+正文是一段完整的表述，文字间可以穿插**加粗关键词**和*斜体强调*，也可以有~~删除线~~和\`行内代码\`。需要引起读者注意时，[高亮]高亮文字会产生视觉焦点。[/高亮]
+
+> 这是引用样式。独立成段，搭配装饰引号，适合摘录他人的话或前置核心观点。
+
+## 章节标题
+
+正文中 ## 开头的行是排版最突出的层级，适合作为一级章节标题。
+
+## 另一个章节
+
+在关键概念首次出现时使用**加粗**，需要突出显示时可使用[高亮]高亮标记。[/高亮]
+
+### 小节标题
+
+#### 子小节标题
+
+![示例图片](https://neurobridge.cn/images/qrcode.png)
+^^ 图片说明文字，小号、居中、灰色，用于注解图片内容
+
+- 无序列表以 - 开头
+- 多项并列时使用
+
+1. 有序列表以数字加点开头
+2. 适合步骤或优先级排列
+
+---
+
+表格功能，以 | 分隔列：
+
+| 方案 | 优势 | 劣势 |
+|------|------|------|
+| 方案A | 实现简单 | 扩展性一般 |
+| 方案B | 功能完善 | 学习成本高 |
+
+---
+
+!!! 重点段落文本框，以 !!! 开头，适合需要突出的段落。
+
+@@ 参考文献样式，文末引用用 @@ 开头，渲染为灰色小字。`;
+
+document.getElementById('editor').value = sampleText;
+
+// ===== Init =====
+loadApiSettings();
+loadCustomSettings();
+refreshCustomPanel();
+renderPreview();
+</script>
+
+</body>
+</html>

@@ -37,10 +37,13 @@
       "Bash(taskkill /F /PID 4884)",
       "Bash(taskkill /F /PID 35448)",
       "Bash(curl -sL -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" -H \"Referer: https://mp.weixin.qq.com/\" \"https://mp.weixin.qq.com/s/8wcUZEsND6FWLm3x9yklVg\")",
-      "Bash(curl -sL -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" -H \"Referer: https://mp.weixin.qq.com/\" \"https://mp.weixin.qq.com/s/985MU4ZzbBlx_Th_bIUc-A\")"
+      "Bash(curl -sL -H \"User-Agent: Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" -H \"Referer: https://mp.weixin.qq.com/\" \"https://mp.weixin.qq.com/s/985MU4ZzbBlx_Th_bIUc-A\")",
+      "Bash(git rebase *)",
+      "Bash(mkdir -p /tmp/git_temp && mv .claude/settings.json /tmp/git_temp/ 2>&1 && rm -rf resources/_gen/ 2>&1 && git rebase --abort 2>&1)"
     ],
     "additionalDirectories": [
-      "\\tmp"
+      "\\tmp",
+      "D:\\nblotus\\.claude"
     ]
   }
 }
